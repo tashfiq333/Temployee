@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
-namespace Temployee.ClientApp.src.Models
+namespace Temployee.Models
 {
     public class Project
     {
