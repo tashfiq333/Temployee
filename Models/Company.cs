@@ -1,7 +1,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-namespace Temployee.ClientApp.src.Models
+namespace Temployee.Models
 {
     public class Company
     {
