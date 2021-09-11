@@ -1,18 +1,17 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
-namespace Temployee.ClientApp.src.Models
+namespace Temployee.Models
 {
-    public class WorkingOn
+    public class Posts
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string FreelancerId{get; set;}
+        public string CompanyId{get; set;}
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string ProjectId{get; set;}
-
-
+        
     }
 }

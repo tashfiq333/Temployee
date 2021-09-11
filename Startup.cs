@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using MongoDB.Driver;
 namespace Temployee
 {
     public class Startup
@@ -21,6 +21,13 @@ namespace Temployee
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSingleton<IMongoClient,MongoClient>(s =>
+            {
+                var uri = s.GetRequiredService<IConfiguration>()["MongoDbConnection:URL"];
+                return new MongoClient(uri);
+            });
+
+              
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
