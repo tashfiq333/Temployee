@@ -1,0 +1,73 @@
+.MuiLinearProgress-root {
+  height: 20px !important;
+  border-radius: 10px !important;
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: cornflowerblue !important;
+}
+
+.title {
+  padding: 2%;
+  color: #646464;
+}
+
+.divider-custom {
+  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding-top: 2%;
+}
+
+.divider-custom .divider-custom-line {
+  width: 100%;
+  height: 0.1rem;
+  border-radius: 2rem;
+  border: 0.1px solid #d8d8d8;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 25%);
+}
+
+.body_padding {
+  padding-top: 2%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+  padding-right: 5%;
+}
+
+.MuiCard-root {
+  width: 400px !important;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .MuiCard-root {
+    width: 337px !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .MuiCard-root {
+    width: 300px !important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .MuiCard-root {
+    width: 350px !important;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .MuiCard-root {
+    width: 400px !important;
+  }
+}
