@@ -4,8 +4,12 @@ import { Route } from "react-router";
 // import { Home } from "./components/Home";
 // import { FetchData } from "./components/FetchData";
 // import { Counter } from "./components/Counter";
+import NavMenu from './components/navbar/Index';
+import Home from "./components/Home/Index";
+
 
 import "./custom.css";
+
 
 export default class App extends Component {
   static displayName = App.name;
@@ -18,7 +22,8 @@ export default class App extends Component {
       //   <Route path='/fetch-data' component={FetchData} /> */}
       // </Layout>
       <div>
-        <h5>Hello</h5>
+        <NavMenu/>
+        <Home/>
       </div>
     );
   }
