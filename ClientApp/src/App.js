@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router";
+import CompanyInfo from "./components/CompanyInfo";
 // import { Layout } from "./components/Layout";
 // import { Home } from "./components/Home";
 // import { FetchData } from "./components/FetchData";
@@ -17,9 +18,11 @@ export default class App extends Component {
       //   <Route path='/counter' component={Counter} />
       //   <Route path='/fetch-data' component={FetchData} /> */}
       // </Layout>
-      <div>
+
+      <Route path="/" component={CompanyInfo} />
+      /* <div>
         <h5>Hello</h5>
-      </div>
+      </div> */
     );
   }
 }
