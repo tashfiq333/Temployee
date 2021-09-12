@@ -3,12 +3,12 @@
   border-radius: 10px !important;
 }
 
-.MuiLinearProgress-barColorPrimary {
+.comp.MuiLinearProgress-barColorPrimary {
   background-color: cornflowerblue !important;
 }
 
 .title {
-  padding: 2%;
+  padding: 7% 1% 2% 3%;
   color: #646464;
 }
 
@@ -36,27 +36,27 @@
   padding-right: 5%;
 }
 
-.MuiCard-root {
-  width: 400px !important;
+.comp.MuiCard-root {
+  width: 500px !important;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .MuiCard-root {
+  .comp .MuiCard-root {
     width: 337px !important;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .MuiCard-root {
+  .comp .MuiCard-root {
     width: 300px !important;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .MuiCard-root {
+  .comp.MuiCard-root {
     width: 350px !important;
   }
 }
@@ -67,7 +67,7 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .MuiCard-root {
-    width: 400px !important;
+  .comp.MuiCard-root {
+    width: 500px !important;
   }
 }
