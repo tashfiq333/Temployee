@@ -11,7 +11,7 @@ import "./companyinfo.css";
 const CompanyCard = () => {
   const useStyles = makeStyles({
     root: {
-      maxWidth: 400,
+      Width: 400,
     },
     media: {
       height: 140,
@@ -30,8 +30,17 @@ const CompanyCard = () => {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+            <Typography gutterBottom variant="h6" component="h5">
+              Company Name
+            </Typography>
+            <Typography variant="subtitle2">Duration</Typography>
+            <Typography
+              gutterBottom
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              10 months
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Lizards are a widespread group of squamate reptiles, with over
