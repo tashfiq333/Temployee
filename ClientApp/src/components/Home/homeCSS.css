@@ -1,0 +1,42 @@
+.homebgimg{
+    background: url("../../images/bgimg.png");
+    background-Size:cover;
+    width: 100%;
+    height: 950px;
+    margin-bottom: 10%;
+    
+  
+  }
+  .peptalk{
+    padding: 10%;
+    color: white;
+  }
+  
+
+    
+
+.MuiGrid-spacing-xs-1 {
+    width: calc(100% + 8px);
+    margin: -4px;
+    margin-top: 10% !important;
+
+}
+
+
+.bluebox{
+
+  height: 600px;
+  background-color: #7710FF;
+  margin-bottom: 10%;
+  padding: 5%;
+  color: white;
+
+}
+
+.bgpic {
+  width: 100%;
+  height: 500px;
+  background: url("../../images/homeFooter.png");
+  background-Size:cover;
+
+}
