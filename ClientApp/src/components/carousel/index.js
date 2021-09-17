@@ -5,8 +5,8 @@ import sb from "../../images/sliderb.png";
 import sc from "../../images/sliderc.png";
 import sd from "../../images/sliderd.png";
 
-// import "~slick-carousel/slick/slick.css";
-// import "~slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import "./carousel.css";
 
@@ -14,10 +14,17 @@ const Carousel = () => {
   const settings = {
     className: "center",
     centerMode: true,
-    infinite: true,
     centerPadding: "60px",
+    
+
+    dots: true,
+    infinite: true,
     slidesToShow: 3,
-    speed: 500,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 3000,
+    autoplaySpeed: 3000,
+    cssEase: "linear"
   };
 
   return (

@@ -25,26 +25,71 @@ const useStyles = makeStyles((theme) => ({
 
 
   //slider
-  rootslide: {
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+
+
+
+  //grid
+  rootgrid:{
+
+    flexFlow:1,
+     height:600,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  gridcolor:{
+    width: 600,
+    height:600, 
     
   },
-  imageList: {
-    flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
-   
+  boxOne:{
+    height:200,
+    width:200,
+    background:' linear-gradient(62.98deg, #7710FF 46.52%, rgba(119, 16, 255, 0.104167) 111.11%, rgba(119, 16, 255, 0) 111.12%);',
+    margin:20,
+    borderRadius:'20px',
+    padding:20,
 
   },
-  title: {
-    color: theme.palette.primary.light,
+  boxTwo:{
+    
+    height:200,
+    width:200,
+    backgroundColor: '#F2F2F2',
+    margin:20,
+    padding:20,
+
   },
-  titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  boxthree:{
+    
+    height:200,
+    width:200,
+    backgroundColor: '#F2F2F2',
+    margin:20,
+    position: 'relative',
+    left: 220,
+    top:-440,
+    padding:20,
+
+  },
+  boxfour:{
+    
+    height:200,
+    width:200,
+    background: ' linear-gradient(62.98deg, #7710FF 46.52%, rgba(119, 16, 255, 0.104167) 111.11%, rgba(119, 16, 255, 0) 111.12%);',
+    margin:20,
+    position: 'relative',
+    left: 220,
+    top:-440,
+    padding:20,
+    borderRadius:'20px'
+
+  },
+  paper: {
+    height: 400,
+    width: 320,
   },
 
 }));

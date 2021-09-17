@@ -78,6 +78,7 @@ const NavMenu = () => {
           </Grid>
         </div>
       </AppBar>
+
     </>
   );
 };
