@@ -12,6 +12,7 @@ import SignUp from "./components/SignUp";
 import CompanyAppBar from "./components/NavbarCompany";
 import Footer from "./components/Footer";
 
+
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
 
