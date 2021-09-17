@@ -39,6 +39,14 @@ const SignIn = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
+  const handleSubmit = () => {
+
+  };
+
+  const handleChange = () => {
+
+  };
+  
   return (
     <div className="bgimg">
       <Grid
@@ -55,13 +63,14 @@ const SignIn = () => {
               <Typography variant="h5" component="h2" align="center">
                 Sign In
               </Typography>
-              <form className={classes.root.anchor,"text"} noValidate autoComplete="off">
+              <form className={classes.root.anchor,"text"} noValidate autoComplete="off" onSubmit={handleSubmit}>
                 <TextField
                   id="outlined-basic"
                   label="Username"
                   variant="outlined"
                   style ={{width: '100%'}}
                   margin = "medium"
+                  onChange = {handleChange}
                                 
                 />
                 <TextField
@@ -69,14 +78,14 @@ const SignIn = () => {
                   label="Email"
                   variant="outlined"
                   style ={{width: '100%'}}
-                  
+                  onChange = {handleChange}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Password"
                   variant="outlined"
                   style ={{width: '100%'}}
-                  
+                  onChange = {handleChange}
                 />
                 
               </form>
