@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     },
    
     nav:{
-        backgroundColor  : '#7618FF'
+        backgroundColor  : 'linear-gradient(62.98deg, #7710FF 46.52%, rgba(119, 16, 255, 0.104167) 111.11%, rgba(119, 16, 255, 0) 111.12%)'
     },
   
   }));
