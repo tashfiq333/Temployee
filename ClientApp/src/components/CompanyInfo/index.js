@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import "./companyinfo.css";
+import { GET } from "../../api";
 
 const CompanyInfo = () => {
+  const [project, setProject] = React.useState([]);
+
+  useEffect(() => {
+    const exe = async () => {
+      try {
+        const { data } = await GET(`project`);
+        console.log(data);
+        setProject(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    exe();
+  }, []);
+
   return (
     <section className="comp">
       <div>
@@ -20,24 +36,16 @@ const CompanyInfo = () => {
       value={50}
     /> */}
 
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
-          <CompanyCard />
+          {project.map((pro) => (
+            <CompanyCard
+              id={pro.id}
+              name={pro.name}
+              months={pro.months}
+              price={pro.price}
+              level={pro.level}
+              des={pro.description.substring(0, 3)}
+            />
+          ))}
         </div>
       </div>
     </section>
