@@ -31,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "25ch",
   },
-
-  
 }));
 
 const SignUp = () => {
@@ -74,10 +72,10 @@ const SignUp = () => {
       }
     }
   };
-  
+
 
   return (
-    <div className="bgimg">
+    <div id="Signup" className="bgimg">
       <Grid
         container
         spacing={0}
@@ -92,7 +90,11 @@ const SignUp = () => {
               <Typography variant="h5" component="h2" align="center">
                 Sign Up
               </Typography>
-              <form className={classes.root.anchor,"text"} noValidate autoComplete="off" onSubmit={handleSubmit}>
+              <form
+                className={(classes.root.anchor, "text")}
+                noValidate
+                autoComplete="off"
+              >
                 <TextField
                   id="outlined-basic"
                   label="Username"
@@ -100,8 +102,8 @@ const SignUp = () => {
                   style ={{width: '100%'}}
                   margin = "medium"
                   onChange={onInputChange}
-                  required    
-                  
+                  required
+
                 />
                 <TextField
                   id="outlined-basic"
@@ -142,8 +144,6 @@ const SignUp = () => {
           </Card>
         </Grid>
       </Grid>
-
-     
     </div>
   );
 };

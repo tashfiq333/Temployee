@@ -5,12 +5,13 @@ import CompanyInfo from "./components/CompanyInfo";
 // import { Home } from "./components/Home";
 // import { FetchData } from "./components/FetchData";
 // import { Counter } from "./components/Counter";
-import NavMenu from "./components/navbar/index";
-import Home from "./components/Home/index";
+// import NavMenu from "./components/navbar/index";
+import Home from "./components/Home/Index";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import CompanyAppBar from "./components/NavbarCompany";
 import Footer from "./components/Footer";
+import JobPost from "./components/JobPost";
 
 
 import "./custom.css";
@@ -33,6 +34,7 @@ export default class App extends Component {
           <Route path="/company-info" exact component={CompanyCard} />
           <Route path="/sign-in" exact component={SignIn} />
           <Route path="/sign-up" exact component={SignUp} />
+          <Route path="/post_job" exact component={JobPost} />
         </Switch>
         {<Footer />}
       </Router>

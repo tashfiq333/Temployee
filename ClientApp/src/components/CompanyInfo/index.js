@@ -6,6 +6,7 @@ import { GET } from "../../api";
 
 const CompanyInfo = () => {
   const [project, setProject] = React.useState([]);
+  var hashTags = [];
 
   useEffect(() => {
     const exe = async () => {
@@ -13,6 +14,9 @@ const CompanyInfo = () => {
         const { data } = await GET(`project`);
         console.log(data);
         setProject(data);
+        if (data.tags.length > 3) {
+          hashTags = data.tags.slice(0, 3);
+        }
       } catch (e) {
         console.log(e);
       }
@@ -40,10 +44,11 @@ const CompanyInfo = () => {
             <CompanyCard
               id={pro.id}
               name={pro.name}
-              months={pro.months}
+              months={pro.duration}
               price={pro.price}
               level={pro.level}
-              des={pro.description.substring(0, 3)}
+              des={pro.description.substring(0, 100)}
+              tags={pro.tags}
             />
           ))}
         </div>
