@@ -36,6 +36,14 @@ const SignIn = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
+  const handleSubmit = () => {
+
+  };
+
+  const handleChange = () => {
+
+  };
+
   return (
     <div id="Signin" className="bgimg">
       <Grid
@@ -63,18 +71,25 @@ const SignIn = () => {
                   variant="outlined"
                   style={{ width: "100%" }}
                   margin="medium"
+
+                  onChange = {handleChange}
+
                 />
                 <TextField
                   id="outlined-basic"
                   label="Email"
                   variant="outlined"
                   style={{ width: "100%" }}
+
+                  onChange = {handleChange}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Password"
                   variant="outlined"
                   style={{ width: "100%" }}
+
+                  onChange = {handleChange}
                 />
               </form>
               <CardActions style={{ justifyContent: "center" }}>

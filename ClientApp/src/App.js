@@ -13,6 +13,7 @@ import CompanyAppBar from "./components/NavbarCompany";
 import Footer from "./components/Footer";
 import JobPost from "./components/JobPost";
 
+
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
 
