@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     width: 550,
-    
   },
   bullet: {
     display: "inline-block",
@@ -31,8 +30,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "25ch",
   },
-
-  
 }));
 
 const SignUp = () => {
@@ -40,7 +37,7 @@ const SignUp = () => {
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <div className="bgimg">
+    <div id="Signup" className="bgimg">
       <Grid
         container
         spacing={0}
@@ -55,48 +52,46 @@ const SignUp = () => {
               <Typography variant="h5" component="h2" align="center">
                 Sign Up
               </Typography>
-              <form className={classes.root.anchor,"text"} noValidate autoComplete="off">
+              <form
+                className={(classes.root.anchor, "text")}
+                noValidate
+                autoComplete="off"
+              >
                 <TextField
                   id="outlined-basic"
                   label="Username"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  margin = "medium"
-                                
+                  style={{ width: "100%" }}
+                  margin="medium"
                 />
                 <TextField
                   id="outlined-basic"
                   label="Email"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  
+                  style={{ width: "100%" }}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Password"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  
+                  style={{ width: "100%" }}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Confirm Password"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  
+                  style={{ width: "100%" }}
                 />
               </form>
-              <CardActions style={{justifyContent: 'center'}}>
-              <Button variant="contained" color="primary">
+              <CardActions style={{ justifyContent: "center" }}>
+                <Button variant="contained" color="primary">
                   Sign Up
-              </Button>
+                </Button>
               </CardActions>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
-
-     
     </div>
   );
 };
