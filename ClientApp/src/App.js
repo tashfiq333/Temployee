@@ -11,6 +11,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import CompanyAppBar from "./components/NavbarCompany";
 import Footer from "./components/Footer";
+import UserProfile from "./components/UserProfile";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
@@ -32,6 +33,7 @@ export default class App extends Component {
           <Route path="/company-info" exact component={CompanyCard} />
           <Route path="/sign-in" exact component={SignIn} />
           <Route path="/sign-up" exact component={SignUp} />
+          <Route path="/user-profile" exact component={UserProfile} />
         </Switch>
         {<Footer />}
       </Router>
