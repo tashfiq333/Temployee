@@ -1,16 +1,8 @@
 import React from "react";
-import { Box, Paper, styled, Chip, Avatar, Card, CardMedia } from "@material-ui/core";
+import { Box, Paper, styled, Chip, Avatar,Card,CardMedia } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-
-
-
-import CircularProgress, {
-    circularProgressClasses,
-} from '@material-ui/core/CircularProgress';
-import LinearProgress, { linearProgressClasses } from '@material-ui/core/LinearProgress';
-
 
 import dp from '../../images/homeFooter.png'
 
@@ -18,7 +10,7 @@ import dp from '../../images/homeFooter.png'
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import "./userstyles.css"
+import "./comProStyles.css"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const Itemt = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    paddingTop: '2%',
+    paddingTop:'2%',
     textAlign: 'center',
     color: theme.palette.text.secondary,
     height: '50vh',
@@ -74,7 +66,7 @@ const ItemName = styled(Paper)(({ theme }) => ({
 const ItemBio = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    //padding: '5%',
+   // padding: '5%',
     textAlign: 'left',
     color: theme.palette.text.secondary,
     height: '20vh',
@@ -109,7 +101,7 @@ const ItemCmnt = styled(Paper)(({ theme }) => ({
     borderRadius: 20,
 }));
 
-const UserProfile = () => {
+const CompanyProfile = () => {
 
     const classes = useStyles();
 
@@ -120,26 +112,29 @@ const UserProfile = () => {
                     <Grid container spacing={2} >
                         <Grid item xs={3}>
 
-                            <Avatar className="userDp"
-                                alt="Remy Sharp"
-                                src={dp}
-                               // sx={{ width: '500px', height: '500px' }}
-                            />
+                                <Card sx={{ maxWidth: '100vh' }}>
+                                    <CardMedia
+                                        component="img"
+                                        height="100vh"
+                                        image={dp}
+                                        alt="User Profile Picture"
+                                    />
+                                </Card>
+                                
+                                <Grid item xs={12} className={classes.BoxBio}>
+                                    <Itemt elevation={6} >
+                                        <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
+                                        xs=4</Itemt>
+                                </Grid>
+                                <Grid item xs={12} className={classes.BoxBio}>
+                                    <Itemt elevation={6} >
+                                        <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
+                                        xs=4</Itemt>
+                                </Grid>
 
-                            <Grid item xs={12} className={classes.BoxBio}>
-                                <Itemt elevation={6} >
-                                    <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
-                                    xs=4</Itemt>
-                            </Grid>
-                            <Grid item xs={12} className={classes.BoxBio}>
-                                <Itemt elevation={6} >
-                                    <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
-                                    xs=4</Itemt>
-                            </Grid>
-
-
-
-
+                            
+                      
+                            
                         </Grid>
 
                         <Grid item xs={9} spacing={2} Container  >
@@ -184,4 +179,4 @@ const UserProfile = () => {
 
 
 }
-export default UserProfile;
+export default CompanyProfile;
