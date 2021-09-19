@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import footer from '../../images/homeFooter.png'
+import footimg from '../../images/homeFooter.png'
 import { CssBaseline, Typography, Container, Grid, Box, Link, Paper } from '@material-ui/core';
 
 import "./stylesFooter.css"
@@ -7,10 +7,6 @@ import "./stylesFooter.css"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
-        height: 400,
-        width: 320,
-    },
 
 }));
 
