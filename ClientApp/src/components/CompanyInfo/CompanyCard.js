@@ -3,22 +3,38 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 import "./companyinfo.css";
 
-const CompanyCard = () => {
+const CompanyCard = (props) => {
   const useStyles = makeStyles({
     root: {
-      Width: 400,
+      Width: 1000,
+      borderRadius: 12,
     },
     media: {
-      height: 140,
+      height: 200,
     },
   });
 
+  const chipStyle = makeStyles((theme) =>
+    createStyles({
+      root: {
+        display: "flex",
+        justifyContent: "left",
+        flexWrap: "wrap",
+        "& > *": {
+          margin: theme.spacing(0.5),
+        },
+      },
+    })
+  );
+
   const classes = useStyles();
+  const chipClass = chipStyle();
 
   return (
     <div className="col-xl-4 col-md-6 col-sm-12 body_padding">
@@ -30,22 +46,58 @@ const CompanyCard = () => {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h5">
-              Company Name
+            <Typography variant="h6" component="h5">
+              {props.name}
             </Typography>
-            <Typography variant="subtitle2">Duration</Typography>
             <Typography
               gutterBottom
               variant="body2"
               color="textSecondary"
               component="p"
             >
-              10 months
+              Posted- 1 days ago
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant="subtitle2">Duration:</Typography>
+            <Typography
+              gutterBottom
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {props.months} months
             </Typography>
+            <Typography variant="subtitle2">Price:</Typography>
+            <Typography
+              gutterBottom
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              $ {props.price}
+            </Typography>
+            <Typography variant="subtitle2">Expert Level:</Typography>
+            <Typography
+              gutterBottom
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {props.level}
+            </Typography>
+            <Typography variant="subtitle2">Description:</Typography>
+            <Typography
+              gutterBottom
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {props.des}
+            </Typography>
+            <div className={chipClass.root}>
+              {props.tags.map((h, i) =>
+                i < 3 ? <Chip label={h} color="primary" size="medium" /> : ""
+              )}
+            </div>
           </CardContent>
         </CardActionArea>
       </Card>

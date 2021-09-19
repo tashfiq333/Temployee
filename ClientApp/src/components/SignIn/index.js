@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     width: 550,
-    
   },
   bullet: {
     display: "inline-block",
@@ -31,16 +30,22 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "25ch",
   },
-
-  
 }));
 
 const SignIn = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
+  const handleSubmit = () => {
+
+  };
+
+  const handleChange = () => {
+
+  };
+
   return (
-    <div className="bgimg">
+    <div id="Signin" className="bgimg">
       <Grid
         container
         spacing={0}
@@ -55,42 +60,47 @@ const SignIn = () => {
               <Typography variant="h5" component="h2" align="center">
                 Sign In
               </Typography>
-              <form className={classes.root.anchor,"text"} noValidate autoComplete="off">
+              <form
+                className={(classes.root.anchor, "text")}
+                noValidate
+                autoComplete="off"
+              >
                 <TextField
                   id="outlined-basic"
                   label="Username"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  margin = "medium"
-                                
+                  style={{ width: "100%" }}
+                  margin="medium"
+
+                  onChange = {handleChange}
+
                 />
                 <TextField
                   id="outlined-basic"
                   label="Email"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  
+                  style={{ width: "100%" }}
+
+                  onChange = {handleChange}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Password"
                   variant="outlined"
-                  style ={{width: '100%'}}
-                  
+                  style={{ width: "100%" }}
+
+                  onChange = {handleChange}
                 />
-                
               </form>
-              <CardActions style={{justifyContent: 'center'}}>
-              <Button variant="contained" color="primary">
+              <CardActions style={{ justifyContent: "center" }}>
+                <Button variant="contained" color="primary">
                   Sign In
-              </Button>
+                </Button>
               </CardActions>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
-
-     
     </div>
   );
 };
