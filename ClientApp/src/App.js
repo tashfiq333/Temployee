@@ -29,7 +29,7 @@ export default class App extends Component {
       <Router>
         {<CompanyAppBar />}
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/home" exact component={Home} />
           <Route path="/company-info" exact component={CompanyCard} />
           <Route path="/sign-in" exact component={SignIn} />
           <Route path="/sign-up" exact component={SignUp} />
