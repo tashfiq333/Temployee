@@ -9,13 +9,17 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import { POST } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     width: 550,
     
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
   title: {
     fontSize: 14,
@@ -88,21 +92,27 @@ const SignUp = () => {
               <Typography variant="h5" component="h2" align="center">
                 Sign Up
               </Typography>
-              <form className={classes.root.anchor,"text"} noValidate autoComplete="off" >
+              <form
+                className={(classes.root.anchor, "text")}
+                noValidate
+                autoComplete="off"
+              >
                 <TextField
                   id="outlined-basic"
                   label="Username"
                   variant="outlined"
                   style ={{width: '100%'}}
                   margin = "medium"
-                  required    
-                  
+                  onChange={onInputChange}
+                  required
+
                 />
                 <TextField
                   id="outlined-basic"
                   label="Email"
                   variant="outlined"
                   style ={{width: '100%'}}
+                  onChange={onInputChange}
                   required
 
                 />
@@ -112,6 +122,7 @@ const SignUp = () => {
                   variant="outlined"
                   style ={{width: '100%'}}
                   type= "password"
+                  onChange={onInputChange}
                   required
 
                 />
@@ -121,12 +132,13 @@ const SignUp = () => {
                   variant="outlined"
                   style ={{width: '100%'}}
                   type = "password"
+                  onChange={onInputChange}
                   required
 
                 />
               </form>
               <CardActions style={{justifyContent: 'center'}}>
-              <Button variant="contained" color="primary" >
+              <Button variant="contained" color="primary" onClick={onSubmit}>
                   Sign Up
               </Button>
               </CardActions>

@@ -64,7 +64,7 @@ const CompanyCard = (props) => {
               color="textSecondary"
               component="p"
             >
-              {props.months}
+              {props.months} months
             </Typography>
             <Typography variant="subtitle2">Price:</Typography>
             <Typography
@@ -73,7 +73,7 @@ const CompanyCard = (props) => {
               color="textSecondary"
               component="p"
             >
-              {props.price}
+              $ {props.price}
             </Typography>
             <Typography variant="subtitle2">Expert Level:</Typography>
             <Typography
@@ -84,6 +84,7 @@ const CompanyCard = (props) => {
             >
               {props.level}
             </Typography>
+            <Typography variant="subtitle2">Description:</Typography>
             <Typography
               gutterBottom
               variant="body2"
@@ -93,9 +94,9 @@ const CompanyCard = (props) => {
               {props.des}
             </Typography>
             <div className={chipClass.root}>
-              <Chip label="Programmer" color="primary" size="medium" />
-              <Chip label="designer" color="primary" size="medium" />
-              <Chip label="Thinker" color="primary" size="medium" />
+              {props.tags.map((h, i) =>
+                i < 3 ? <Chip label={h} color="primary" size="medium" /> : ""
+              )}
             </div>
           </CardContent>
         </CardActionArea>
