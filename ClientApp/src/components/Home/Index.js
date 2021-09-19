@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 
-import { CssBaseline, Typography, Button, Card, CardContent, CardMedia, Container, Grid, Paper, TextField } from '@material-ui/core';
+import { CssBaseline, Typography, Button, Card, CardContent, CardMedia, Container, Grid, Paper, TextField,Avatar } from '@material-ui/core';
+//import Avatar from '@mui/material/Avatar';
 import homesecond from '../../images/homesecond.png';
 import footer from '../../images/homeFooter.png'
 import img from '../../images/golla.png'
@@ -93,10 +94,6 @@ const Home = () => {
                         </Grid>
                     </div>
 
-                    <div className="floating icon-floating icon-sm">
-                        <Card color='red'></Card>
-
-                    </div>
 
                 </Container>
 
@@ -115,7 +112,9 @@ const Home = () => {
                     <Grid container justifyContent="center" spacing={1}>
 
                         <Grid item>
-                            <Paper className={classes.paper} />
+                            <Paper className={classes.paper} >
+                            <Avatar alt="Remy Sharp" src={img}/>
+                            </Paper>
                         </Grid>
                         <Grid item>
                             <Paper className={classes.paper} />

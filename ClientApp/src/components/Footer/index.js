@@ -1,20 +1,30 @@
 import React, { } from 'react';
-import footer from '../../images/homeFooter.png'
-import { CssBaseline, Typography, Container, Grid, Box, Link } from '@material-ui/core';
+import footimg from '../../images/homeFooter.png'
+import { CssBaseline, Typography, Container, Grid, Box, Link, Paper } from '@material-ui/core';
 
 import "./stylesFooter.css"
+
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+
+}));
+
 const Footer = () => {
 
+    const classes = useStyles();
+
     return (
-        <footer>
+        <>
             <Box className="footbox"
-            px={{xs:3 ,sm: 10}}
-            py={{xs:5 ,sm: 10}}
+                px={{ xs: 3, sm: 10 }}
+                py={{ xs: 5, sm: 10 }}
             >
                 <Container maxWidth="lg">
-                    <Grid Container spacing={5} direction="row" >
-                        <Grid item xs={12} sm={4}>
-                            <Box borderBottom={1}>Temployee</Box>
+                    <Grid container justifyContent="center" spacing={10}>
+
+                        <Grid item sm={4}>
+                            <Box borderBottom={1}><h5>Temployee</h5></Box>
                             <Box>
                                 <Link color="inherit" herf="#">Home</Link>
                             </Box>
@@ -24,11 +34,9 @@ const Footer = () => {
                             <Box>
                                 <Link color="inherit" herf="#">Find Talent</Link>
                             </Box>
-                         
-
                         </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Box borderBottom={1}>Support</Box>
+                        <Grid item  sm={4}>
+                            <Box borderBottom={1}><h5>Support</h5></Box>
                             <Box>
                                 <Link color="inherit" herf="#">Home</Link>
                             </Box>
@@ -38,11 +46,9 @@ const Footer = () => {
                             <Box>
                                 <Link color="inherit" herf="#">Find Talent</Link>
                             </Box>
-                           
-
                         </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Box borderBottom={1}>Community</Box>
+                        <Grid item  sm={4}>
+                            <Box borderBottom={1}><h5>Community</h5></Box>
                             <Box>
                                 <Link color="inherit" herf="#">Home</Link>
                             </Box>
@@ -52,21 +58,19 @@ const Footer = () => {
                             <Box>
                                 <Link color="inherit" herf="#">Find Talent</Link>
                             </Box>
-                           
-
                         </Grid>
 
                     </Grid>
                     <Box className="copyright"
-                     borderTop={1} textAlign="center"
-                      pt={{xs:5,sm:10 }} 
-                      pb = {{xs: 5,sm: 0}}
+                        borderTop={1} textAlign="center"
+                        pt={{ xs: 5, sm: 10 }}
+                        pb={{ xs: 5, sm: 0 }}
                     > Temployee &reg; {new Date().getFullYear()}
                     </Box>
                 </Container>
             </Box>
 
-        </footer>
+        </>
     );
 }
 export default Footer;

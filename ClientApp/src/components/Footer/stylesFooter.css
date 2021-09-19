@@ -1,10 +1,8 @@
-.MuiBox-root-16 {
-    padding:30px 20px !important;
-}
-
 .copyright{
     padding-top: 35px !important;
+    margin-top: 10px;
 }
+
 
 .footbox{
 
@@ -13,4 +11,10 @@
     width: 100%;
     color : white;
     font-weight: bold;
+    margin-top: 10%;
+    
+    left: 0;
+    bottom: 0;
+    
 }
+
