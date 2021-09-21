@@ -9,11 +9,13 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import Link from '@material-ui/core/Link';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
-    width: 550,
+    width: 650,
   },
   bullet: {
     display: "inline-block",
@@ -36,13 +38,9 @@ const SignIn = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
-  const handleSubmit = () => {
+  const handleSubmit = () => {};
 
-  };
-
-  const handleChange = () => {
-
-  };
+  const handleChange = () => {};
 
   return (
     <div id="Signin" className="bgimg">
@@ -55,11 +53,17 @@ const SignIn = () => {
         style={{ minHeight: "100vh" }}
       >
         <Grid item xs={6} spacing={2}>
-          <Card className={classes.root} variant="outlined">
+          <Card className={classes.root} variant="outlined" elevation="20" style={{padding: "20px"}}>
             <CardContent>
-              <Typography variant="h5" component="h2" align="center">
-                Sign In
-              </Typography>
+            <Typography
+              className="txt-h4"
+              variant="h4"
+              component="h2"
+              align="center"
+              style={{ marginTop: "30px", marginBottom: "30px" }}
+            >
+              Sign In
+            </Typography>
               <form
                 className={(classes.root.anchor, "text")}
                 noValidate
@@ -68,35 +72,55 @@ const SignIn = () => {
                 <TextField
                   id="outlined-basic"
                   label="Username"
+                  required
                   variant="outlined"
                   style={{ width: "100%" }}
                   margin="medium"
-
-                  onChange = {handleChange}
-
+                  onChange={handleChange}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Email"
+                  required
                   variant="outlined"
                   style={{ width: "100%" }}
-
-                  onChange = {handleChange}
+                  onChange={handleChange}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Password"
+                  required
                   variant="outlined"
                   style={{ width: "100%" }}
-
-                  onChange = {handleChange}
+                  onChange={handleChange}
                 />
               </form>
               <CardActions style={{ justifyContent: "center" }}>
-                <Button variant="contained" color="primary">
-                  Sign In
+                <Button
+                  className="button"
+                  variant="contained"
+                  color="primary"
+                  href="/profile_setup"
+                  style={{
+                    width: "150px",
+                    
+                  }}
+                >
+                  Sign in
                 </Button>
               </CardActions>
+              <Typography
+                variant="subtitle2"
+                component="h2"
+                align="center"
+                style={{ marginTop: "10px" }}
+              >
+                Dont have an account? 
+                <Link className = {classes.bt} color="inherit" href="/sign-up" style={{marginLeft: "10px"}}>Sign Up</Link>
+              </Typography>
+              
+              
+              
             </CardContent>
           </Card>
         </Grid>
