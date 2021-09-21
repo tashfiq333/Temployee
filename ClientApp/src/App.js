@@ -17,6 +17,8 @@ import JobPost from "./components/JobPost";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
+import ProfileSetup from "./components/ProfileSetup";
+import PersonInfo from "./components/PersonalInfo";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -37,6 +39,9 @@ export default class App extends Component {
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/user-profile" exact component={UserProfile} />
           <Route path="/post_job" exact component={JobPost} />
+          <Route path="/profile_setup" exact component={ProfileSetup} />
+          <Route path="/person_info" exact component={PersonInfo} />
+
         </Switch>
         {<Footer />}
       </Router>
