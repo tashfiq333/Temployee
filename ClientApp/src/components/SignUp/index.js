@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import { POST } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,27 +50,27 @@ const SignUp = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    // console.log(form);
-    // try {
-    //   const { data } = await POST("user/register", {
-    //     name: form.name,
-    //     email: form.email,
-    //     password: form.password,
-    //     confirmPassword: form.confirmPassword,
-    //   });
+    console.log(form);
+    try {
+      const { data } = await POST("user/register", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        confirmPassword: form.confirmPassword,
+      });
 
-    //   console.log(data);
-    //   if (data.statusCode === 200) {
-    //     setAlert(null);
-    //     window.location.href = "/login";
-    //   }
-    // } catch (e) {
-    //   if (e.response) {
-    //     setAlert(errorHandling(e));
-    //   } else {
-    //     console.log("server didnt respond");
-    //   }
-    // }
+      console.log(data);
+      if (data.statusCode === 200) {
+        setAlert(null);
+        window.location.href = "/login";
+      }
+    } catch (e) {
+      if (e.response) {
+        // setAlert(errorHandling(e));
+      } else {
+        console.log("server didnt respond");
+      }
+    }
   };
 
   return (
