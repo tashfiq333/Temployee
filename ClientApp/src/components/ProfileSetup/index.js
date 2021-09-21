@@ -106,6 +106,7 @@ const ProfileSetup = () => {
               aria-label="pretto slider"
               defaultValue={20}
               style={{ width: "60%", marginTop: "2.5%" }}
+              // value={value}
             />
             <CardActions>
               <Button

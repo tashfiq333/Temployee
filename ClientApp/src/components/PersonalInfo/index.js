@@ -28,6 +28,44 @@ const useStyles = makeStyles((theme) => ({
 
 const PersonInfo = () => {
   const classes = useStyles();
+  const [input, setInput] = useState("");
+
+  const handleChange = (e) => {
+    if (e.target.value !== "") {
+      const { value, name } = e.target;
+
+      setInput((prevState) => ({
+        ...prevState,
+        [name]: value,
+
+      }));
+      console.log(name + ": " + value);
+  }
+};
+
+const addInfo  = async (e) => {
+  var formData = new FormData();
+  formData.append("name", input.name);
+    formData.append("phone", input.phone);
+    formData.append("linkin", input.linkin);
+    formData.append("bio", input.bio);
+
+    try{
+      const {data} = await POST('info/add',{
+        name: input.name,
+        phone: input.phone,
+        linkin: input.linkin,
+        bio: input.bio
+      });
+    }catch (e) {
+      console.log(e);
+    }
+
+};
+
+
+
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2} display="flex" className="gridwid">
@@ -78,22 +116,28 @@ const PersonInfo = () => {
                   id="outlined-basic"
                   label="Name"
                   variant="outlined"
+                  name="name"
                   required
                   style={{ width: "90%" }}
+                  onChange={handleChange}
                 />
 
                 <TextField
                   id="outlined-basic"
                   label="Phone Number"
                   variant="outlined"
+                  name="phone"
                   style={{ width: "90%" }}
+                  onChange={handleChange}
                 />
 
                 <TextField
                   id="outlined-basic"
                   label="LinkedIn Profile Link"
                   variant="outlined"
+                  name="linkin"
                   style={{ width: "90%" }}
+                  onChange={handleChange}
                 />
 
                 <TextField
@@ -103,8 +147,10 @@ const PersonInfo = () => {
                   rows={4}
                   defaultValue=""
                   variant="outlined"
+                  name="bio"
                   required
                   style={{ width: "90%" }}
+                  onChange={handleChange}
                 />
               </form>
 
@@ -114,11 +160,13 @@ const PersonInfo = () => {
                   variant="contained"
                   color="primary"
                   href="/profile_setup"
+                  onClick={addInfo}
                   style={{
                     width: "150px",
                     marginTop: "50px",
                     marginBottom: "50px",
                     marginRight: "20%",
+                   
                   }}
                 >
                   Next
