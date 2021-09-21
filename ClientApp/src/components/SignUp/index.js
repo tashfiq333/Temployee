@@ -131,7 +131,16 @@ const SignUp = () => {
                 />
               </form>
               <CardActions style={{ justifyContent: "center" }}>
-                <Button variant="contained" color="primary" onClick={onSubmit}>
+                <Button
+                  className="button"
+                  variant="contained"
+                  color="primary"
+                  href="/person_info"
+                  style={{
+                    width: "150px",
+                    
+                  }}
+                >
                   Sign Up
                 </Button>
               </CardActions>
