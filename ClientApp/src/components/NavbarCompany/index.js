@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import { CssBaseline } from '@material-ui/core';
 import { Component } from 'react';
 import { Button } from 'react-router-dom';
+import { purple } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +38,7 @@ const CompanyAppBar = () => {
           <Link className = {classes.bt} color="inherit" href="#">Home</Link>
           <Link className = {classes.bt} color="inherit" href="/company-info">Find Work</Link>
           <Link className = {classes.bt} color="inherit" href= "/user-profile">Find Talent</Link>
-          <Link className = {classes.bt} color="inherit" href="/company-info">About Us</Link>
+          <Link className = {classes.bt} color="inherit" href="/person_info">About Us</Link>
           <Link className = {classes.bt} color="inherit" href="/sign-in">Sign in</Link>
         </Toolbar>
       </AppBar>
