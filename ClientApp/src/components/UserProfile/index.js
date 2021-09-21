@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
 
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(6, 6, 6),
     },
 
 
@@ -142,8 +142,8 @@ const Itemt = styled(Paper)(({ theme }) => ({
 
 const ItemName = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    padding: theme.spacing(1),
-    padding: '5%',
+    padding: theme.spacing(8),
+   // padding: '5%',
     textAlign: 'left',
     color: theme.palette.text.secondary,
     height: '25vh',
@@ -431,7 +431,7 @@ const UserProfile = () => {
                                                     aria-describedby="transition-modal-description"
                                                     className={classes.modal}
                                                     open={open}
-                                                    onClose={handleClose}
+                                                    //onClose={handleClose}
                                                     closeAfterTransition
                                                     BackdropComponent={Backdrop}
                                                     BackdropProps={{
