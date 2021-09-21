@@ -1,11 +1,3 @@
-.MuiLinearProgress-root {
-  height: 20px !important;
-  border-radius: 10px !important;
-}
-
-.comp.MuiLinearProgress-barColorPrimary {
-  background-color: cornflowerblue !important;
-}
 
 .title {
   padding: 7% 1% 2% 3%;
