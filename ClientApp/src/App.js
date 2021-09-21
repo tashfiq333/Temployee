@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import UserProfile from "./components/UserProfile";
 import JobPost from "./components/JobPost";
 import CompanyProfile from "./components/CompanyProfile"
+import DetailPost from "./components/DetailedWorkPost";
 
 
 import "./custom.css";
@@ -43,6 +44,7 @@ export default class App extends Component {
           <Route path="/profile_setup" exact component={ProfileSetup} />
           <Route path="/person_info" exact component={PersonInfo} />
           <Route path="/company-profile" exact component={CompanyProfile} />
+          <Route path="/detail-post" exact component={DetailPost} />
 
         </Switch>
         {<Footer />}

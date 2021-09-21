@@ -143,7 +143,7 @@ const Itemt = styled(Paper)(({ theme }) => ({
 const ItemName = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(8),
-   // padding: '5%',
+    // padding: '5%',
     textAlign: 'left',
     color: theme.palette.text.secondary,
     height: '25vh',
@@ -384,9 +384,9 @@ const UserProfile = () => {
                                         </Typography>
                                         <div className={classes.chips}>
 
-                                            <Chip size="small" variant="outlined" label="Clickable" onClick={handleClick} />
-                                            <Chip size="small" variant="outlined" label="Clickable" onClick={handleClick} />
-                                            <Chip size="small" variant="outlined" label="Clickable" onClick={handleClick} />
+                                            <Chip size="small" variant="outlined" label="Photography" onClick={handleClick} />
+                                            <Chip size="small" variant="outlined" label="Video Edittiong" onClick={handleClick} />
+                                            <Chip size="small" variant="outlined" label="Photoshop" onClick={handleClick} />
 
                                         </div>
                                         <br />
@@ -405,7 +405,7 @@ const UserProfile = () => {
                                         <Grid item xs={12} container className="hirebuttongrid">
 
                                             <Grid item xs={11}><Typography varient="h6" component="h6">Raiden Shogan</Typography> </Grid>
-                                            <Grid item xs={1}> <Button type="button" variant="outlined" >Hire</Button></Grid>
+                                            <Grid item xs={1}> <Button  type="button" variant="outlined" >Hire</Button></Grid>
                                         </Grid><br />
                                     </Item>
 
@@ -416,7 +416,17 @@ const UserProfile = () => {
 
                                                 <Box component="fieldset" mb={3} borderColor="transparent">
                                                     <Typography component="legend">Rating</Typography>
-                                                    <Rating name="read-only" value={value} readOnly />
+                                                    <Rating readOnly
+                                                        name="hover-feedback"
+                                                        value={value}
+                                                        precision={0.5}
+                                                        onChange={(event, newValue) => {
+                                                            setValue(newValue);
+                                                        }}
+                                                        onChangeActive={(event, newHover) => {
+                                                            setHover(newHover);
+                                                        }}
+                                                    />
                                                 </Box>
 
                                             </div>
