@@ -31,7 +31,7 @@ const NavMenu = () => {
           </Link>
         </Grid>
         <Grid item xs={3}>
-          <Link color="inherit" href="/user-profile">
+          <Link color="inherit" href="/company-profile">
             Find Talent
           </Link>
         </Grid>

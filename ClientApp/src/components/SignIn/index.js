@@ -9,13 +9,13 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Link from '@material-ui/core/Link';
-
+import Link from "@material-ui/core/Link";
+import { POST } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
-    width: 650,
+    width: 550,
   },
   bullet: {
     display: "inline-block",
@@ -36,11 +36,41 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = () => {
   const classes = useStyles();
+  const [form, setForm] = React.useState(null);
+  const [alert, setAlert] = React.useState(null);
   const bull = <span className={classes.bullet}>•</span>;
 
-  const handleSubmit = () => {};
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    //console.log(value, name);
+    setForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(form);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleChange = () => {};
+    try {
+      const { data } = await POST("user/login", {
+        email: form.email,
+        password: form.password,
+      });
+      console.log(data);
+      if (data.statusCode === 200) {
+        setAlert(null);
+        localStorage.setItem("access_token", data.statusDescription);
+        window.location.href = "/post_job";
+      }
+    } catch (e) {
+      // if (e.response) {
+      //   setAlert(errorHandling(e));
+      // } else {
+      //   console.log("server didnt respond");
+      // }
+    }
+  };
 
   return (
     <div id="Signin" className="bgimg">
@@ -53,17 +83,11 @@ const SignIn = () => {
         style={{ minHeight: "100vh" }}
       >
         <Grid item xs={6} spacing={2}>
-          <Card className={classes.root} variant="outlined" elevation="20" style={{padding: "20px"}}>
+          <Card className={classes.root} variant="outlined">
             <CardContent>
-            <Typography
-              className="txt-h4"
-              variant="h4"
-              component="h2"
-              align="center"
-              style={{ marginTop: "30px", marginBottom: "30px" }}
-            >
-              Sign In
-            </Typography>
+              <Typography variant="h5" component="h2" align="center">
+                Sign In
+              </Typography>
               <form
                 className={(classes.root.anchor, "text")}
                 noValidate
@@ -71,16 +95,8 @@ const SignIn = () => {
               >
                 <TextField
                   id="outlined-basic"
-                  label="Username"
-                  required
-                  variant="outlined"
-                  style={{ width: "100%" }}
-                  margin="medium"
-                  onChange={handleChange}
-                />
-                <TextField
-                  id="outlined-basic"
                   label="Email"
+                  name="email"
                   required
                   variant="outlined"
                   style={{ width: "100%" }}
@@ -89,38 +105,26 @@ const SignIn = () => {
                 <TextField
                   id="outlined-basic"
                   label="Password"
+                  name="password"
                   required
                   variant="outlined"
                   style={{ width: "100%" }}
-                  onChange={handleChange}
+
+                  onChange = {handleChange}
                 />
               </form>
               <CardActions style={{ justifyContent: "center" }}>
                 <Button
-                  className="button"
                   variant="contained"
                   color="primary"
-                  href="/profile_setup"
-                  style={{
-                    width: "150px",
-                    
-                  }}
+                  onClick={handleSubmit}
                 >
-                  Sign in
+                  Sign In
                 </Button>
               </CardActions>
-              <Typography
-                variant="subtitle2"
-                component="h2"
-                align="center"
-                style={{ marginTop: "10px" }}
-              >
-                Dont have an account? 
-                <Link className = {classes.bt} color="inherit" href="/sign-up" style={{marginLeft: "10px"}}>Sign Up</Link>
+              <Typography variant="subtitle2" component="p" align="center">
+                Don't have an account?<Link href="/sign-up">Sign Up</Link>
               </Typography>
-              
-              
-              
             </CardContent>
           </Card>
         </Grid>

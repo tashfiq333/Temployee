@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import { POST } from "../../api";
 
@@ -40,11 +41,12 @@ const SignUp = () => {
 
   const onInputChange = (event) => {
     const { value, name } = event.target;
-    console.log(value, name);
+    //console.log(value, name);
     setForm((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+    console.log(form);
   };
 
   const onSubmit = async (event) => {
@@ -53,23 +55,23 @@ const SignUp = () => {
     console.log(form);
     try {
       const { data } = await POST("user/register", {
-        name: form.name,
+        username: form.name,
         email: form.email,
         password: form.password,
-        confirmPassword: form.confirmPassword,
+        conpass: form.confirmpass,
       });
 
       console.log(data);
       if (data.statusCode === 200) {
         setAlert(null);
-        window.location.href = "/login";
+        window.location.href = "/sign-in";
       }
     } catch (e) {
-      if (e.response) {
-        // setAlert(errorHandling(e));
-      } else {
-        console.log("server didnt respond");
-      }
+      // if (e.response) {
+      //   setAlert(errorHandling(e));
+      // } else {
+      //   console.log("server didnt respond");
+      // }
     }
   };
 
@@ -96,7 +98,8 @@ const SignUp = () => {
               >
                 <TextField
                   id="outlined-basic"
-                  label="Username"
+                  label="Name"
+                  name="name"
                   variant="outlined"
                   style={{ width: "100%" }}
                   margin="medium"
@@ -106,6 +109,7 @@ const SignUp = () => {
                 <TextField
                   id="outlined-basic"
                   label="Email"
+                  name="email"
                   variant="outlined"
                   style={{ width: "100%" }}
                   onChange={onInputChange}
@@ -115,6 +119,7 @@ const SignUp = () => {
                   id="outlined-basic"
                   label="Password"
                   variant="outlined"
+                  name="password"
                   style={{ width: "100%" }}
                   type="password"
                   onChange={onInputChange}
@@ -123,6 +128,7 @@ const SignUp = () => {
                 <TextField
                   id="outlined-basic"
                   label="Confirm Password"
+                  name="confirmpass"
                   variant="outlined"
                   style={{ width: "100%" }}
                   type="password"
@@ -131,19 +137,13 @@ const SignUp = () => {
                 />
               </form>
               <CardActions style={{ justifyContent: "center" }}>
-                <Button
-                  className="button"
-                  variant="contained"
-                  color="primary"
-                  href="/person_info"
-                  style={{
-                    width: "150px",
-                    
-                  }}
-                >
+                <Button variant="contained" color="primary" onClick={onSubmit}>
                   Sign Up
                 </Button>
               </CardActions>
+              <Typography variant="subtitle2" component="p" align="center">
+                Already have an account?<Link href="/sign-in">Sign In</Link>
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
