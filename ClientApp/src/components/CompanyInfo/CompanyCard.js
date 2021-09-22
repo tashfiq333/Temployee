@@ -39,7 +39,7 @@ const CompanyCard = (props) => {
   return (
     <div className="col-xl-4 col-md-6 col-sm-12 body_padding">
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea href="/person_info" >
           <CardMedia
             className={classes.media}
             image="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
