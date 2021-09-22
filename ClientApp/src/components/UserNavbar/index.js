@@ -10,7 +10,6 @@ import { Button } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 
 
-
 const useStyles = makeStyles((theme) => ({
     comApp: {
       flexGrow: 1,
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CompanyAppBar = () => {
+const UserAppBar = () => {
   const classes = useStyles();
 
   return (
@@ -37,9 +36,9 @@ const CompanyAppBar = () => {
             Temployee
           </Typography>
           <Link className = {classes.bt} color="inherit" href="#">Home</Link>
-          <Link className = {classes.bt} color="inherit" href= "/detail-post">Find Talent</Link>
+          <Link className = {classes.bt} color="inherit" href="/company-info">Find Work</Link>
           <Link className = {classes.bt} color="inherit" href="/person_info">About Us</Link>
-          <Link className = {classes.bt} color="inherit" href="/company-info">Notification</Link>
+          <Link className = {classes.bt} color="inherit" href="/user-profile">Notification</Link>
           <Button className = {classes.bt} color="inherit">Sign out</Button>
         </Toolbar>
       </AppBar>
@@ -49,4 +48,4 @@ const CompanyAppBar = () => {
     </>
   );
 }
-export default CompanyAppBar;
+export default UserAppBar;

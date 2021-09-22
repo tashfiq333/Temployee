@@ -81,7 +81,7 @@ const DetailPost = () => {
                         <CardMedia
                             className={classes.media}
                             image={img}
-                            title="Contemplative Reptile"
+                            title="Image"
                         />
                     </CardActionArea>
                     <CardContent className={classes.content}>
