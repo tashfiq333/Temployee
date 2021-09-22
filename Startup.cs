@@ -1,11 +1,19 @@
+using System;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using Temployee.Service;
+using Temployee.Helpers;
+using Microsoft.AspNetCore.Http;
+
 namespace Temployee
 {
     public class Startup
@@ -21,11 +29,38 @@ namespace Temployee
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // used for injecting the HttpContext into the controllers
+
             services.AddSingleton<IMongoClient,MongoClient>(s =>
             {
                 var uri = s.GetRequiredService<IConfiguration>()["MongoDbConnection:URL"];
                 return new MongoClient(uri);
             });
+
+            services.AddScoped<UserService,Userservice>();
+                        // Adding Authentication  
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+
+            // Adding Jwt Bearer  
+            .AddJwtBearer(options =>
+              {
+                  options.SaveToken = true;
+                  options.RequireHttpsMetadata = false;
+                  options.TokenValidationParameters = new TokenValidationParameters()
+                  {
+                      ValidateIssuer = false,
+                      ValidateIssuerSigningKey = true,
+                      ValidateAudience = false,
+                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"])),
+                      ClockSkew = TimeSpan.Zero,
+                      ValidateLifetime = true
+                  };
+              });
+
 
               
             services.AddControllersWithViews();
@@ -55,7 +90,12 @@ namespace Temployee
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+              // middlware to automatical route a request to its appropriate controller
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
