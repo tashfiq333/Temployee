@@ -30,6 +30,7 @@ namespace Temployee.Helpers
             if(userId != null)
             {
                 context.Items["UserId"] = userService.GetById(userId).UserId;
+              
 
             }   
 

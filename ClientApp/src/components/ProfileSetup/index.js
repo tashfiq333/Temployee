@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
-
+import { useParams } from "react-router";
 
 import "./profset.css";
 
@@ -61,10 +61,10 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
-
-
 const ProfileSetup = () => {
   const classes = useStyles();
+  const { id } = useParams();
+  console.log("userId " + id);
 
   return (
     <Grid container spacing={3} display="flex" className="gridwid">
@@ -144,20 +144,23 @@ const ProfileSetup = () => {
             />
           </form>
           <CardActions>
-              <Button
-                className="button"
-                variant="contained"
-                color="primary"
-                style={{
-                  width: "150px",
-                  marginTop: "4%",
-                  marginBottom: "3%",
-                  marginLeft: "22%",
-                }}
-              >
-                Done
-              </Button>
-            </CardActions>
+            <Button
+              className="button"
+              variant="contained"
+              color="primary"
+              style={{
+                width: "150px",
+                marginTop: "4%",
+                marginBottom: "3%",
+                marginLeft: "22%",
+              }}
+              onClick={() => {
+                window.location.href = "/post_job";
+              }}
+            >
+              Done
+            </Button>
+          </CardActions>
         </CardContent>
       </Card>
     </Grid>
