@@ -20,43 +20,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 
-import dp from '../../images/homesecond.png'
+import dp from '../../images/slidera.png'
 
 
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-import "./userstyles.css"
+import "./comProStyles.css"
 
 
 const useStyles = makeStyles((theme) => ({
 
-    //     Boxes: {
-    //         //  height: '100vh',
-    //         //width: '100vw',
-    //         paddingTop: '2%',
-    //         display: 'flex',
 
-    //     },
-    //     BoxBio: {
-
-    //         paddingTop: '2%',
-    //         color: '#6C63FF'
-
-    //     },
-    //     BoxEm: {
-    //         height: '36%'
-
-    //     },
-
-    //     smallboxOne: {
-    //         paddingRight: '1%',
-    //         //  height: '100px'
-    //     },
-    //     smallboxTwo: {
-    //         paddingLeft: '1%',
-    //         //height:'100px'
-    //     },
 
     modal: {
         display: 'flex',
@@ -233,7 +208,7 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillhead" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    Languages
+                                                    Language preferences
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={4}>
@@ -318,7 +293,25 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillhead" item xs={4}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    Education
+                                                   Address
+                                                </Typography>
+                                            </Grid>
+                                            <Grid className="skillname" item xs={12}>
+                                                <Typography variant="subtitle2" gutterBottom>
+                                                   137/26 Dhanmondi,Dhaka
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <br />
+                                        <Grid container >
+                                            <Grid className="skillhead" item xs={6}>
+                                                <Typography variant="subtitle2" gutterBottom>
+                                                   Contact Info
+                                                </Typography>
+                                            </Grid>
+                                            <Grid className="skillname" item xs={12}>
+                                                <Typography variant="subtitle2" gutterBottom>
+                                                   0172366728993
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -333,7 +326,7 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillhead" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    Skills
+                                                    Achivements
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={4}>
@@ -345,48 +338,40 @@ const UserProfile = () => {
 
                                     <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
-                                            Content Writing
+                                            Completed mongo project successfully.
                                         </Typography>
 
-                                        <BorderLinearProgress className="skillbar" variant="determinate" value={80} />
+                                        
                                         <br />
                                     </div>
 
                                     <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
-                                            Content Writing
+                                            Content Writing Competetion held successfully.
                                         </Typography>
 
-                                        <BorderLinearProgress className="skillbar" variant="determinate" value={80} />
+                                        
                                         <br />
                                     </div>
 
                                     <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
-                                            Content Writing
+                                            IT fair top start up company award winner.
                                         </Typography>
 
-                                        <BorderLinearProgress className="skillbar" variant="determinate" value={80} />
+                                        
                                         <br />
                                     </div>
 
-                                    <div className="skillname">
-                                        <Typography variant="subtitle2" gutterBottom>
-                                            Content Writing
-                                        </Typography>
-
-                                        <BorderLinearProgress className="skillbar" variant="determinate" value={80} />
-                                        <br />
-                                    </div>
                                     <div className="skillhead">
                                         <Typography variant="subtitle2" gutterBottom>
                                             Tags
                                         </Typography>
                                         <div className={classes.chips}>
 
-                                            <Chip size="small" variant="outlined" label="Photography" onClick={handleClick} />
-                                            <Chip size="small" variant="outlined" label="Video Edittiong" onClick={handleClick} />
-                                            <Chip size="small" variant="outlined" label="Photoshop" onClick={handleClick} />
+                                            <Chip size="small" variant="outlined" label="Clickable" onClick={handleClick} />
+                                            <Chip size="small" variant="outlined" label="Clickable" onClick={handleClick} />
+                                            <Chip size="small" variant="outlined" label="Clickable" onClick={handleClick} />
 
                                         </div>
                                         <br />
@@ -404,8 +389,8 @@ const UserProfile = () => {
                                     <Item elevation={0}>
                                         <Grid item xs={12} container className="hirebuttongrid">
 
-                                            <Grid item xs={11}><Typography varient="h6" component="h6">Raiden Shogan</Typography> </Grid>
-                                            <Grid item xs={1}> <Button  type="button" variant="outlined" >Hire</Button></Grid>
+                                            <Grid item xs={11}><Typography varient="h6" component="h6">Temployee Dot Com</Typography> </Grid>
+                                            <Grid ></Grid>
                                         </Grid><br />
                                     </Item>
 
@@ -434,7 +419,7 @@ const UserProfile = () => {
                                         <Grid item xs={2}>
                                             <div className="ratebutton">
                                                 <Button type="button" variant="outlined" onClick={handleOpen}>
-                                                    Rate User
+                                                    Rate Company
                                                 </Button>
                                                 <Modal
                                                     aria-labelledby="transition-modal-title"
@@ -484,7 +469,7 @@ const UserProfile = () => {
                                     <Grid container >
                                         <Grid item xs={8}>
                                             <div className="skillhead">
-                                                <Typography variant="h6">Bio</Typography>
+                                                <Typography variant="h6">What We Do</Typography>
                                             </div>
                                         </Grid>
                                         <br /> <br />

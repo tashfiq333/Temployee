@@ -6,9 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { CssBaseline } from '@material-ui/core';
 import { Component } from 'react';
-import { Button } from '@material-ui/core';
+import { Button } from 'react-router-dom';
 import { purple } from '@material-ui/core/colors';
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CompanyAppBar = () => {
+const Appbar = () => {
   const classes = useStyles();
 
   return (
@@ -37,10 +36,10 @@ const CompanyAppBar = () => {
             Temployee
           </Typography>
           <Link className = {classes.bt} color="inherit" href="#">Home</Link>
+          <Link className = {classes.bt} color="inherit" href="/company-info">Find Work</Link>
           <Link className = {classes.bt} color="inherit" href= "/detail-post">Find Talent</Link>
           <Link className = {classes.bt} color="inherit" href="/person_info">About Us</Link>
-          <Link className = {classes.bt} color="inherit" href="/company-info">Notification</Link>
-          <Button className = {classes.bt} color="inherit">Sign out</Button>
+          <Link className = {classes.bt} color="inherit" href="/sign-in">Sign in</Link>
         </Toolbar>
       </AppBar>
 	  
@@ -49,4 +48,4 @@ const CompanyAppBar = () => {
     </>
   );
 }
-export default CompanyAppBar;
+export default Appbar;

@@ -13,9 +13,15 @@ import CompanyAppBar from "./components/NavbarCompany";
 import Footer from "./components/Footer";
 import UserProfile from "./components/UserProfile";
 import JobPost from "./components/JobPost";
+import CompanyProfile from "./components/CompanyProfile"
+import DetailPost from "./components/DetailedWorkPost";
+import Appbar from "./components/Appbar";
+import UserAppBar from "./components/UserNavbar";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
+import ProfileSetup from "./components/ProfileSetup";
+import PersonInfo from "./components/PersonalInfo";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -49,6 +55,10 @@ export default class App extends Component {
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/post_job" exact component={JobPost} />
+            <Route path="/profile_setup" exact component={ProfileSetup} />
+            <Route path="/person_info" exact component={PersonInfo} />
+            <Route path="/company-profile" exact component={CompanyProfile} />
+            <Route path="/detail-post" exact component={DetailPost} />
           </Switch>
           {<Footer />}
         </Router>

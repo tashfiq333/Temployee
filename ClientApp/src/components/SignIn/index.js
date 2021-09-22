@@ -91,12 +91,13 @@ const SignIn = () => {
               <form
                 className={(classes.root.anchor, "text")}
                 noValidate
-                autoComplete="on"
+                autoComplete="off"
               >
                 <TextField
                   id="outlined-basic"
                   label="Email"
                   name="email"
+                  required
                   variant="outlined"
                   style={{ width: "100%" }}
                   onChange={handleChange}
@@ -105,12 +106,13 @@ const SignIn = () => {
                   id="outlined-basic"
                   label="Password"
                   name="password"
+                  required
                   variant="outlined"
                   style={{ width: "100%" }}
-                  onChange={handleChange}
+
+                  onChange = {handleChange}
                 />
               </form>
-
               <CardActions style={{ justifyContent: "center" }}>
                 <Button
                   variant="contained"
