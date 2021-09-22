@@ -13,7 +13,7 @@ import CompanyAppBar from "./components/NavbarCompany";
 import Footer from "./components/Footer";
 import UserProfile from "./components/UserProfile";
 import JobPost from "./components/JobPost";
-import CompanyProfile from "./components/CompanyProfile"
+import CompanyProfile from "./components/CompanyProfile";
 import DetailPost from "./components/DetailedWorkPost";
 import Appbar from "./components/Appbar";
 import UserAppBar from "./components/UserNavbar";
@@ -32,9 +32,12 @@ export default class App extends Component {
         <Router>
           {<CompanyAppBar />}
           <Switch>
-            <Route path="/" exact component={JobPost} />
+            <Route path="/" exact component={PersonInfo} />
             <Route path="/company-info" exact component={CompanyCard} />
             <Route path="/user-profile" exact component={UserProfile} />
+            <Route path="/profile_setup" exact component={ProfileSetup} />
+            <Route path="/post_job" exact component={JobPost} />
+            <Route path="/company-profile" exact component={CompanyProfile} />
           </Switch>
           {<Footer />}
         </Router>
@@ -47,17 +50,14 @@ export default class App extends Component {
         //   <Route path='/fetch-data' component={FetchData} /> */}
         // </Layout>
         <Router>
-          {<CompanyAppBar />}
+          {<Appbar />}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/company-info" exact component={CompanyCard} />
             <Route path="/sign-in" exact component={SignIn} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
-            <Route path="/post_job" exact component={JobPost} />
-            <Route path="/profile_setup" exact component={ProfileSetup} />
-            <Route path="/person_info" exact component={PersonInfo} />
-            <Route path="/company-profile" exact component={CompanyProfile} />
+
             <Route path="/detail-post" exact component={DetailPost} />
           </Switch>
           {<Footer />}

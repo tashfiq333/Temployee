@@ -60,8 +60,9 @@ const SignIn = () => {
       console.log(data);
       if (data.statusCode === 200) {
         setAlert(null);
+
         localStorage.setItem("access_token", data.statusDescription);
-        window.location.href = "/post_job";
+        window.location.href = "/";
       }
     } catch (e) {
       // if (e.response) {
@@ -109,8 +110,7 @@ const SignIn = () => {
                   required
                   variant="outlined"
                   style={{ width: "100%" }}
-
-                  onChange = {handleChange}
+                  onChange={handleChange}
                 />
               </form>
               <CardActions style={{ justifyContent: "center" }}>
