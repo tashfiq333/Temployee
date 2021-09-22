@@ -4,6 +4,7 @@ import sa from "../../images/slidera.png";
 import sb from "../../images/sliderb.png";
 import sc from "../../images/sliderc.png";
 import sd from "../../images/sliderd.png";
+import dp from "../../images/dp.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -36,7 +37,7 @@ const Carousel = () => {
             <img className="sliderimg" src={sa} alt="" />
           </div>
           <div>
-            <img className="sliderimg" src={sb} alt="" />
+            <img className="sliderimg" src={dp} alt="" />
           </div>
           <div>
             <img className="sliderimg" src={sc} alt="" />

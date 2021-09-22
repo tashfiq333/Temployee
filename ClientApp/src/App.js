@@ -15,6 +15,8 @@ import UserProfile from "./components/UserProfile";
 import JobPost from "./components/JobPost";
 import CompanyProfile from "./components/CompanyProfile"
 import DetailPost from "./components/DetailedWorkPost";
+import Appbar from "./components/Appbar";
+import UserAppBar from "./components/UserNavbar";
 
 
 import "./custom.css";
@@ -33,7 +35,7 @@ export default class App extends Component {
       //   <Route path='/fetch-data' component={FetchData} /> */}
       // </Layout>
       <Router>
-        {<CompanyAppBar />}
+        {<Appbar />}
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/company-info" exact component={CompanyCard} />
