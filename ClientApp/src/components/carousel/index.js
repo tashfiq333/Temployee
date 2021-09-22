@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import sa from "../../images/slidera.png";
-import sb from "../../images/sliderb.png";
-import sc from "../../images/sliderc.png";
-import sd from "../../images/sliderd.png";
+import sa from "../../images/ph.png";
+import sb from "../../images/vd.png";
+import sc from "../../images/wdev.png";
+import sd from "../../images/wp.png";
 import dp from "../../images/dp.png";
 
 import "slick-carousel/slick/slick.css";
@@ -37,7 +37,7 @@ const Carousel = () => {
             <img className="sliderimg" src={sa} alt="" />
           </div>
           <div>
-            <img className="sliderimg" src={dp} alt="" />
+            <img className="sliderimg" src={sb} alt="" />
           </div>
           <div>
             <img className="sliderimg" src={sc} alt="" />
