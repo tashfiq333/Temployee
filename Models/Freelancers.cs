@@ -8,20 +8,26 @@ namespace Temployee.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id{get; set;}
+
+        public string Uid{get;set;}
          
-        [BsonElement("name")]
+       
         public string Name{get;set;}
         
-        [BsonElement("phone_no")]
+       
         public string Phone_No{get;set;}
 
-        [BsonElement("bio")]
-        public string Bio{get;set;}
+         public string Bio{get;set;}
 
-        [BsonElement("price")]
+      
         public double Price{get;set;}
+        public string Experience{get;set;}
 
-        [BsonElement("Rating")]
+        public string Qualification{get;set;}
+
+        public string Achievement{get;set;}
+
+        public string Linkin{get;set;}
 
         public double Rating{get;set;}
     

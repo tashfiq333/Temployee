@@ -6,7 +6,10 @@ using Temployee.Models;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using Temployee.Service;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Temployee.Controllers
 {
@@ -14,15 +17,20 @@ namespace Temployee.Controllers
     [Route("[controller]")]   
     public class InfoController: Controller
     {
-        private readonly IMongoCollection<UserInfo> UserinfoCollection;
-        public InfoController (IMongoClient client){
-            var db = client.GetDatabase("Temployee");
-          UserinfoCollection= db.GetCollection <UserInfo>("UserInfo");
+        private readonly IMongoCollection<Freelancers> UserinfoCollection;
+        private readonly UserService us;
+        private readonly string uid;
+        public InfoController (IMongoClient client ,UserService service){
+          var db = client.GetDatabase("Temployee");
+          UserinfoCollection= db.GetCollection <Freelancers>("Freelancer");
+          us = service;
+          IHttpContextAccessor http = new HttpContextAccessor();
+          uid =(string) http.HttpContext.Items["UserId"];
           Console.WriteLine("Cons");
         }
 
         [HttpGet]
-        public IEnumerable<UserInfo> Get()
+        public IEnumerable<Freelancers> Get()
         {
 
            
@@ -34,16 +42,19 @@ namespace Temployee.Controllers
         }
 
 
+        [Authorize]    
         [HttpPost]
-        [Route("add")]
-        public String post(UserInfo useri)
+        [Route("add_2")]
+        public String postUser(Freelancers useri)
         {
-           
-           
-           UserinfoCollection.InsertOne(useri);
-           var x = useri.infoId;
-           Console.WriteLine(x); 
-            return "VERY GOOD JOB Company";
+
+          useri.Uid = uid;
+
+              
+               
+          UserinfoCollection.InsertOne(useri);
+          
+            return "good";
             
 
         }

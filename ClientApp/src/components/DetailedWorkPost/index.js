@@ -1,167 +1,182 @@
-import React from "react";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Chip from '@material-ui/core/Chip';
-import Grid from '@material-ui/core/Grid'
-import Link from '@material-ui/core/Link'
+import React, { useEffect } from "react";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Chip from "@material-ui/core/Chip";
+import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
+import { useParams } from "react-router";
 
-import img from "../../images/slidera.png"
+import img from "../../images/slidera.png";
 
-import "./postStyle.css"
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import "./postStyle.css";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
+import { GET_AUTH } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
+  cardroot: {
+    display: "flex",
+    marginTop: 100,
+    minWidth: 345,
+    borderRadius: 30,
+    boxShadow: "2px 3px 3px 2px rgba(0, 0, 0, 0.25)",
+    minHeight: "80vh",
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: 100,
+    minWidth: 345,
+    minHeight: "80vh",
+  },
+  content: {
+    flex: "1 0 auto",
+  },
+  cover: {
+    width: 151,
+  },
+  bt: {
+    minWidth: "10vw",
+  },
 
-    cardroot: {
-        display: "flex",
-        marginTop: 100,
-        minWidth: 345,
-        borderRadius: 30,
-        boxShadow: '2px 3px 3px 2px rgba(0, 0, 0, 0.25)',
-        minHeight: '80vh',
-    },
-    details: {
-        display: "flex",
-        flexDirection: "column",
-        marginTop: 100,
-        minWidth: 345,
-        minHeight: '80vh'
-    },
-    content: {
-        flex: "1 0 auto"
-    },
-    cover: {
-        width: 151
-    },
-    bt: {
-       minWidth: '10vw',
+  media: {
+    height: "35vh",
+  },
 
+  chips: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    "& > *": {
+      margin: theme.spacing(0.5),
     },
-
-    media: {
-        height: '35vh',
-    },
-
-    chips: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        '& > *': {
-            margin: theme.spacing(0.5),
-        },
-    },
-
+  },
 }));
 
-const handleClick = () => {
-    console.info('You clicked the Chip.');
-};
-
-
 const DetailPost = () => {
+  const [project, setProject] = React.useState([]);
+  const { id } = useParams();
 
-    const classes = useStyles();
+  console.log(id);
+  const handleClick = () => {
+    console.info("You clicked the Chip.");
+  };
 
-    return (
-        <>
-        <div className="bgpost">  </div>
-            <Container>
-                <CssBaseline />
+  const classes = useStyles();
 
-                {/* <Card className={classes.cardroot}> */}
-                <div className={classes.details}>
-                    <CardActionArea href="/user-profile" >
-                        <CardMedia
-                            className={classes.media}
-                            image={img}
-                            title="Image"
-                        />
-                    </CardActionArea>
-                    <CardContent className={classes.content}>
-                        <Typography component="h5" variant="h5" className="skillhead">
-                            Live From Space
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            <Link href="#">Company Name</Link>
-                        </Typography><br/>
-                        <Typography component="h6" variant="h6" className="skillhead">
-                            Duration
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            1000hr
-                        </Typography><br/>
-                        <Typography component="h6" variant="h6" className="skillhead">
-                            Expert Level
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            None
-                        </Typography><br/>
-                        <Typography component="h6" variant="h6" className="skillhead">
-                           Price
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            12$
-                        </Typography><br/>
-                        <Typography component="h6" variant="h6" className="skillhead">
-                            Deadline
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            13 october 2021
-                        </Typography><br/>
-                        <Typography component="h6" variant="h6" className="skillhead">
-                            Job Description
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                            By default, we use the combination of a
-                            element and a background image to display the
-                            media. It can be problematic in some situations.
-                            For instance, you might want to display a video or
-                            a responsive image. Use the component property for
-                            these use cases.
-                        </Typography><br/>
-                        <Typography component="h6" variant="h6" className="skillhead">
-                            Tags
-                        </Typography>
-                        <div className={classes.chips}>
+  useEffect(() => {
+    const exe = async () => {
+      try {
+        const { data } = await GET_AUTH(`project/auth/${id}`);
 
-                            <Chip size="large" variant="outlined" label="Photography" onClick={handleClick} />
-                            <Chip size="large" variant="outlined" label="Video Editing" onClick={handleClick} />
-                            <Chip size="large" variant="outlined" label="Photoshop" onClick={handleClick} />
+        console.log(data);
+        setProject(data);
+        console.log(project.name);
+      } catch (e) {
+        console.log(e);
+        // if (e.response) {
+        //   setAlert(errorHandling(e));
+        // } else {
+        //   console.log("server didnt respond");
+        // }
+      }
+    };
+    exe();
+  }, []);
 
-                        </div>
-                        <br/><br/>
-                        
-                    </CardContent>
+  return (
+    <>
+      <div className="bgpost"> </div>
+      <Container>
+        <CssBaseline />
 
-                    {/* <CardActions > */}
+        {/* <Card className={classes.cardroot}> */}
+        <div className={classes.details}>
+          <CardActionArea href="/user-profile">
+            <CardMedia
+              className={classes.media}
+              image="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+              title="Image"
+            />
+          </CardActionArea>
+          <CardContent className={classes.content}>
+            <Typography component="h5" variant="h5" className="skillhead">
+              {project.name}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              <Link href="#">Company Name</Link>
+            </Typography>
+            <br />
+            <Typography component="h6" variant="h6" className="skillhead">
+              Duration
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {project.duration} months
+            </Typography>
+            <br />
+            <Typography component="h6" variant="h6" className="skillhead">
+              {project.level}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              None
+            </Typography>
+            <br />
+            <Typography component="h6" variant="h6" className="skillhead">
+              Price
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {project.price}$
+            </Typography>
+            <br />
+            <Typography component="h6" variant="h6" className="skillhead">
+              Job Description
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {project.description}
+            </Typography>
+            <br />
+            <Typography component="h6" variant="h6" className="skillhead">
+              Tags
+            </Typography>
+            <div className={classes.chips}>
+              {project.tags &&
+                project.tags.map((h) => (
+                  <Chip label={h} color="primary" size="medium" />
+                ))}
+            </div>
+            <br />
+            <br />
+          </CardContent>
 
-                    <div >
-                        <Grid container>
-                            <Grid item xs={5}></Grid>
-                            <Grid justifyContent="center" item xs={4}>
-                                <Button className={classes.bt} variant="outlined" size="large" color="primary">
-                                    Apply
-                                </Button>
-                            </Grid>
-                            {/* <Grid item xs={4}></Grid> */}
-                        </Grid>
-                    </div>
-                    {/* </CardActions> */}
+          {/* <CardActions > */}
 
-                </div>
-                {/* </Card> */}
-            </Container>
-          
-        </>
-    )
-
-
-}
+          <div>
+            <Grid container>
+              <Grid item xs={5}></Grid>
+              <Grid justifyContent="center" item xs={4}>
+                <Button
+                  className={classes.bt}
+                  variant="outlined"
+                  size="large"
+                  color="primary"
+                >
+                  Apply
+                </Button>
+              </Grid>
+              {/* <Grid item xs={4}></Grid> */}
+            </Grid>
+          </div>
+          {/* </CardActions> */}
+        </div>
+        {/* </Card> */}
+      </Container>
+    </>
+  );
+};
 export default DetailPost;

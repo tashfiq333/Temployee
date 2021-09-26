@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Temployee.Models;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+
+
 using MongoDB.Driver;
 using MongoDB.Bson;
 namespace Temployee.Controllers
@@ -16,10 +20,11 @@ namespace Temployee.Controllers
 
        
         private readonly IMongoCollection<Company> CompanyCollection;
-        public CompanyController(IMongoClient client){
+       
+        public CompanyController(IMongoClient client ){
           var db = client.GetDatabase("Temployee");
           CompanyCollection= db.GetCollection <Company>("Company");
-          Console.WriteLine("Cons");
+          
 
         }
 
@@ -36,6 +41,21 @@ namespace Temployee.Controllers
 
         }
 
+        // [Authorize]
+        // [HttpGet]
+        // [Route("auth/{id}")]
+        // public ActionResult GetUserPostById(string id)
+        // {
+
+        //     Console.WriteLine(id);
+        //     Users user = _blogService.GetUserPostById(id);
+        //     if (post == null)
+        //     {
+        //         return new BadRequestObjectResult(new ErrorResult("Internal Server Error", 400, "Something is wrong"));
+        //     }
+        //     return Ok(post);
+        // }
+
 
         [HttpPost]
         [Route("add")]
@@ -44,8 +64,7 @@ namespace Temployee.Controllers
            
            
            CompanyCollection.InsertOne(company);
-           var x = company.CompantId;
-           Console.WriteLine(x); 
+           
             return "VERY GOOD JOB Company";
             
 

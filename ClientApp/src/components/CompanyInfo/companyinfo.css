@@ -1,6 +1,5 @@
-
 .title {
-  padding: 7% 1% 2% 3%;
+  padding: 1% 1% 2% 3%;
   color: #646464;
 }
 
@@ -64,10 +63,10 @@
   }
 } */
 
-a{
+a {
   text-decoration: none !important;
 }
 
-a:hover{
-  color: #6C63FF !important;
+a:hover {
+  color: #6c63ff !important;
 }
