@@ -9,6 +9,8 @@ namespace Temployee.Models
         [BsonRepresentation(BsonType.ObjectId)]
          public string CompantId{get;set;}
 
+          public string Uid{get;set;}
+
          public string Type{get;set;}
 
          public string Name{get;set;}

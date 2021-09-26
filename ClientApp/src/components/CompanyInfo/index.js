@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import "./companyinfo.css";
-import { GET } from "../../api";
+
+import { GET, GET_AUTH } from "../../api";
 
 const CompanyInfo = () => {
   const [project, setProject] = React.useState([]);
+
   var hashTags = [];
 
   useEffect(() => {
@@ -14,9 +16,7 @@ const CompanyInfo = () => {
         const { data } = await GET(`project`);
         console.log(data);
         setProject(data);
-        if (data.tags.length > 3) {
-          hashTags = data.tags.slice(0, 3);
-        }
+        console.log("tjdf" + project);
       } catch (e) {
         console.log(e);
       }
@@ -49,6 +49,9 @@ const CompanyInfo = () => {
               level={pro.level}
               des={pro.description.substring(0, 100)}
               tags={pro.tags}
+              oncardClick={() => {
+                window.location.href = `/detail-post/${pro.id}`;
+              }}
             />
           ))}
         </div>

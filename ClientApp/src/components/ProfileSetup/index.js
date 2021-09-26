@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -10,8 +10,10 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import { useParams } from "react-router";
+import { POST_AUTH } from "../../api";
 
 import "./profset.css";
+import { Input } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,10 +63,45 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
-const ProfileSetup = () => {
+const ProfileSetup = (props) => {
   const classes = useStyles();
-  const { id } = useParams();
-  console.log("userId " + id);
+
+  const [input, setInput] = useState("");
+  const { state } = props.location;
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+
+    setInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(name + ": " + value);
+  };
+
+  const addInfo = async (e) => {
+    console.log(state);
+
+    try {
+      const { data } = await POST_AUTH("info/add_2", {
+        name: state.name,
+        phone_no: state.phone,
+        linkin: state.linkin,
+        bio: state.bio,
+        experience: input.experience,
+        qualification: input.qualification,
+        achievement: input.achievement,
+      });
+
+      setInput("");
+
+      if (data == "good") {
+        window.location.href = "/company-info";
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Grid container spacing={3} display="flex" className="gridwid">
@@ -83,10 +120,13 @@ const ProfileSetup = () => {
             Professional Info
           </Typography>
 
-          <form noValidate autoComplete="on">
+          <form noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
               label="Skills"
+              name="skill"
+              value={input && input.skill}
+              onChange={handleChange}
               variant="outlined"
               required
               style={{ width: "60%" }}
@@ -125,6 +165,9 @@ const ProfileSetup = () => {
             <TextField
               id="outlined-basic"
               label="Experience"
+              name="experience"
+              value={input && input.experience}
+              onChange={handleChange}
               variant="outlined"
               style={{ width: "60%" }}
             />
@@ -132,6 +175,9 @@ const ProfileSetup = () => {
             <TextField
               id="outlined-basic"
               label="Qualifications"
+              onChange={handleChange}
+              name="qualification"
+              value={input && input.qualification}
               variant="outlined"
               style={{ width: "60%" }}
             />
@@ -139,6 +185,9 @@ const ProfileSetup = () => {
             <TextField
               id="outlined-basic"
               label="Achievements"
+              name="achievement"
+              value={input && input.achievement}
+              onChange={handleChange}
               variant="outlined"
               style={{ width: "60%" }}
             />
@@ -154,9 +203,7 @@ const ProfileSetup = () => {
                 marginBottom: "3%",
                 marginLeft: "22%",
               }}
-              onClick={() => {
-                window.location.href = "/post_job";
-              }}
+              onClick={addInfo}
             >
               Done
             </Button>

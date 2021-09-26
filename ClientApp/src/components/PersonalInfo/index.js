@@ -8,10 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import { POST } from "../../api";
+import { POST_AUTH } from "../../api";
 
 import "./profset.css";
-import { Input } from "@material-ui/core";
+import { Input, Link } from "@material-ui/core";
 import zIndex from "@material-ui/core/styles/zIndex";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PersonInfo = () => {
+const PersonInfo = (props) => {
   const classes = useStyles();
   const [input, setInput] = useState("");
 
@@ -37,34 +37,17 @@ const PersonInfo = () => {
       setInput((prevState) => ({
         ...prevState,
         [name]: value,
-
       }));
       console.log(name + ": " + value);
-  }
-};
-
-const addInfo  = async (e) => {
-  var formData = new FormData();
-  formData.append("name", input.name);
-    formData.append("phone", input.phone);
-    formData.append("linkin", input.linkin);
-    formData.append("bio", input.bio);
-
-    try{
-      const {data} = await POST('info/add',{
-        name: input.name,
-        phone: input.phone,
-        linkin: input.linkin,
-        bio: input.bio
-      });
-    }catch (e) {
-      console.log(e);
     }
+  };
 
-};
-
-
-
+  const addInfo = (e) => {
+    props.history.push({
+      pathname: "/profile_setup",
+      state: input,
+    });
+  };
 
   return (
     <div className={classes.root}>
@@ -87,17 +70,13 @@ const addInfo  = async (e) => {
                 className={(classes.large, "avatar")}
                 style={{ alignSelf: "center" }}
               >
-               
-
                 <Button
                   className="avatar-button"
                   variant="contained"
                   color="#F0D9FF"
                   style={{ marginTop: "60%", zIndex: 1 }}
-                  
-                  
-                > 
-                   Change Avatar
+                >
+                  Change Avatar
                 </Button>
               </Avatar>
             </Grid>
@@ -159,14 +138,12 @@ const addInfo  = async (e) => {
                   className="button"
                   variant="contained"
                   color="primary"
-                  href="/profile_setup"
                   onClick={addInfo}
                   style={{
                     width: "150px",
                     marginTop: "50px",
                     marginBottom: "50px",
                     marginRight: "20%",
-                   
                   }}
                 >
                   Next

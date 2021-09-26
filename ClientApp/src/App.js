@@ -22,6 +22,7 @@ import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
 import PersonInfo from "./components/PersonalInfo";
+import Empty from "./components/Empty";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -32,12 +33,14 @@ export default class App extends Component {
         <Router>
           {<CompanyAppBar />}
           <Switch>
-            <Route path="/" exact component={PersonInfo} />
+            <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/profile_setup" exact component={ProfileSetup} />
+            <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
             <Route path="/company-profile" exact component={CompanyProfile} />
+            <Route path="/detail-post/:id" exact component={DetailPost} />
           </Switch>
           {<Footer />}
         </Router>
@@ -57,8 +60,6 @@ export default class App extends Component {
             <Route path="/sign-in" exact component={SignIn} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
-
-            <Route path="/detail-post" exact component={DetailPost} />
           </Switch>
           {<Footer />}
         </Router>

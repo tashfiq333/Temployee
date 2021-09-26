@@ -25,11 +25,15 @@ namespace Temployee.Helpers
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             var userId = Util.ValidateToken(token, _secret);
-            Console.WriteLine("In middlewar3e");
+            //Console.WriteLine("In middlewar3e");
+           //  Console.WriteLine("HI "+ userId);
 
             if(userId != null)
             {
                 context.Items["UserId"] = userService.GetById(userId).UserId;
+                 Console.WriteLine("HI "+ userId);
+               
+
               
 
             }   

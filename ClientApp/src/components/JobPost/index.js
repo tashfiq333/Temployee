@@ -31,6 +31,7 @@ const JobPost = () => {
   const chipClass = chipStyle();
   const txt = textField();
   const [hashtag, setHashtag] = useState("");
+  const [tags, setTags] = useState("");
   const [numberOfHashtags, setNumberOfHashtags] = useState(0);
   const [arrayOfHashtags, addHashtag] = useState([]);
 
@@ -45,15 +46,23 @@ const JobPost = () => {
   ));
 
   const OnHashChange = (e) => {
-    if (e.target.value !== "") {
-      const { value, name } = e.target;
+    const { value, name } = e.target;
 
-      setHashtag((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-      console.log(name + ": " + value);
-    }
+    setHashtag((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(name + ": " + value);
+  };
+
+  const onTagchange = (e) => {
+    const { value, name } = e.target;
+
+    setTags((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(name + ": " + value);
   };
 
   const AddPost = async (e) => {
@@ -74,6 +83,8 @@ const JobPost = () => {
         level: hashtag.level,
         tags: arrayOfHashtags,
       });
+
+      setHashtag("");
     } catch (e) {
       console.log(e);
     }
@@ -81,7 +92,8 @@ const JobPost = () => {
 
   const AddTags = () => {
     setNumberOfHashtags(numberOfHashtags + 1);
-    addHashtag((arrayOfHashtags) => arrayOfHashtags.concat(hashtag.TagsField));
+    addHashtag((arrayOfHashtags) => arrayOfHashtags.concat(tags.TagsField));
+    setTags("");
     console.log(arrayOfHashtags);
   };
 
@@ -106,6 +118,7 @@ const JobPost = () => {
                 id="outlined-basic"
                 label="Title"
                 name="title"
+                value={hashtag && hashtag.title}
                 variant="outlined"
                 style={{ marginTop: "20px" }}
                 onChange={OnHashChange}
@@ -115,6 +128,7 @@ const JobPost = () => {
                 id="outlined-basic"
                 label="Duration"
                 name="duration"
+                value={hashtag && hashtag.duration}
                 variant="outlined"
                 style={{ marginTop: "20px" }}
                 onChange={OnHashChange}
@@ -124,6 +138,7 @@ const JobPost = () => {
                 id="outlined-basic"
                 label="Experience Level"
                 name="level"
+                value={hashtag && hashtag.level}
                 variant="outlined"
                 style={{ marginTop: "20px" }}
                 onChange={OnHashChange}
@@ -133,6 +148,7 @@ const JobPost = () => {
                 id="outlined-basic"
                 label="Price"
                 name="price"
+                value={hashtag && hashtag.price}
                 variant="outlined"
                 style={{ marginTop: "20px" }}
                 onChange={OnHashChange}
@@ -141,6 +157,7 @@ const JobPost = () => {
                 className={txt.root}
                 placeholder="Description"
                 name="description"
+                value={hashtag && hashtag.description}
                 style={{ marginTop: "20px" }}
                 onChange={OnHashChange}
               />
@@ -154,9 +171,10 @@ const JobPost = () => {
                 id="outlined-basic"
                 label="Tags"
                 variant="outlined"
+                value={tags && tags.TagsField}
                 style={{ marginTop: "20px" }}
                 name="TagsField"
-                onChange={OnHashChange}
+                onChange={onTagchange}
               />
               <CardActions style={{ justifyContent: "left" }}>
                 <Button variant="contained" color="primary" onClick={AddTags}>
