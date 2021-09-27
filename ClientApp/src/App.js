@@ -23,6 +23,7 @@ import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
 import PersonInfo from "./components/PersonalInfo";
 import Empty from "./components/Empty";
+import ApplyJob from "./components/ApplyJob";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -40,6 +41,7 @@ export default class App extends Component {
             <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
             <Route path="/company-profile" exact component={CompanyProfile} />
+            <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
           </Switch>
           {<Footer />}

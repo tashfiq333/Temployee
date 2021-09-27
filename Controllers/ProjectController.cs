@@ -23,6 +23,7 @@ namespace Temployee.Controllers
         private readonly IMongoCollection<Project> ProjectCollection;
         private readonly IMongoCollection<Freelancers> FreelancersCollection;
         private readonly IMongoCollection<Company> CompanyCollection;
+        private readonly IMongoCollection<AppliedJob> AppliedJobCollection;
 
         private readonly UserService us;
     
@@ -32,6 +33,7 @@ namespace Temployee.Controllers
           var db = client.GetDatabase("Temployee");
           ProjectCollection= db.GetCollection <Project>("Project");
           FreelancersCollection= db.GetCollection <Freelancers>("Freelancer");
+          AppliedJobCollection= db.GetCollection<AppliedJob>("AppliedJob");
           CompanyCollection= db.GetCollection <Company>("Company");
           us = service;
           IHttpContextAccessor http = new HttpContextAccessor();
@@ -100,6 +102,41 @@ namespace Temployee.Controllers
              
 
          }
+
+        [Authorize]
+        [HttpPost]
+        [Route("applied")]
+        public String Applied(AppliedJob appliedJob)
+        {
+            appliedJob.FreelancerId = uid;
+            AppliedJobCollection.InsertOne(appliedJob);
+            return "applied";
+            
+
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("appliedjob")]
+       async public Task<List<Project>> JobApplied(){
+          var appliedJobList = await AppliedJobCollection.Find(s => s.FreelancerId==uid).ToListAsync();
+
+            List<Project> jobInfos = new List<Project>();
+          foreach (var item in appliedJobList)
+          {
+             jobInfos.Add(await getJobInfo(item));
+          }
+          
+          Console.WriteLine(jobInfos.ToJson());
+            return jobInfos;
+        }
+
+       async Task<Project> getJobInfo(AppliedJob job)
+        {
+           var project =  await ProjectCollection.Find(s => s.Id==job.JobId).FirstOrDefaultAsync();
+           return  project;
+
+        }
 
 
     }
