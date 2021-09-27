@@ -10,6 +10,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { Snackbar } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { POST } from "../../api";
 
@@ -31,10 +33,18 @@ const JobPost = () => {
   const chipClass = chipStyle();
   const txt = textField();
   const [hashtag, setHashtag] = useState("");
+  const [open, setOpen] = React.useState(false);
   const [tags, setTags] = useState("");
   const [numberOfHashtags, setNumberOfHashtags] = useState(0);
   const [arrayOfHashtags, addHashtag] = useState([]);
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   const DeleteTags = (h, i) => () => {
     console.log("Clicked Delete: " + i);
     addHashtag((arrayOfHashtags) =>
@@ -84,7 +94,13 @@ const JobPost = () => {
         tags: arrayOfHashtags,
       });
 
+      if (data === "Job Posted") {
+        setOpen(true);
+      }
+
       setHashtag("");
+      setNumberOfHashtags(0);
+      addHashtag([]);
     } catch (e) {
       console.log(e);
     }
@@ -190,6 +206,16 @@ const JobPost = () => {
           </CardContent>
         </Card>
       </Grid>
+      <Snackbar
+        anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success">
+          The job is successfully posted!
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 };
