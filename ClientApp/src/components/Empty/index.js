@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ffffff',
     width: 400,
     height: 300,
-    alignItems: 'center',
+    alignItems: "center",
 
     boxShadow: theme.shadows[5],
     padding: theme.spacing(6, 6, 6),
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Empty = () => {
- 
+
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const Empty = () => {
               Please Select if you are Freelancer or a company
             </Typography>
             <br/><br/>
-            <Button variant="outlined" 
+            <Button variant="outlined"
             className={classes.bt}
               color="inherit"
               onClick={() => {
@@ -88,7 +88,7 @@ const Empty = () => {
               color="inherit"
               onClick={() => {
                 setOpen(false);
-                window.window.location.href = "/user-profile";
+                window.window.location.href = "/input-company";
               }}
             >
               Company

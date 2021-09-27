@@ -24,6 +24,8 @@ import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
 import PersonInfo from "./components/PersonalInfo";
 import Empty from "./components/Empty";
+import InputCompany from "./components/InputCompanyInfo";
+import InputCompProf from "./components/InputCompanyProf";
 import ApplyJob from "./components/ApplyJob";
 
 export default class App extends Component {
@@ -45,6 +47,8 @@ export default class App extends Component {
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path="/input-company" exact component={InputCompany} />
+            <Route path="/company-prof" exact component={InputCompProf} />
           </Switch>
           {<Footer />}
         </Router>
