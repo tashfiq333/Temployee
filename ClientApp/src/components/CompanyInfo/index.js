@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import UserAppBar from "../UserNavbar";
 import "./companyinfo.css";
 
 import { GET, GET_AUTH } from "../../api";
@@ -26,6 +27,7 @@ const CompanyInfo = () => {
 
   return (
     <section className="comp">
+      <UserAppBar />
       <div>
         <div className="title">
           <h2> Catagory</h2>

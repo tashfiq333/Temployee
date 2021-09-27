@@ -11,6 +11,7 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import { useParams } from "react-router";
 import { POST_AUTH } from "../../api";
+import UserAppBar from "../UserNavbar";
 
 import "./profset.css";
 import { Input } from "@material-ui/core";
@@ -104,53 +105,99 @@ const ProfileSetup = (props) => {
   };
 
   return (
-    <Grid container spacing={3} display="flex" className="gridwid">
-      <Card
-        className={classes.root}
-        elevation="10"
-        style={{ margin: "8%", paddingLeft: "20%" }}
-      >
-        <CardContent>
-          <Typography
-            variant="h5"
-            component="h2"
-            align="start"
-            style={{ marginTop: "40px", marginBottom: "15px" }}
-          >
-            Professional Info
-          </Typography>
-
-          <form noValidate autoComplete="off">
-            <TextField
-              id="outlined-basic"
-              label="Skills"
-              name="skill"
-              value={input && input.skill}
-              onChange={handleChange}
-              variant="outlined"
-              required
-              style={{ width: "60%" }}
-            />
-
+    <section>
+      <UserAppBar />
+      <Grid container spacing={3} display="flex" className="gridwid">
+        <Card
+          className={classes.root}
+          elevation="10"
+          style={{ margin: "8%", paddingLeft: "20%" }}
+        >
+          <CardContent>
             <Typography
-              variant="subtitle2"
-              component="h6"
+              variant="h5"
+              component="h2"
               align="start"
               style={{ marginTop: "40px", marginBottom: "15px" }}
             >
-              Skill Expertise (%)
+              Professional Info
             </Typography>
 
-            <PrettoSlider
-              valueLabelDisplay="auto"
-              aria-label="pretto slider"
-              defaultValue={20}
-              style={{ width: "60%", marginTop: "2.5%" }}
-              // value={value}
-              onChange={(e, val) => {
-                console.log("Slider value: " + val);
-              }}
-            />
+            <form noValidate autoComplete="off">
+              <TextField
+                id="outlined-basic"
+                label="Skills"
+                name="skill"
+                value={input && input.skill}
+                onChange={handleChange}
+                variant="outlined"
+                required
+                style={{ width: "60%" }}
+              />
+
+              <Typography
+                variant="subtitle2"
+                component="h6"
+                align="start"
+                style={{ marginTop: "40px", marginBottom: "15px" }}
+              >
+                Skill Expertise (%)
+              </Typography>
+
+              <PrettoSlider
+                valueLabelDisplay="auto"
+                aria-label="pretto slider"
+                defaultValue={20}
+                style={{ width: "60%", marginTop: "2.5%" }}
+                // value={value}
+                onChange={(e, val) => {
+                  console.log("Slider value: " + val);
+                }}
+              />
+              <CardActions>
+                <Button
+                  className="button"
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    width: "150px",
+                    marginBottom: "1%",
+                    marginLeft: "22%",
+                  }}
+                >
+                  Add Skill
+                </Button>
+              </CardActions>
+              <TextField
+                id="outlined-basic"
+                label="Experience"
+                name="experience"
+                value={input && input.experience}
+                onChange={handleChange}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Qualifications"
+                onChange={handleChange}
+                name="qualification"
+                value={input && input.qualification}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
+
+              <TextField
+                id="outlined-basic"
+                label="Achievements"
+                name="achievement"
+                value={input && input.achievement}
+                onChange={handleChange}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
+            </form>
             <CardActions>
               <Button
                 className="button"
@@ -158,62 +205,19 @@ const ProfileSetup = (props) => {
                 color="primary"
                 style={{
                   width: "150px",
-                  marginBottom: "1%",
+                  marginTop: "4%",
+                  marginBottom: "3%",
                   marginLeft: "22%",
                 }}
+                onClick={addInfo}
               >
-                Add Skill
+                Done
               </Button>
             </CardActions>
-            <TextField
-              id="outlined-basic"
-              label="Experience"
-              name="experience"
-              value={input && input.experience}
-              onChange={handleChange}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
-
-            <TextField
-              id="outlined-basic"
-              label="Qualifications"
-              onChange={handleChange}
-              name="qualification"
-              value={input && input.qualification}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
-
-            <TextField
-              id="outlined-basic"
-              label="Achievements"
-              name="achievement"
-              value={input && input.achievement}
-              onChange={handleChange}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
-          </form>
-          <CardActions>
-            <Button
-              className="button"
-              variant="contained"
-              color="primary"
-              style={{
-                width: "150px",
-                marginTop: "4%",
-                marginBottom: "3%",
-                marginLeft: "22%",
-              }}
-              onClick={addInfo}
-            >
-              Done
-            </Button>
-          </CardActions>
-        </CardContent>
-      </Card>
-    </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+    </section>
   );
 };
 
