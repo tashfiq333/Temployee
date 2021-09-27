@@ -65,7 +65,7 @@ namespace Temployee.Controllers
         public String post(Project project)
         {
             ProjectCollection.InsertOne(project);
-            return "VERRY GOOD JOB";
+            return "Job Posted";
             
 
         }
