@@ -64,11 +64,12 @@ const DetailPost = () => {
   const { id } = useParams();
 
   console.log(id);
-  const handleClick = () => {
-    console.info("You clicked the Chip.");
-  };
 
   const classes = useStyles();
+
+  const ApplyJob = () => {
+    console.log("Clicked");
+  };
 
   useEffect(() => {
     const exe = async () => {
@@ -165,6 +166,7 @@ const DetailPost = () => {
                   variant="outlined"
                   size="large"
                   color="primary"
+                  onClick={ApplyJob}
                 >
                   Apply
                 </Button>
