@@ -94,9 +94,15 @@ const CompanyCard = (props) => {
               {props.des}
             </Typography>
             <div className={chipClass.root}>
-              {props.tags.map((h, i) =>
-                i < 3 ? <Chip label={h} color="primary" size="medium" /> : ""
-              )}
+              {props.tags
+                ? props.tags.map((h, i) =>
+                    i < 3 ? (
+                      <Chip label={h} color="primary" size="medium" />
+                    ) : (
+                      ""
+                    )
+                  )
+                : ""}
             </div>
           </CardContent>
         </CardActionArea>

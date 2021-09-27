@@ -17,6 +17,7 @@ import CompanyProfile from "./components/CompanyProfile";
 import DetailPost from "./components/DetailedWorkPost";
 import Appbar from "./components/Appbar";
 import UserAppBar from "./components/UserNavbar";
+import AboutUs from "./components/AboutUs";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
@@ -25,6 +26,7 @@ import PersonInfo from "./components/PersonalInfo";
 import Empty from "./components/Empty";
 import InputCompany from "./components/InputCompanyInfo";
 import InputCompProf from "./components/InputCompanyProf";
+import ApplyJob from "./components/ApplyJob";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -33,7 +35,7 @@ export default class App extends Component {
     if (localStorage.getItem("access_token") != null) {
       return (
         <Router>
-          {<CompanyAppBar />}
+          {/* {<UserAppBar />} */}
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
@@ -42,7 +44,9 @@ export default class App extends Component {
             <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
             <Route path="/company-profile" exact component={CompanyProfile} />
+            <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
+            <Route path="/about-us" exact component={AboutUs} />
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
           </Switch>
@@ -64,7 +68,7 @@ export default class App extends Component {
             <Route path="/sign-in" exact component={SignIn} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
-            
+            <Route path="/about-us" exact component={AboutUs} />
           </Switch>
           {<Footer />}
         </Router>

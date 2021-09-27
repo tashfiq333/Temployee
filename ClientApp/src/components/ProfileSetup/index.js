@@ -12,6 +12,7 @@ import Slider from "@material-ui/core/Slider";
 import { useParams } from "react-router";
 import { POST_AUTH } from "../../api";
 import Chip from "@material-ui/core/Chip";
+import UserAppBar from "../UserNavbar";
 
 import "./profset.css";
 import { Input } from "@material-ui/core";
@@ -33,49 +34,48 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(3),
   },
 }));
-
 const chipStyle = makeStyles((theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-      justifyContent: "left",
-      flexWrap: "wrap",
-      "& > *": {
-        margin: theme.spacing(0.5),
+    createStyles({
+      root: {
+        display: "flex",
+        justifyContent: "left",
+        flexWrap: "wrap",
+        "& > *": {
+          margin: theme.spacing(0.5),
+        },
       },
-    },
-  })
+    })
 );
 
-// const PrettoSlider = withStyles({
-//   root: {
-//     color: "#6C63FF",
-//     height: 8,
-//   },
-//   thumb: {
-//     height: 24,
-//     width: 24,
-//     backgroundColor: "#fff",
-//     border: "2px solid currentColor",
-//     marginTop: -8,
-//     marginLeft: -12,
-//     "&:focus, &:hover, &$active": {
-//       boxShadow: "inherit",
-//     },
-//   },
-//   active: {},
-//   valueLabel: {
-//     left: "calc(-50% + 4px)",
-//   },
-//   track: {
-//     height: 8,
-//     borderRadius: 4,
-//   },
-//   rail: {
-//     height: 8,
-//     borderRadius: 4,
-//   },
-// })(Slider);
+const PrettoSlider = withStyles({
+  root: {
+    color: "#6C63FF",
+    height: 8,
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: "#fff",
+    border: "2px solid currentColor",
+    marginTop: -8,
+    marginLeft: -12,
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit",
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: "calc(-50% + 4px)",
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+})(Slider);
 
 const ProfileSetup = (props) => {
   const classes = useStyles();
@@ -112,10 +112,8 @@ const ProfileSetup = (props) => {
     console.log(name + ": " + value);
   };
 
-
   const addInfo = async (e) => {
     console.log(state);
-    
 
     try {
       const { data } = await POST_AUTH("info/add_2", {
@@ -135,7 +133,7 @@ const ProfileSetup = (props) => {
         window.location.href = "/company-info";
       }
 
-      
+
       setNumberOfTags(0);
       addTag([]);
     } catch (e) {
@@ -143,24 +141,24 @@ const ProfileSetup = (props) => {
     }
   };
 
-  
-
   return (
-    <Grid container spacing={3} display="flex" className="gridwid">
-      <Card
-        className={classes.root}
-        elevation="10"
-        style={{ margin: "8%", paddingLeft: "20%" }}
-      >
-        <CardContent>
-          <Typography
-            variant="h5"
-            component="h2"
-            align="start"
-            style={{ marginTop: "40px", marginBottom: "15px" }}
-          >
-            Professional Info
-          </Typography>
+    <section>
+      <UserAppBar />
+      <Grid container spacing={3} display="flex" className="gridwid">
+        <Card
+          className={classes.root}
+          elevation="10"
+          style={{ margin: "8%", paddingLeft: "20%" }}
+        >
+          <CardContent>
+            <Typography
+              variant="h5"
+              component="h2"
+              align="start"
+              style={{ marginTop: "40px", marginBottom: "15px" }}
+            >
+              Professional Info
+            </Typography>
 
           <form noValidate autoComplete="off">
             <TextField
@@ -177,47 +175,48 @@ const ProfileSetup = (props) => {
                 {numberOfTags > 0 ? Tags : ""}
               </div>
 
-            {/* <Typography
-              variant="subtitle2"
-              component="h6"
-              align="start"
-              style={{ marginTop: "40px", marginBottom: "15px" }}
-            >
-              Skill Expertise (%)
-            </Typography>
-
-            <PrettoSlider
-              valueLabelDisplay="auto"
-              name="slider"
-              style={{ width: "60%", marginTop: "2.5%" }}
-              value={value}
-              onChange={valueChange}
-             
-            /> */}
-            <CardActions>
-              <Button
-                className="button"
-                variant="contained"
-                color="primary"
-                onClick={AddTags}
-                style={{
-                  width: "150px",
-                  marginBottom: "1%",
-                  marginLeft: "22%",
-                }}
+              <Typography
+                variant="subtitle2"
+                component="h6"
+                align="start"
+                style={{ marginTop: "40px", marginBottom: "15px" }}
               >
-                Add Skill
-              </Button>
-            </CardActions>
-            <TextField
-              id="outlined-basic"
-              label="Experience"
-              name="experience"
-              value={input && input.experience}
-              onChange={handleChange}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
+                Skill Expertise (%)
+              </Typography>
+
+              <PrettoSlider
+                valueLabelDisplay="auto"
+                aria-label="pretto slider"
+                defaultValue={20}
+                style={{ width: "60%", marginTop: "2.5%" }}
+                // value={value}
+                onChange={(e, val) => {
+                  console.log("Slider value: " + val);
+                }}
+              />
+              <CardActions>
+                <Button
+                  className="button"
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    width: "150px",
+                    marginBottom: "1%",
+                    marginLeft: "22%",
+                  }}
+                >
+                  Add Skill
+                </Button>
+              </CardActions>
+              <TextField
+                id="outlined-basic"
+                label="Experience"
+                name="experience"
+                value={input && input.experience}
+                onChange={handleChange}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
 
             <TextField
               id="outlined-basic"
@@ -258,6 +257,7 @@ const ProfileSetup = (props) => {
         </CardContent>
       </Card>
     </Grid>
+    </section>
   );
 };
 

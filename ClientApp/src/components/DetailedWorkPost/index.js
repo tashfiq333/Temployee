@@ -11,13 +11,16 @@ import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import { useParams } from "react-router";
+import { Snackbar } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import UserAppBar from "../UserNavbar";
 
 import img from "../../images/slidera.png";
 
 import "./postStyle.css";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
-import { GET_AUTH } from "../../api";
+import { GET_AUTH, POST_AUTH } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
   cardroot: {
@@ -61,14 +64,28 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailPost = () => {
   const [project, setProject] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
   const { id } = useParams();
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   console.log(id);
 
   const classes = useStyles();
 
-  const ApplyJob = () => {
-    console.log("Clicked");
+  const ApplyJob = async () => {
+    const { data } = await POST_AUTH("project/applied", {
+      jobid: id,
+    });
+
+    if (data === "applied") setOpen(true);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -92,7 +109,8 @@ const DetailPost = () => {
   }, []);
 
   return (
-    <>
+    <section>
+      <UserAppBar />
       <div className="bgpost"> </div>
       <Container>
         <CssBaseline />
@@ -176,9 +194,18 @@ const DetailPost = () => {
           </div>
           {/* </CardActions> */}
         </div>
-        {/* </Card> */}
+        <Snackbar
+          anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+        >
+          <Alert onClose={handleClose} severity="success">
+            Applied to the Job!
+          </Alert>
+        </Snackbar>
       </Container>
-    </>
+    </section>
   );
 };
 export default DetailPost;

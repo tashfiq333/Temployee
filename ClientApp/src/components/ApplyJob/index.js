@@ -1,20 +1,16 @@
 import React, { useEffect } from "react";
-import CompanyCard from "./CompanyCard";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import CompanyCard from "../CompanyInfo/CompanyCard";
 import UserAppBar from "../UserNavbar";
-import "./companyinfo.css";
 
 import { GET, GET_AUTH } from "../../api";
 
-const CompanyInfo = () => {
+const ApplyJob = () => {
   const [project, setProject] = React.useState([]);
-
-  var hashTags = [];
 
   useEffect(() => {
     const exe = async () => {
       try {
-        const { data } = await GET(`project`);
+        const { data } = await GET_AUTH(`project/appliedjob`);
         console.log(data);
         setProject(data);
         console.log("tjdf" + project);
@@ -30,7 +26,7 @@ const CompanyInfo = () => {
       <UserAppBar />
       <div>
         <div className="title">
-          <h2> Catagory</h2>
+          <h2>Applied Job</h2>
           <div className="divider-custom">
             <div className="divider-custom-line"></div>
           </div>
@@ -51,11 +47,6 @@ const CompanyInfo = () => {
               level={pro.level}
               des={pro.description.substring(0, 100)}
               tags={pro.tags}
-              oncardClick={() => {
-                localStorage.getItem("access_token") != null
-                  ? (window.location.href = `/detail-post/${pro.id}`)
-                  : (window.location.href = `/sign-in`);
-              }}
             />
           ))}
         </div>
@@ -64,4 +55,4 @@ const CompanyInfo = () => {
   );
 };
 
-export default CompanyInfo;
+export default ApplyJob;

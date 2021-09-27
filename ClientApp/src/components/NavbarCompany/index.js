@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
+    flexGrow: 1,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -107,16 +108,16 @@ const CompanyAppBar = () => {
     >
       <MenuItem onClick={handleMenuClose}><Button href="/company-profile"><p>Profile</p></Button></MenuItem>
       <MenuItem onClick={handleMenuClose}>
-      <Button
-              
-              color="inherit"
-              onClick={() => {
-                localStorage.clear();
-                window.location.href = "/";
-              }}
-            >
-              Sign out
-            </Button>
+        <Button
+
+          color="inherit"
+          onClick={() => {
+            localStorage.clear();
+            window.location.href = "/";
+          }}
+        >
+          Sign out
+        </Button>
       </MenuItem>
     </Menu>
   );
@@ -135,7 +136,7 @@ const CompanyAppBar = () => {
 
 
       <MenuItem>
-        <IconButton  color="inherit" href="/">
+        <IconButton color="inherit" href="/">
 
           <HomeIcon />
 
@@ -144,9 +145,9 @@ const CompanyAppBar = () => {
       </MenuItem>
 
 
-      
+
       <MenuItem>
-        <IconButton  color="inherit" href="/company-info">
+        <IconButton color="inherit" href="/about-us">
 
           <PeopleIcon />
 
@@ -157,9 +158,9 @@ const CompanyAppBar = () => {
 
       <MenuItem>
         <IconButton color="inherit" href="/post_job" >
-       
-            <PostAddIcon />
-      
+
+          <PostAddIcon />
+
         </IconButton >
         <p>Post Job</p>
       </MenuItem>
@@ -231,7 +232,7 @@ const CompanyAppBar = () => {
         </AppBar>
       </div> */}
 
-<div className={classes.grow}>
+      <div className={classes.grow}>
         <AppBar className={classes.comApp} position="fixed">
           <Toolbar>
 
@@ -239,25 +240,25 @@ const CompanyAppBar = () => {
               Temployee
             </Typography>
 
-            <div className={classes.grow} />
+
             <div className={classes.sectionDesktop}>
 
 
-            <IconButton color="inherit" href="/" >
-               
-                  <HomeIcon />
-              
+              <IconButton color="inherit" href="/" >
+
+                <HomeIcon />
+
               </IconButton>
 
-              <IconButton  color="inherit" href="/detail-post">
+              <IconButton color="inherit" href="/detail-post">
 
                 <PeopleIcon />
 
               </IconButton>
 
               <IconButton color="inherit" href="/post_job">
-               
-                  <PostAddIcon />
+
+                <PostAddIcon />
               </IconButton>
 
               <IconButton aria-label="show 17 new notifications" color="inherit">

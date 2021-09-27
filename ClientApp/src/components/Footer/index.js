@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import footimg from '../../images/homeFooter.png'
-import { CssBaseline, Typography, Container, Grid, Box, Link, Paper } from '@material-ui/core';
+import { CssBaseline, Typography, Container, Grid, Box, Button, Paper } from '@material-ui/core';
 
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -30,37 +30,37 @@ const Footer = () => {
                         <Grid item sm={4} xs={8}>
                             <Box borderBottom={1}><h5>Temployee</h5></Box>
                             <Box>
-                                <Link color="inherit" herf="#">Home</Link>
+                                <Button color="inherit" herf="#">Home</Button>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#">Find Work</Link>
+                                <Button color="inherit" herf="#">Find Work</Button>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#">Find Talent</Link>
+                                <Button color="inherit" herf="#">Find Talent</Button>
                             </Box>
                         </Grid>
                         <Grid item  sm={4} xs={8}>
                             <Box borderBottom={1}><h5>Support</h5></Box>
                             <Box>
-                                <Link color="inherit" herf="#">About Us</Link>
+                                <Button color="inherit" herf="#">About Us</Button>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#">Contact Us</Link>
+                                <Button color="inherit" herf="#">Contact Us</Button>
                             </Box>
                             {/* <Box>
-                                <Link color="inherit" herf="#">Find Talent</Link>
+                                <Button color="inherit" herf="#">Find Talent</Button>
                             </Box> */}
                         </Grid>
                         <Grid item  sm={4} xs={8}>
                             <Box borderBottom={1}><h5>Community</h5></Box>
                             <Box>
-                                <Link color="inherit" herf="#"><FacebookIcon/>FaceBook</Link>
+                                <Button color="inherit" herf="#"><FacebookIcon/>FaceBook</Button>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#"><TwitterIcon/>Twitter</Link>
+                                <Button color="inherit" herf="#"><TwitterIcon/>Twitter</Button>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#"><LinkedInIcon/>LinkedIn</Link>
+                                <Button color="inherit" herf="#"><LinkedInIcon/>LinkedIn</Button>
                             </Box>
                         </Grid>
 
