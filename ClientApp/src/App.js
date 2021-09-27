@@ -31,7 +31,7 @@ export default class App extends Component {
     if (localStorage.getItem("access_token") != null) {
       return (
         <Router>
-          {<CompanyAppBar />}
+          {<UserAppBar />}
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
@@ -53,7 +53,7 @@ export default class App extends Component {
         //   <Route path='/fetch-data' component={FetchData} /> */}
         // </Layout>
         <Router>
-          {<UserAppBar/>}
+          {<Appbar />}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/company-info" exact component={CompanyCard} />
