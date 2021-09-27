@@ -2,6 +2,10 @@ import React, { } from 'react';
 import footimg from '../../images/homeFooter.png'
 import { CssBaseline, Typography, Container, Grid, Box, Link, Paper } from '@material-ui/core';
 
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+
 import "./stylesFooter.css"
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,7 +27,7 @@ const Footer = () => {
                 <Container maxWidth="lg">
                     <Grid container justifyContent="center" spacing={10}>
 
-                        <Grid item sm={4}>
+                        <Grid item sm={4} xs={8}>
                             <Box borderBottom={1}><h5>Temployee</h5></Box>
                             <Box>
                                 <Link color="inherit" herf="#">Home</Link>
@@ -35,28 +39,28 @@ const Footer = () => {
                                 <Link color="inherit" herf="#">Find Talent</Link>
                             </Box>
                         </Grid>
-                        <Grid item  sm={4}>
+                        <Grid item  sm={4} xs={8}>
                             <Box borderBottom={1}><h5>Support</h5></Box>
                             <Box>
-                                <Link color="inherit" herf="#">Home</Link>
+                                <Link color="inherit" herf="#">About Us</Link>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#">Find Work</Link>
+                                <Link color="inherit" herf="#">Contact Us</Link>
                             </Box>
-                            <Box>
+                            {/* <Box>
                                 <Link color="inherit" herf="#">Find Talent</Link>
-                            </Box>
+                            </Box> */}
                         </Grid>
-                        <Grid item  sm={4}>
+                        <Grid item  sm={4} xs={8}>
                             <Box borderBottom={1}><h5>Community</h5></Box>
                             <Box>
-                                <Link color="inherit" herf="#">Home</Link>
+                                <Link color="inherit" herf="#"><FacebookIcon/>FaceBook</Link>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#">Find Work</Link>
+                                <Link color="inherit" herf="#"><TwitterIcon/>Twitter</Link>
                             </Box>
                             <Box>
-                                <Link color="inherit" herf="#">Find Talent</Link>
+                                <Link color="inherit" herf="#"><LinkedInIcon/>LinkedIn</Link>
                             </Box>
                         </Grid>
 
