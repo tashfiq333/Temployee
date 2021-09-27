@@ -53,7 +53,7 @@ export default class App extends Component {
         //   <Route path='/fetch-data' component={FetchData} /> */}
         // </Layout>
         <Router>
-          {<Appbar />}
+          {<UserAppBar/>}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/company-info" exact component={CompanyCard} />
