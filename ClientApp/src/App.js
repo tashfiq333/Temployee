@@ -33,7 +33,7 @@ export default class App extends Component {
     if (localStorage.getItem("access_token") != null) {
       return (
         <Router>
-          {<UserAppBar />}
+          {/* {<UserAppBar />} */}
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />

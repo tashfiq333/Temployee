@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { POST_AUTH } from "../../api";
+import UserAppBar from "../UserNavbar";
 
 import "./profset.css";
 import { Input, Link } from "@material-ui/core";
@@ -51,6 +52,7 @@ const PersonInfo = (props) => {
 
   return (
     <div className={classes.root}>
+      <UserAppBar />
       <Grid container spacing={2} display="flex" className="gridwid">
         <Card className={classes.root} elevation="10" style={{ margin: "7%" }}>
           <CardContent>
