@@ -147,6 +147,9 @@ const ProfileSetup = (props) => {
               defaultValue={20}
               style={{ width: "60%", marginTop: "2.5%" }}
               // value={value}
+              onChange={(e, val) => {
+                console.log("Slider value: " + val);
+              }}
             />
             <CardActions>
               <Button
