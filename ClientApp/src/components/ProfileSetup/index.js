@@ -7,10 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { createStyles, withStyles, makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import { useParams } from "react-router";
 import { POST_AUTH } from "../../api";
+import Chip from "@material-ui/core/Chip";
 
 import "./profset.css";
 import { Input } from "@material-ui/core";
@@ -33,43 +34,75 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PrettoSlider = withStyles({
-  root: {
-    color: "#6C63FF",
-    height: 8,
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: "#fff",
-    border: "2px solid currentColor",
-    marginTop: -8,
-    marginLeft: -12,
-    "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
+const chipStyle = makeStyles((theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      justifyContent: "left",
+      flexWrap: "wrap",
+      "& > *": {
+        margin: theme.spacing(0.5),
+      },
     },
-  },
-  active: {},
-  valueLabel: {
-    left: "calc(-50% + 4px)",
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider);
+  })
+);
+
+// const PrettoSlider = withStyles({
+//   root: {
+//     color: "#6C63FF",
+//     height: 8,
+//   },
+//   thumb: {
+//     height: 24,
+//     width: 24,
+//     backgroundColor: "#fff",
+//     border: "2px solid currentColor",
+//     marginTop: -8,
+//     marginLeft: -12,
+//     "&:focus, &:hover, &$active": {
+//       boxShadow: "inherit",
+//     },
+//   },
+//   active: {},
+//   valueLabel: {
+//     left: "calc(-50% + 4px)",
+//   },
+//   track: {
+//     height: 8,
+//     borderRadius: 4,
+//   },
+//   rail: {
+//     height: 8,
+//     borderRadius: 4,
+//   },
+// })(Slider);
 
 const ProfileSetup = (props) => {
   const classes = useStyles();
+  const chipClass = chipStyle();
 
   const [input, setInput] = useState("");
   const { state } = props.location;
+  const [value, setValue] = useState();
+  const [numberOfTags, setNumberOfTags] = useState(0);
+  const [arrayOfTags, addTag] = useState([]);
 
-  const handleChange = (e) => {
+  const DeleteTags = (h, i) => () => {
+    console.log("Clicked Delete: " + i);
+    addTag((arrayOfTags) => arrayOfTags.filter((input, idx) => idx !== i));
+  };
+  const Tags = arrayOfTags.map((h, i) => (
+    <Chip label={h} color="primary" size="medium" onDelete={DeleteTags(h, i)} />
+  ));
+
+  const AddTags = () => {
+    setNumberOfTags(numberOfTags + 1);
+    addTag((arrayOfTags) => arrayOfTags.concat(input.skills));
+    setInput("");
+    console.log(arrayOfTags);
+  };
+
+  const handleChange = async (e) => {
     const { value, name } = e.target;
 
     setInput((prevState) => ({
@@ -79,8 +112,10 @@ const ProfileSetup = (props) => {
     console.log(name + ": " + value);
   };
 
+
   const addInfo = async (e) => {
     console.log(state);
+    
 
     try {
       const { data } = await POST_AUTH("info/add_2", {
@@ -91,6 +126,7 @@ const ProfileSetup = (props) => {
         experience: input.experience,
         qualification: input.qualification,
         achievement: input.achievement,
+        skills: arrayOfTags,
       });
 
       setInput("");
@@ -98,10 +134,16 @@ const ProfileSetup = (props) => {
       if (data == "good") {
         window.location.href = "/company-info";
       }
+
+      
+      setNumberOfTags(0);
+      addTag([]);
     } catch (e) {
       console.log(e);
     }
   };
+
+  
 
   return (
     <Grid container spacing={3} display="flex" className="gridwid">
@@ -124,15 +166,18 @@ const ProfileSetup = (props) => {
             <TextField
               id="outlined-basic"
               label="Skills"
-              name="skill"
+              name="skills"
               value={input && input.skill}
               onChange={handleChange}
               variant="outlined"
               required
               style={{ width: "60%" }}
             />
+            <div className={chipClass.root}>
+                {numberOfTags > 0 ? Tags : ""}
+              </div>
 
-            <Typography
+            {/* <Typography
               variant="subtitle2"
               component="h6"
               align="start"
@@ -143,16 +188,18 @@ const ProfileSetup = (props) => {
 
             <PrettoSlider
               valueLabelDisplay="auto"
-              aria-label="pretto slider"
-              defaultValue={20}
+              name="slider"
               style={{ width: "60%", marginTop: "2.5%" }}
-              // value={value}
-            />
+              value={value}
+              onChange={valueChange}
+             
+            /> */}
             <CardActions>
               <Button
                 className="button"
                 variant="contained"
                 color="primary"
+                onClick={AddTags}
                 style={{
                   width: "150px",
                   marginBottom: "1%",

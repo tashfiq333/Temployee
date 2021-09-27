@@ -30,6 +30,8 @@ namespace Temployee.Models
         public string Linkin{get;set;}
 
         public double Rating{get;set;}
+
+        public string[] Skills{get;set;}
     
         
     }

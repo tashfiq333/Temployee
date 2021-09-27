@@ -71,7 +71,7 @@ const Empty = () => {
             color="inherit"
             onClick={() => {
               setOpen(false);
-              window.window.location.href = "/user-profile";
+              window.window.location.href = "/input-company";
             }}
           >
             Company

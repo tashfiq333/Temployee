@@ -23,6 +23,8 @@ import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
 import PersonInfo from "./components/PersonalInfo";
 import Empty from "./components/Empty";
+import InputCompany from "./components/InputCompanyInfo";
+import InputCompProf from "./components/InputCompanyProf";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -31,7 +33,7 @@ export default class App extends Component {
     if (localStorage.getItem("access_token") != null) {
       return (
         <Router>
-          {<UserAppBar />}
+          {<CompanyAppBar />}
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
@@ -41,6 +43,8 @@ export default class App extends Component {
             <Route path="/post_job" exact component={JobPost} />
             <Route path="/company-profile" exact component={CompanyProfile} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
+            <Route path="/input-company" exact component={InputCompany} />
+            <Route path="/company-prof" exact component={InputCompProf} />
           </Switch>
           {<Footer />}
         </Router>
@@ -60,6 +64,7 @@ export default class App extends Component {
             <Route path="/sign-in" exact component={SignIn} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
+            
           </Switch>
           {<Footer />}
         </Router>
