@@ -24,6 +24,7 @@ import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
 import PersonInfo from "./components/PersonalInfo";
 import Empty from "./components/Empty";
+import ApplyJob from "./components/ApplyJob";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -32,7 +33,7 @@ export default class App extends Component {
     if (localStorage.getItem("access_token") != null) {
       return (
         <Router>
-          {<CompanyAppBar />}
+          {<UserAppBar />}
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
@@ -41,6 +42,7 @@ export default class App extends Component {
             <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
             <Route path="/company-profile" exact component={CompanyProfile} />
+            <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
           </Switch>
@@ -55,7 +57,7 @@ export default class App extends Component {
         //   <Route path='/fetch-data' component={FetchData} /> */}
         // </Layout>
         <Router>
-          {<Appbar/>}
+          {<Appbar />}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/company-info" exact component={CompanyCard} />
