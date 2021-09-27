@@ -50,7 +50,9 @@ const CompanyInfo = () => {
               des={pro.description.substring(0, 100)}
               tags={pro.tags}
               oncardClick={() => {
-                window.location.href = `/detail-post/${pro.id}`;
+                localStorage.getItem("access_token") != null
+                  ? (window.location.href = `/detail-post/${pro.id}`)
+                  : (window.location.href = `/sign-in`);
               }}
             />
           ))}
