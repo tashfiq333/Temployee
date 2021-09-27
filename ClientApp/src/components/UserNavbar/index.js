@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
+    flexGrow: 1,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -209,7 +210,7 @@ const UserAppBar = () => {
               Temployee
             </Typography>
 
-            
+
             <div className={classes.sectionDesktop}>
 
 

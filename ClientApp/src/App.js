@@ -17,6 +17,7 @@ import CompanyProfile from "./components/CompanyProfile";
 import DetailPost from "./components/DetailedWorkPost";
 import Appbar from "./components/Appbar";
 import UserAppBar from "./components/UserNavbar";
+import AboutUs from "./components/AboutUs";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
@@ -41,6 +42,7 @@ export default class App extends Component {
             <Route path="/post_job" exact component={JobPost} />
             <Route path="/company-profile" exact component={CompanyProfile} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
+            <Route path="/about-us" exact component={AboutUs} />
           </Switch>
           {<Footer />}
         </Router>
@@ -53,13 +55,14 @@ export default class App extends Component {
         //   <Route path='/fetch-data' component={FetchData} /> */}
         // </Layout>
         <Router>
-          {<UserAppBar/>}
+          {<Appbar/>}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/company-info" exact component={CompanyCard} />
             <Route path="/sign-in" exact component={SignIn} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
+            <Route path="/about-us" exact component={AboutUs} />
           </Switch>
           {<Footer />}
         </Router>
