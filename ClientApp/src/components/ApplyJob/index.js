@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import CompanyCard from "../CompanyInfo/CompanyCard";
+import UserAppBar from "../UserNavbar";
 
 import { GET, GET_AUTH } from "../../api";
 
@@ -22,6 +23,7 @@ const ApplyJob = () => {
 
   return (
     <section className="comp">
+      <UserAppBar />
       <div>
         <div className="title">
           <h2>Applied Job</h2>

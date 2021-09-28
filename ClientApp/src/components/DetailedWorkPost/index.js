@@ -13,6 +13,7 @@ import Link from "@material-ui/core/Link";
 import { useParams } from "react-router";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import UserAppBar from "../UserNavbar";
 
 import img from "../../images/slidera.png";
 
@@ -108,7 +109,8 @@ const DetailPost = () => {
   }, []);
 
   return (
-    <>
+    <section>
+      <UserAppBar />
       <div className="bgpost"> </div>
       <Container>
         <CssBaseline />
@@ -203,7 +205,7 @@ const DetailPost = () => {
           </Alert>
         </Snackbar>
       </Container>
-    </>
+    </section>
   );
 };
 export default DetailPost;

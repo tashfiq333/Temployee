@@ -8,11 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import { POST_AUTH } from "../../api";
-import UserAppBar from "../UserNavbar";
+import { POST } from "../../api";
 
-import "./profset.css";
-import { Input, Link } from "@material-ui/core";
+import "./inputcomp.css";
+import { Input } from "@material-ui/core";
 import zIndex from "@material-ui/core/styles/zIndex";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PersonInfo = (props) => {
+const InputCompany = (props) => {
   const classes = useStyles();
   const [input, setInput] = useState("");
 
@@ -38,21 +37,24 @@ const PersonInfo = (props) => {
       setInput((prevState) => ({
         ...prevState,
         [name]: value,
+
       }));
       console.log(name + ": " + value);
-    }
-  };
+  }
+};
 
-  const addInfo = (e) => {
-    props.history.push({
-      pathname: "/profile_setup",
-      state: input,
-    });
-  };
+const addInfo = (e) => {
+  props.history.push({
+    pathname: "/company-prof",
+    state: input,
+  });
+};
+
+
+
 
   return (
     <div className={classes.root}>
-      <UserAppBar />
       <Grid container spacing={2} display="flex" className="gridwid">
         <Card className={classes.root} elevation="10" style={{ margin: "7%" }}>
           <CardContent>
@@ -63,7 +65,7 @@ const PersonInfo = (props) => {
               align="center"
               style={{ marginTop: "100px", marginBottom: "80px" }}
             >
-              Setup your Profile
+              Setup your Company Profile
             </Typography>
             <Grid item xs={6} style={{ float: "left" }}>
               <Avatar
@@ -72,13 +74,17 @@ const PersonInfo = (props) => {
                 className={(classes.large, "avatar")}
                 style={{ alignSelf: "center" }}
               >
+               
+
                 <Button
                   className="avatar-button"
                   variant="contained"
                   color="#F0D9FF"
                   style={{ marginTop: "60%", zIndex: 1 }}
-                >
-                  Change Avatar
+                  
+                  
+                > 
+                   Change Logo
                 </Button>
               </Avatar>
             </Grid>
@@ -89,16 +95,15 @@ const PersonInfo = (props) => {
                 align="start"
                 style={{ marginBottom: "15px" }}
               >
-                Personal Info
+                Company Profile Info
               </Typography>
 
               <form noValidate autoComplete="on">
                 <TextField
                   id="outlined-basic"
-                  label="Name"
+                  label="Company Name"
                   variant="outlined"
                   name="name"
-                  required
                   style={{ width: "90%" }}
                   onChange={handleChange}
                 />
@@ -114,16 +119,16 @@ const PersonInfo = (props) => {
 
                 <TextField
                   id="outlined-basic"
-                  label="LinkedIn Profile Link"
+                  label="Facebook Page Link"
                   variant="outlined"
-                  name="linkin"
+                  name="link"
                   style={{ width: "90%" }}
                   onChange={handleChange}
                 />
 
                 <TextField
                   id="outlined-multiline-static"
-                  label="Bio"
+                  label="Description"
                   multiline
                   rows={4}
                   defaultValue=""
@@ -146,6 +151,7 @@ const PersonInfo = (props) => {
                     marginTop: "50px",
                     marginBottom: "50px",
                     marginRight: "20%",
+                   
                   }}
                 >
                   Next
@@ -159,4 +165,4 @@ const PersonInfo = (props) => {
   );
 };
 
-export default PersonInfo;
+export default InputCompany;

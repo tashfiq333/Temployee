@@ -247,7 +247,7 @@ const UserAppBar = () => {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge  color="secondary">
+                <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
