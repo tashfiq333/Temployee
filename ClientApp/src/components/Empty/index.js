@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET, GET_AUTH } from "../../api";
 import { Typography } from "@material-ui/core";
-
+import UserAppBar from "../UserNavbar";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ffffff',
     width: 400,
     height: 300,
-    alignItems: "center",
+    alignItems: 'center',
 
     boxShadow: theme.shadows[5],
     padding: theme.spacing(6, 6, 6),
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Empty = () => {
-
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
@@ -54,7 +53,8 @@ const Empty = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <section>
+      <UserAppBar />
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -73,7 +73,7 @@ const Empty = () => {
               Please Select if you are Freelancer or a company
             </Typography>
             <br/><br/>
-            <Button variant="outlined"
+            <Button variant="outlined" 
             className={classes.bt}
               color="inherit"
               onClick={() => {
@@ -88,7 +88,7 @@ const Empty = () => {
               color="inherit"
               onClick={() => {
                 setOpen(false);
-                window.window.location.href = "/input-company";
+                window.window.location.href = "/user-profile";
               }}
             >
               Company
@@ -97,8 +97,7 @@ const Empty = () => {
           </div>
         </Fade>
       </Modal>
-
-    </>
+    </section>
     // <Modal
     //   aria-labelledby="transition-modal-title"
     //   aria-describedby="transition-modal-description"
