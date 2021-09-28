@@ -16,7 +16,7 @@ import {
 //import Avatar from '@mui/material/Avatar';
 import homesecond from "../../images/homesecond.png";
 import footer from "../../images/homeFooter.png";
-import img from "../../images/golla.png";
+import img from "../../images/dp.png";
 import Carousel from "../carousel/index";
 import Footer from "../Footer/index";
 
@@ -147,7 +147,7 @@ const Home = () => {
             justify="center"
             alignItems="center"
           >
-            <Typography variant="h4">some inspirational Quotes here</Typography>
+            <Typography variant="h4">"Motivation is the catalyzing ingredient for every successfull innovation"</Typography>
           </Grid>
         </div>
 
@@ -158,14 +158,73 @@ const Home = () => {
           <Grid container justifyContent="center" spacing={1}>
             <Grid item>
               <Paper className={classes.paper}>
-                <Avatar alt="Remy Sharp" src={img} />
+                {/* <Avatar alt="Remy Sharp" src={img} /> */}
+                <Card className={classes.rootus}>
+                <CardMedia
+                  component="img"
+                  alt="picture"
+                  height="350"
+                  image={img}
+                  title="Team"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Sumayia Sumi
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Working in a website like this has given me a lot of good opportunities.During this pandemic it 
+                    has created a new source of income for me.
+                  </Typography>
+                </CardContent>
+
+              </Card>
               </Paper>
             </Grid>
             <Grid item>
-              <Paper className={classes.paper} />
+              <Paper className={classes.paper} >
+              <Card className={classes.rootus}>
+                <CardMedia
+                  component="img"
+                  alt="picture"
+                  height="350"
+                  image={img}
+                  title="Team"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                   Rahim Chowdhury
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Great platform,Great opportunities,Looking forward to do more collaboration together.It is a great 
+                    innitiative that has been taken to help people.
+                  </Typography>
+                </CardContent>
+
+              </Card>
+              </Paper>
             </Grid>
             <Grid item>
-              <Paper className={classes.paper} />
+              <Paper className={classes.paper} >
+              <Card className={classes.rootus}>
+                <CardMedia
+                  component="img"
+                  alt="picture"
+                  height="350"
+                  image={img}
+                  title="Team"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Afia Jahan
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    This website really helped me growing a lot. I am so happy to be a part of it.During this pandemic it 
+                    has created a new source of income for me.
+                  </Typography>
+                </CardContent>
+
+              </Card>
+              </Paper>
             </Grid>
           </Grid>
         </Container>
