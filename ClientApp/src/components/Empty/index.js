@@ -9,25 +9,28 @@ import { Typography } from "@material-ui/core";
 import UserAppBar from "../UserNavbar";
 
 const useStyles = makeStyles((theme) => ({
+
   modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   paper: {
     //backgroundColor: '#6c63ff',
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     width: 400,
     height: 300,
-    alignItems: "center",
+    alignItems: 'center',
 
     boxShadow: theme.shadows[5],
     padding: theme.spacing(6, 6, 6),
   },
-  bt: {
-    margin: 20,
-    color: "#6C63FF",
+  bt:{
+    margin:20,
+    color: '#6C63FF'
   },
+
+
 }));
 
 const Empty = () => {
@@ -66,18 +69,12 @@ const Empty = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Typography
-              id="transition-modal-title"
-              variant="h5"
-              color="secondary"
-            >
+            <Typography  id="transition-modal-title" variant="h5" color="secondary">
               Please Select if you are Freelancer or a company
             </Typography>
-            <br />
-            <br />
-            <Button
-              variant="outlined"
-              className={classes.bt}
+            <br/><br/>
+            <Button variant="outlined" 
+            className={classes.bt}
               color="inherit"
               onClick={() => {
                 setOpen(false);
@@ -86,9 +83,8 @@ const Empty = () => {
             >
               Freelancer
             </Button>
-            <Button
-              variant="outlined"
-              className={classes.bt}
+            <Button variant="outlined"
+                        className={classes.bt}
               color="inherit"
               onClick={() => {
                 setOpen(false);
@@ -97,6 +93,7 @@ const Empty = () => {
             >
               Company
             </Button>
+
           </div>
         </Fade>
       </Modal>

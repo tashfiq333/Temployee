@@ -15,9 +15,17 @@ namespace Temployee.Models
 
          public string Name{get;set;}
 
-         public string Location{get;set;}
+         public string Address{get;set;}
 
+         public string Phone{get;set;}
 
+         public string Link{get;set;}
+
+         public string Bio{get;set;}
+
+         public string Speciality{get;set;}
+
+         public string Achievement{get;set;}
         
     }
 }
