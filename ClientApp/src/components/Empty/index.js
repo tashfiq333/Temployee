@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET, GET_AUTH } from "../../api";
 import { Typography } from "@material-ui/core";
-
+import UserAppBar from "../UserNavbar";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -54,7 +54,8 @@ const Empty = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <section>
+      <UserAppBar/>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -97,8 +98,8 @@ const Empty = () => {
           </div>
         </Fade>
       </Modal>
-
-    </>
+             
+    </section>
     // <Modal
     //   aria-labelledby="transition-modal-title"
     //   aria-describedby="transition-modal-description"
