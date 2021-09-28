@@ -238,7 +238,7 @@ const UserAppBar = () => {
               </IconButton>
 
               <IconButton color="inherit" href="/person_info">
-                <Badge badgeContent={4} color="secondary">
+                <Badge  color="secondary">
                   <AssignmentTurnedInIcon />
                 </Badge>
               </IconButton>
@@ -247,7 +247,7 @@ const UserAppBar = () => {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={17} color="secondary">
+                <Badge  color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>

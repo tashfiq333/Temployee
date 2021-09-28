@@ -18,6 +18,7 @@ import DetailPost from "./components/DetailedWorkPost";
 import Appbar from "./components/Appbar";
 import UserAppBar from "./components/UserNavbar";
 import AboutUs from "./components/AboutUs";
+import ContactUs from "./components/ContactUs";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
@@ -45,6 +46,7 @@ export default class App extends Component {
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path= "/contact-us" exact Component={ContactUs} />
           </Switch>
           {<Footer />}
         </Router>
@@ -65,6 +67,7 @@ export default class App extends Component {
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path= "/contact-us" exact Component={ContactUs} />
           </Switch>
           {<Footer />}
         </Router>
