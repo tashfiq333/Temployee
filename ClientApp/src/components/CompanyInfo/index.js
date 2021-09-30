@@ -27,7 +27,7 @@ const CompanyInfo = () => {
 
   return (
     <section className="comp">
-      <UserAppBar />
+      {localStorage.getItem("access_token") != null ? <UserAppBar /> : ""}
       <div>
         <div className="title">
           <h2> Catagory</h2>
