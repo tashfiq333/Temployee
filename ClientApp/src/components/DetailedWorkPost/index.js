@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 const DetailPost = () => {
   const [project, setProject] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [isButton, setButton] = React.useState(false);
   const { id } = useParams();
 
   const handleClose = (event, reason) => {
@@ -86,12 +87,19 @@ const DetailPost = () => {
 
     if (data === "applied") setOpen(true);
     console.log(data);
+
+    setButton(true);
   };
 
   useEffect(() => {
     const exe = async () => {
       try {
         const { data } = await GET_AUTH(`project/auth/${id}`);
+        const job = await GET_AUTH(`project/job/${id}`);
+
+        setButton(job.data);
+
+        console.log(job.data);
 
         console.log(data);
         setProject(data);
@@ -185,6 +193,7 @@ const DetailPost = () => {
                   size="large"
                   color="primary"
                   onClick={ApplyJob}
+                  disabled={isButton}
                 >
                   Apply
                 </Button>

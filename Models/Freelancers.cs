@@ -3,6 +3,14 @@ using MongoDB.Bson;
 
 namespace Temployee.Models
 {
+    public class Skill{
+
+        public double Rating{get;set;}
+
+        public string SkillName{get;set;}
+
+
+    }
     public class Freelancers 
     {
         [BsonId]
@@ -29,9 +37,9 @@ namespace Temployee.Models
 
         public string Linkin{get;set;}
 
-        public double Rating{get;set;}
+        public Skill[] FreelancerSkill{get;set;}
 
-        public string[] Skills{get;set;}
+        
     
         
     }

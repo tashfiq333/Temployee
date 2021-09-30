@@ -35,16 +35,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const chipStyle = makeStyles((theme) =>
-    createStyles({
-      root: {
-        display: "flex",
-        justifyContent: "left",
-        flexWrap: "wrap",
-        "& > *": {
-          margin: theme.spacing(0.5),
-        },
+  createStyles({
+    root: {
+      display: "flex",
+      justifyContent: "left",
+      flexWrap: "wrap",
+      "& > *": {
+        margin: theme.spacing(0.5),
       },
-    })
+    },
+  })
 );
 
 const PrettoSlider = withStyles({
@@ -83,23 +83,40 @@ const ProfileSetup = (props) => {
 
   const [input, setInput] = useState("");
   const { state } = props.location;
-  const [value, setValue] = useState();
-  const [numberOfTags, setNumberOfTags] = useState(0);
-  const [arrayOfTags, addTag] = useState([]);
+  const [value, setValue] = useState(0);
+  const [numberOfSkills, setNumberOfSkills] = useState(0);
+
+  const [object, setObject] = useState([]);
 
   const DeleteTags = (h, i) => () => {
     console.log("Clicked Delete: " + i);
-    addTag((arrayOfTags) => arrayOfTags.filter((input, idx) => idx !== i));
+    setObject((arrayOfTags) => arrayOfTags.filter((input, idx) => idx !== i));
   };
-  const Tags = arrayOfTags.map((h, i) => (
-    <Chip label={h} color="primary" size="medium" onDelete={DeleteTags(h, i)} />
+  const SkillTags = object.map((h, i) => (
+    <Chip
+      label={h.skillname + " | " + h.rating + " %"}
+      color="primary"
+      size="medium"
+      onDelete={DeleteTags(h, i)}
+    />
   ));
 
   const AddTags = () => {
-    setNumberOfTags(numberOfTags + 1);
-    addTag((arrayOfTags) => arrayOfTags.concat(input.skills));
-    setInput("");
-    console.log(arrayOfTags);
+    // setNumberOfTags(numberOfTags + 1);
+    // addTag((arrayOfTags) => arrayOfTags.concat(input.skills));
+    // setInput("");
+    // console.log(arrayOfTags);
+
+    setObject((object) =>
+      object.concat({
+        skillname: input.skills,
+        rating: value,
+      })
+    );
+
+    setNumberOfSkills(numberOfSkills + 1);
+
+    console.log(object);
   };
 
   const handleChange = async (e) => {
@@ -124,7 +141,7 @@ const ProfileSetup = (props) => {
         experience: input.experience,
         qualification: input.qualification,
         achievement: input.achievement,
-        skills: arrayOfTags,
+        freelancerskill: object,
       });
 
       setInput("");
@@ -132,7 +149,6 @@ const ProfileSetup = (props) => {
       if (data == "good") {
         window.location.href = "/company-info";
       }
-
 
       setNumberOfTags(0);
       addTag([]);
@@ -160,20 +176,17 @@ const ProfileSetup = (props) => {
               Professional Info
             </Typography>
 
-          <form noValidate autoComplete="off">
-            <TextField
-              id="outlined-basic"
-              label="Skills"
-              name="skills"
-              value={input && input.skill}
-              onChange={handleChange}
-              variant="outlined"
-              required
-              style={{ width: "60%" }}
-            />
-            <div className={chipClass.root}>
-                {numberOfTags > 0 ? Tags : ""}
-              </div>
+            <form noValidate autoComplete="off">
+              <TextField
+                id="outlined-basic"
+                label="Skills"
+                name="skills"
+                value={input && input.skills}
+                onChange={handleChange}
+                variant="outlined"
+                required
+                style={{ width: "60%" }}
+              />
 
               <Typography
                 variant="subtitle2"
@@ -191,6 +204,7 @@ const ProfileSetup = (props) => {
                 style={{ width: "60%", marginTop: "2.5%" }}
                 // value={value}
                 onChange={(e, val) => {
+                  setValue(val);
                   console.log("Slider value: " + val);
                 }}
               />
@@ -204,10 +218,14 @@ const ProfileSetup = (props) => {
                     marginBottom: "1%",
                     marginLeft: "22%",
                   }}
+                  onClick={AddTags}
                 >
                   Add Skill
                 </Button>
               </CardActions>
+              <div className={chipClass.root}>
+                {numberOfSkills > 0 ? SkillTags : ""}
+              </div>
               <TextField
                 id="outlined-basic"
                 label="Experience"
@@ -218,45 +236,45 @@ const ProfileSetup = (props) => {
                 style={{ width: "60%" }}
               />
 
-            <TextField
-              id="outlined-basic"
-              label="Qualifications"
-              onChange={handleChange}
-              name="qualification"
-              value={input && input.qualification}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
+              <TextField
+                id="outlined-basic"
+                label="Qualifications"
+                onChange={handleChange}
+                name="qualification"
+                value={input && input.qualification}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
 
-            <TextField
-              id="outlined-basic"
-              label="Achievements"
-              name="achievement"
-              value={input && input.achievement}
-              onChange={handleChange}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
-          </form>
-          <CardActions>
-            <Button
-              className="button"
-              variant="contained"
-              color="primary"
-              style={{
-                width: "150px",
-                marginTop: "4%",
-                marginBottom: "3%",
-                marginLeft: "22%",
-              }}
-              onClick={addInfo}
-            >
-              Done
-            </Button>
-          </CardActions>
-        </CardContent>
-      </Card>
-    </Grid>
+              <TextField
+                id="outlined-basic"
+                label="Achievements"
+                name="achievement"
+                value={input && input.achievement}
+                onChange={handleChange}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
+            </form>
+            <CardActions>
+              <Button
+                className="button"
+                variant="contained"
+                color="primary"
+                style={{
+                  width: "150px",
+                  marginTop: "4%",
+                  marginBottom: "3%",
+                  marginLeft: "22%",
+                }}
+                onClick={addInfo}
+              >
+                Done
+              </Button>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </Grid>
     </section>
   );
 };

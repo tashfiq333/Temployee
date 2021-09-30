@@ -99,6 +99,8 @@ namespace Temployee.Controllers
                 Console.WriteLine(e);
                 return null;
             }
+
+           
              
 
          }
@@ -114,6 +116,29 @@ namespace Temployee.Controllers
             
 
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("job/{id}")]
+        public ActionResult IsApplied(string id)
+        {
+            var job = AppliedJobCollection.Find(s =>s.JobId==id).ToList();
+            foreach (var item in job)
+            {
+                if( item.FreelancerId ==uid){
+                Console.WriteLine("ISAPPLIED :true");
+                return Ok("true");
+                }
+             
+            }
+               
+           
+            Console.WriteLine("ISAPPLIED : flase");
+            return Ok("false");
+            
+
+        }
+
 
         [Authorize]
         [HttpGet]

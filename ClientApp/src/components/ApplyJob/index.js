@@ -47,6 +47,7 @@ const ApplyJob = () => {
               level={pro.level}
               des={pro.description.substring(0, 100)}
               tags={pro.tags}
+              status="Pending.."
             />
           ))}
         </div>
