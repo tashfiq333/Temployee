@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
     },
   },
 
@@ -59,10 +59,13 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+
+
 }));
 
 const UserAppBar = () => {
   const classes = useStyles();
+
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -127,12 +130,26 @@ const UserAppBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
+
+      <MenuItem>
+        <IconButton color="inherit" href="/">
+          <HomeIcon />
+
+        </IconButton>
+        <p>Home</p>
+      </MenuItem>
+
+
+      
       <MenuItem>
         <IconButton color="inherit" href="/company-info">
           <WorkIcon />
+
         </IconButton>
         <p>Find work</p>
       </MenuItem>
+
 
       <MenuItem>
         <IconButton
@@ -168,8 +185,11 @@ const UserAppBar = () => {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+
     </Menu>
   );
+
+
 
   return (
     <>
@@ -196,20 +216,29 @@ const UserAppBar = () => {
         </AppBar>
       </div> */}
 
+
+
       <div className={classes.grow}>
         <AppBar className={classes.comApp} position="fixed">
           <Toolbar>
+
             <Typography className={classes.title} variant="h6" noWrap>
               Temployee
             </Typography>
 
+
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit" href="/company-info">
-                <WorkIcon />
+              <IconButton color="inherit" href="/">
+                <HomeIcon />
               </IconButton>
 
-              <IconButton color="inherit" href="/applied-job">
-                <Badge badgeContent={4} color="secondary">
+              <IconButton color="inherit" href="/company-info">
+                <WorkIcon />
+
+              </IconButton>
+
+              <IconButton color="inherit" href="/person_info">
+                <Badge  color="secondary">
                   <AssignmentTurnedInIcon />
                 </Badge>
               </IconButton>
@@ -250,6 +279,7 @@ const UserAppBar = () => {
         {renderMobileMenu}
         {renderMenu}
       </div>
+
     </>
   );
 };

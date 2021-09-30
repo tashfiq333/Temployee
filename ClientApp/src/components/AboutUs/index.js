@@ -10,6 +10,11 @@ import { Container } from '@material-ui/core';
 import bgpic from "../../images/abbg.jpg"
 import { Box, Grid } from '@material-ui/core';
 
+
+import dpn from "../../images/ndp.jpg"
+import dpt from "../../images/tdp.jpg"
+import dps from "../../images/sdp.jpg"
+
 const useStyles = makeStyles({
   rootcard: {
     minWidth: 275,
@@ -140,7 +145,7 @@ const AboutUs = () => {
                   component="img"
                   alt="picture"
                   height="350"
-                  image=""
+                  image={dpn}
                   title="Team"
                 />
                 <CardContent>
@@ -160,7 +165,7 @@ const AboutUs = () => {
                   component="img"
                   alt="picture"
                   height="350"
-                  image=""
+                  image={dps}
                   title="Team"
                 />
                 <CardContent>
@@ -180,7 +185,7 @@ const AboutUs = () => {
                   component="img"
                   alt="picture"
                   height="350"
-                  image=""
+                  image={dpt}
                   title="Team"
                 />
                 <CardContent>
