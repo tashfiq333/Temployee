@@ -149,9 +149,6 @@ const ProfileSetup = (props) => {
       if (data == "good") {
         window.location.href = "/company-info";
       }
-
-      setNumberOfTags(0);
-      addTag([]);
     } catch (e) {
       console.log(e);
     }
