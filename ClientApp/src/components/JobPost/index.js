@@ -128,7 +128,7 @@ const JobPost = () => {
             <Typography variant="h5" component="h2" align="center">
               Post a Job
             </Typography>
-            <form noValidate autoComplete="on">
+            <form noValidate autoComplete="off">
               <TextField
                 className={txt.root}
                 id="outlined-basic"

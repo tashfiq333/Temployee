@@ -6,6 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 
 import "./companyinfo.css";
 
@@ -49,23 +50,24 @@ const CompanyCard = (props) => {
             <Typography variant="h6" component="h5">
               {props.name}
             </Typography>
-            <Typography
-              gutterBottom
-              variant="body2"
-              color="textSecondary"
-              component="p"
-            >
-              Posted- 1 days ago
-            </Typography>
+            {props.status ? (
+              <Typography
+                gutterBottom
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              >
+                {props.status}
+              </Typography>
+            ) : (
+              ""
+            )}
+
             <Typography variant="subtitle2">Duration:</Typography>
-            <Typography
-              gutterBottom
-              variant="body2"
-              color="textSecondary"
-              component="p"
-            >
+            <Typography variant="body2" color="textSecondary" component="p">
               {props.months} months
             </Typography>
+
             <Typography variant="subtitle2">Price:</Typography>
             <Typography
               gutterBottom
