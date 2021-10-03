@@ -107,6 +107,7 @@ const SignIn = () => {
                   id="outlined-basic"
                   label="Password"
                   name="password"
+                  type="password"
                   required
                   variant="outlined"
                   style={{ width: "100%" }}

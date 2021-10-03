@@ -209,7 +209,7 @@ const UserAppBar = () => {
               </IconButton>
 
               <IconButton color="inherit" href="/applied-job">
-                <Badge badgeContent={4} color="secondary">
+                <Badge color="secondary">
                   <AssignmentTurnedInIcon />
                 </Badge>
               </IconButton>

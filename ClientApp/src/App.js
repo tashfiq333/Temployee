@@ -18,15 +18,17 @@ import DetailPost from "./components/DetailedWorkPost";
 import Appbar from "./components/Appbar";
 import UserAppBar from "./components/UserNavbar";
 import AboutUs from "./components/AboutUs";
+import FreelancerInfo from "./components/FreelancerInfo";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
 import PersonInfo from "./components/PersonalInfo";
 import Empty from "./components/Empty";
+import ApplyJob from "./components/ApplyJob";
+import ContactUs from "./components/ContactUs";
 import InputCompany from "./components/InputCompanyInfo";
 import InputCompProf from "./components/InputCompanyProf";
-import ApplyJob from "./components/ApplyJob";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -35,7 +37,6 @@ export default class App extends Component {
     if (localStorage.getItem("access_token") != null) {
       return (
         <Router>
-          {/* {<UserAppBar />} */}
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
@@ -47,6 +48,7 @@ export default class App extends Component {
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path="/contact-us" exact Component={ContactUs} />
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
           </Switch>
@@ -64,11 +66,13 @@ export default class App extends Component {
           {<Appbar />}
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/find-talent" exact component={FreelancerInfo} />
             <Route path="/company-info" exact component={CompanyCard} />
             <Route path="/sign-in" exact component={SignIn} />
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path="/contact-us" exact Component={ContactUs} />
           </Switch>
           {<Footer />}
         </Router>

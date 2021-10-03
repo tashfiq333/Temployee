@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
-import CompanyCard from "../CompanyInfo/CompanyCard";
+import FreelancerCard from "./FreelancerCard";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import UserAppBar from "../UserNavbar";
+import "./freelancer.css";
 
 import { GET, GET_AUTH } from "../../api";
 
-const ApplyJob = () => {
+const FreelancerInfo = () => {
   const [project, setProject] = React.useState([]);
+
+  var hashTags = [];
 
   useEffect(() => {
     const exe = async () => {
       try {
-        const { data } = await GET_AUTH(`project/appliedjob`);
+        const { data } = await GET(`project`);
         console.log(data);
         setProject(data);
         console.log("tjdf" + project);
@@ -23,10 +27,9 @@ const ApplyJob = () => {
 
   return (
     <section className="comp">
-      <UserAppBar />
       <div>
         <div className="title">
-          <h2>Applied Job</h2>
+          <h2> Find Talents</h2>
           <div className="divider-custom">
             <div className="divider-custom-line"></div>
           </div>
@@ -38,7 +41,7 @@ const ApplyJob = () => {
       value={50}
     /> */}
 
-          {project.map((pro) => (
+          {/* {project.map((pro) => (
             <CompanyCard
               id={pro.id}
               name={pro.name}
@@ -47,13 +50,21 @@ const ApplyJob = () => {
               level={pro.level}
               des={pro.description.substring(0, 100)}
               tags={pro.tags}
-              status="Pending.."
+              oncardClick={() => {
+                localStorage.getItem("access_token") != null
+                  ? (window.location.href = `/detail-post/${pro.id}`)
+                  : (window.location.href = `/sign-in`);
+              }}
             />
-          ))}
+          ))} */}
+          <FreelancerCard />
+          <FreelancerCard />
+          <FreelancerCard />
+          <FreelancerCard />
         </div>
       </div>
     </section>
   );
 };
 
-export default ApplyJob;
+export default FreelancerInfo;
