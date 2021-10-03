@@ -27,6 +27,8 @@ namespace Temployee.Models
 
          public string Bio{get;set;}
 
+         public string Email{get;set;}
+
       
         public double Price{get;set;}
         public string Experience{get;set;}

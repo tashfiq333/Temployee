@@ -12,6 +12,7 @@ import Chip from "@material-ui/core/Chip";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import CompanyAppBar from "../NavbarCompany";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { POST } from "../../api";
 
@@ -114,109 +115,112 @@ const JobPost = () => {
   };
 
   return (
-    <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justify="center"
-      style={{ minHeight: "100vh" }}
-    >
-      <Grid item xs={6} spacing={2}>
-        <Card className={classes.root}>
-          <CardContent>
-            <Typography variant="h5" component="h2" align="center">
-              Post a Job
-            </Typography>
-            <form noValidate autoComplete="off">
-              <TextField
-                className={txt.root}
-                id="outlined-basic"
-                label="Title"
-                name="title"
-                value={hashtag && hashtag.title}
-                variant="outlined"
-                style={{ marginTop: "20px" }}
-                onChange={OnHashChange}
-              />
-              <TextField
-                className={txt.root}
-                id="outlined-basic"
-                label="Duration"
-                name="duration"
-                value={hashtag && hashtag.duration}
-                variant="outlined"
-                style={{ marginTop: "20px" }}
-                onChange={OnHashChange}
-              />
-              <TextField
-                className={txt.root}
-                id="outlined-basic"
-                label="Experience Level"
-                name="level"
-                value={hashtag && hashtag.level}
-                variant="outlined"
-                style={{ marginTop: "20px" }}
-                onChange={OnHashChange}
-              />
-              <TextField
-                className={txt.root}
-                id="outlined-basic"
-                label="Price"
-                name="price"
-                value={hashtag && hashtag.price}
-                variant="outlined"
-                style={{ marginTop: "20px" }}
-                onChange={OnHashChange}
-              />
-              <TextareaAutosize
-                className={txt.root}
-                placeholder="Description"
-                name="description"
-                value={hashtag && hashtag.description}
-                style={{ marginTop: "20px" }}
-                onChange={OnHashChange}
-              />
+    <div>
+      <CompanyAppBar />
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Grid item xs={6} spacing={2}>
+          <Card className={classes.root}>
+            <CardContent>
+              <Typography variant="h5" component="h2" align="center">
+                Post a Job
+              </Typography>
+              <form noValidate autoComplete="off">
+                <TextField
+                  className={txt.root}
+                  id="outlined-basic"
+                  label="Title"
+                  name="title"
+                  value={hashtag && hashtag.title}
+                  variant="outlined"
+                  style={{ marginTop: "20px" }}
+                  onChange={OnHashChange}
+                />
+                <TextField
+                  className={txt.root}
+                  id="outlined-basic"
+                  label="Duration"
+                  name="duration"
+                  value={hashtag && hashtag.duration}
+                  variant="outlined"
+                  style={{ marginTop: "20px" }}
+                  onChange={OnHashChange}
+                />
+                <TextField
+                  className={txt.root}
+                  id="outlined-basic"
+                  label="Experience Level"
+                  name="level"
+                  value={hashtag && hashtag.level}
+                  variant="outlined"
+                  style={{ marginTop: "20px" }}
+                  onChange={OnHashChange}
+                />
+                <TextField
+                  className={txt.root}
+                  id="outlined-basic"
+                  label="Price"
+                  name="price"
+                  value={hashtag && hashtag.price}
+                  variant="outlined"
+                  style={{ marginTop: "20px" }}
+                  onChange={OnHashChange}
+                />
+                <TextareaAutosize
+                  className={txt.root}
+                  placeholder="Description"
+                  name="description"
+                  value={hashtag && hashtag.description}
+                  style={{ marginTop: "20px" }}
+                  onChange={OnHashChange}
+                />
 
-              <div className={chipClass.root}>
-                {numberOfHashtags > 0 ? Hashtags : ""}
-              </div>
+                <div className={chipClass.root}>
+                  {numberOfHashtags > 0 ? Hashtags : ""}
+                </div>
 
-              <TextField
-                className={txt.root}
-                id="outlined-basic"
-                label="Tags"
-                variant="outlined"
-                value={tags && tags.TagsField}
-                style={{ marginTop: "20px" }}
-                name="TagsField"
-                onChange={onTagchange}
-              />
-              <CardActions style={{ justifyContent: "left" }}>
-                <Button variant="contained" color="primary" onClick={AddTags}>
-                  ADD
+                <TextField
+                  className={txt.root}
+                  id="outlined-basic"
+                  label="Tags"
+                  variant="outlined"
+                  value={tags && tags.TagsField}
+                  style={{ marginTop: "20px" }}
+                  name="TagsField"
+                  onChange={onTagchange}
+                />
+                <CardActions style={{ justifyContent: "left" }}>
+                  <Button variant="contained" color="primary" onClick={AddTags}>
+                    ADD
+                  </Button>
+                </CardActions>
+              </form>
+              <CardActions style={{ justifyContent: "center" }}>
+                <Button variant="contained" color="primary" onClick={AddPost}>
+                  Post
                 </Button>
               </CardActions>
-            </form>
-            <CardActions style={{ justifyContent: "center" }}>
-              <Button variant="contained" color="primary" onClick={AddPost}>
-                Post
-              </Button>
-            </CardActions>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Snackbar
+          anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+        >
+          <Alert onClose={handleClose} severity="success">
+            The job is successfully posted!
+          </Alert>
+        </Snackbar>
       </Grid>
-      <Snackbar
-        anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success">
-          The job is successfully posted!
-        </Alert>
-      </Snackbar>
-    </Grid>
+    </div>
   );
 };
 

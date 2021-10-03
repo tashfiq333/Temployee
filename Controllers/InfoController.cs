@@ -19,10 +19,12 @@ namespace Temployee.Controllers
     {
         private readonly IMongoCollection<Freelancers> UserinfoCollection;
         private readonly UserService us;
+        private readonly IMongoCollection<Users> UserInfo;
         private readonly string uid;
         public InfoController (IMongoClient client ,UserService service){
           var db = client.GetDatabase("Temployee");
           UserinfoCollection= db.GetCollection <Freelancers>("Freelancer");
+          UserInfo =db.GetCollection<Users>("User");
           us = service;
           IHttpContextAccessor http = new HttpContextAccessor();
           uid =(string) http.HttpContext.Items["UserId"];
@@ -46,12 +48,15 @@ namespace Temployee.Controllers
         [HttpPost]
         [Route("add_2")]
         public String postUser(Freelancers useri)
-        {
+        { 
+
+          var u = UserInfo.Find(s => s.UserId==uid).FirstOrDefault();
+
 
           useri.Uid = uid;
 
+          useri.Email = u.Email;
               
-               
           UserinfoCollection.InsertOne(useri);
           
             return "good";
