@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import { createStyles, withStyles, makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import { useParams } from "react-router";
-import { POST_AUTH } from "../../api";
+import { POST_AUTH, GET_AUTH } from "../../api";
 import Chip from "@material-ui/core/Chip";
 import UserAppBar from "../UserNavbar";
 

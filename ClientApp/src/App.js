@@ -40,7 +40,7 @@ export default class App extends Component {
           <Switch>
             <Route path="/" exact component={Empty} />
             <Route path="/company-info" exact component={CompanyCard} />
-            <Route path="/user-profile" exact component={UserProfile} />
+            <Route path="/user-profile/:id" exact component={UserProfile} />
             <Route path="/profile_setup" exact component={ProfileSetup} />
             <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
@@ -48,9 +48,10 @@ export default class App extends Component {
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
-            <Route path="/contact-us" exact Component={ContactUs} />
+            <Route path="/contact-us" exact component={ContactUs} />
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
+            <Route path="/find-talent" exact component={FreelancerInfo} />
           </Switch>
           {<Footer />}
         </Router>
