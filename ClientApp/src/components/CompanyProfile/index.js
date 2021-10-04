@@ -14,10 +14,17 @@ import Box from '@material-ui/core/Box';
 
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import PropTypes from 'prop-types';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import MoreIcon from '@material-ui/icons/More';
+
 
 
 import dp from '../../images/slidera.png'
@@ -107,6 +114,14 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 
 
+const useRowStyles = makeStyles({
+    root: {
+        '& > *': {
+            borderBottom: 'unset',
+        },
+    },
+});
+
 const Itemt = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(4),
@@ -169,6 +184,78 @@ const ItemCmnt = styled(Paper)(({ theme }) => ({
 const handleClick = () => {
     console.info('You clicked the Chip.');
 };
+
+
+function createData(Postname, Postdetails, Date) {
+    return {
+        Postname,
+        Postdetails,
+        Date,
+
+    };
+}
+
+function Row(props) {
+    const { row } = props;
+    const [open, setOpen] = React.useState(false);
+    const classes = useRowStyles();
+
+    return (
+        <React.Fragment>
+            <TableRow hover className={classes.root}>
+                <TableCell>
+                    <IconButton aria-label="expand row" size="small" onClick={() => {
+                        setOpen(false);
+                        window.window.location.href = "/applied";
+                    }}>
+                        <MoreIcon />
+                    </IconButton>
+                </TableCell>
+                <TableCell scope="row">
+                    {row.Postname}
+                </TableCell>
+
+                <TableCell >{row.Postdetails}</TableCell>
+                <TableCell >{row.Date}</TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </React.Fragment>
+    );
+}
+
+Row.propTypes = {
+    row: PropTypes.shape({
+        Postname: PropTypes.number.isRequired,
+        Postdetails: PropTypes.number.isRequired,
+        Date: PropTypes.number.isRequired,
+
+    }).isRequired,
+};
+
+const rows = [
+    createData('Frozen yoghurt', 159, 3.99),
+    createData('Ice cream sandwich', 7, 4.3),
+    createData('Eclair', 262, 16.0),
+    createData('Cupcake', 305, 3.7),
+    createData('Gingerbread', 356, 66),
+    createData('Frozen yoghurt', 159, 3.99),
+    createData('Ice cream sandwich', 7, 4.3),
+    createData('Eclair', 262, 16.0),
+    createData('Cupcake', 305, 3.7),
+    createData('Gingerbread', 356, 66),
+    createData('Frozen yoghurt', 159, 3.99),
+    createData('Ice cream sandwich', 7, 4.3),
+    createData('Eclair', 262, 16.0),
+    createData('Cupcake', 305, 3.7),
+    createData('Gingerbread', 356, 66),
+
+];
 
 
 
@@ -293,12 +380,12 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillhead" item xs={4}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                   Address
+                                                    Address
                                                 </Typography>
                                             </Grid>
                                             <Grid className="skillname" item xs={12}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                   137/26 Dhanmondi,Dhaka
+                                                    137/26 Dhanmondi,Dhaka
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -306,12 +393,12 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillhead" item xs={6}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                   Contact Info
+                                                    Contact Info
                                                 </Typography>
                                             </Grid>
                                             <Grid className="skillname" item xs={12}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                   0172366728993
+                                                    0172366728993
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -341,7 +428,7 @@ const UserProfile = () => {
                                             Completed mongo project successfully.
                                         </Typography>
 
-                                        
+
                                         <br />
                                     </div>
 
@@ -350,7 +437,7 @@ const UserProfile = () => {
                                             Content Writing Competetion held successfully.
                                         </Typography>
 
-                                        
+
                                         <br />
                                     </div>
 
@@ -359,7 +446,7 @@ const UserProfile = () => {
                                             IT fair top start up company award winner.
                                         </Typography>
 
-                                        
+
                                         <br />
                                     </div>
 
@@ -488,21 +575,24 @@ const UserProfile = () => {
                             </Grid>
 
                             <Grid item xs={12} className="BoxEm">
-                                {/* <div>
-                                    <List className={classes.listroot} subheader={<li />}>
-                                        {[0, 1, 2, 3, 4].map((sectionId) => (
-                                            <li key={`section-${sectionId}`} className={classes.listSection}>
-                                                <ul className={classes.ul}>
-                                                    {[0, 1, 2].map((item) => (
-                                                        <ListItem key={`item-${sectionId}-${item}`}>
-                                                            <ListItemText primary={`Item u`} />
-                                                        </ListItem>
-                                                    ))}
-                                                </ul>
-                                            </li>
-                                        ))}
-                                    </List>
-                                </div> */}
+
+                                <TableContainer component={Paper}>
+                                    <Table aria-label="collapsible table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell />
+                                                <TableCell >Post Title</TableCell>
+                                                <TableCell >Post Details</TableCell>
+                                                <TableCell >Date</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {rows.map((row) => (
+                                                <Row key={row.name} row={row} />
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
 
                             </Grid>
 
