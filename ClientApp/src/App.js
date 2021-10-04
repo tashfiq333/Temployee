@@ -19,6 +19,7 @@ import Appbar from "./components/Appbar";
 import UserAppBar from "./components/UserNavbar";
 import AboutUs from "./components/AboutUs";
 import FreelancerInfo from "./components/FreelancerInfo";
+import Applied from "./components/ViewPost";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
@@ -51,6 +52,7 @@ export default class App extends Component {
             <Route path="/contact-us" exact component={ContactUs} />
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
+            <Route path="/applied" exact component={Applied} />
             <Route path="/find-talent" exact component={FreelancerInfo} />
           </Switch>
           {<Footer />}
@@ -73,7 +75,7 @@ export default class App extends Component {
             <Route path="/sign-up" exact component={SignUp} />
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/about-us" exact component={AboutUs} />
-            <Route path="/contact-us" exact Component={ContactUs} />
+            <Route path="/contact-us" exact component={ContactUs} />
           </Switch>
           {<Footer />}
         </Router>
