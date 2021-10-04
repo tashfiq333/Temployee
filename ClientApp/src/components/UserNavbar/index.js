@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -20,6 +20,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import WorkIcon from "@material-ui/icons/Work";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import HomeIcon from "@material-ui/icons/Home";
+import { GET_AUTH } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
   comApp: {
@@ -66,6 +67,7 @@ const UserAppBar = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [userID, setUserID] = React.useState();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -87,6 +89,20 @@ const UserAppBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  useEffect(() => {
+    const exe = async () => {
+      try {
+        const data = await GET_AUTH(`empty/auth/Uid`);
+        setUserID(data.data);
+        console.log("ID");
+        console.log(userID);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    exe();
+  }, []);
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -99,7 +115,11 @@ const UserAppBar = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Button href="/user-profile">
+        <Button
+          onClick={() => {
+            window.location.href = `/user-profile/${userID}`;
+          }}
+        >
           <p>Profile</p>
         </Button>
       </MenuItem>

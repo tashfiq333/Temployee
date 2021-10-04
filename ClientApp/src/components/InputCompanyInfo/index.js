@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
+import CompanyAppBar from "../NavbarCompany";
 import { POST } from "../../api";
 
 import "./inputcomp.css";
@@ -68,6 +69,7 @@ const addInfo = (e) => {
 
   return (
     <div className={classes.root}>
+      <CompanyAppBar />
       <Grid container spacing={2} display="flex" className="gridwid">
         <Card className={classes.root} elevation="10" style={{ margin: "7%" }}>
           <CardContent>
@@ -141,7 +143,7 @@ const addInfo = (e) => {
                 />
 
                 <TextField
-                  id="bio"
+                  id="outlined-multiline-static"
                   label="Description"
                   multiline
                   rows={4}

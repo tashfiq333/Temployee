@@ -76,30 +76,32 @@ const InputCompProf = (props) => {
       setInput("");
 
       if (data == "good") {
-        window.location.href = "/sign-in";
+        window.location.href = "/find-talent";
       }
 
     } catch (e) {
       console.log(e);
     }
-  }};
+  };
 
   return (
-    <Grid container spacing={3} display="flex" className="gridwid">
-      <Card
-        className={classes.root}
-        elevation="10"
-        style={{ margin: "8%", paddingLeft: "20%" }}
-      >
-        <CardContent>
-          <Typography
-            variant="h5"
-            component="h2"
-            align="start"
-            style={{ marginTop: "40px", marginBottom: "15px" }}
-          >
-            Professional Info
-          </Typography>
+    <div>
+      <CompanyAppBar />
+      <Grid container spacing={3} display="flex" className="gridwid">
+        <Card
+          className={classes.root}
+          elevation="10"
+          style={{ margin: "8%", paddingLeft: "20%" }}
+        >
+          <CardContent>
+            <Typography
+              variant="h5"
+              component="h2"
+              align="start"
+              style={{ marginTop: "40px", marginBottom: "15px" }}
+            >
+              Professional Info
+            </Typography>
 
           <form noValidate autoComplete="on">
             
@@ -152,9 +154,10 @@ const InputCompProf = (props) => {
                 Done
               </Button>
             </CardActions>
-        </CardContent>
-      </Card>
-    </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+    </div>
   );
 };
 

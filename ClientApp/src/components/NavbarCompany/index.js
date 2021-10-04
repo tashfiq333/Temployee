@@ -9,21 +9,19 @@ import { Component } from "react";
 import { Button } from "@material-ui/core";
 import { purple } from "@material-ui/core/colors";
 
-
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import WorkIcon from '@material-ui/icons/Work';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-
+import IconButton from "@material-ui/core/IconButton";
+import Badge from "@material-ui/core/Badge";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import WorkIcon from "@material-ui/icons/Work";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import HomeIcon from "@material-ui/icons/Home";
+import PeopleIcon from "@material-ui/icons/People";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 
 const useStyles = makeStyles((theme) => ({
   comApp: {
@@ -36,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     padding: 30,
   },
 
-
   grow: {
     flexGrow: 1,
   },
@@ -46,31 +43,28 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
     },
   },
 
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
     },
   },
   sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
-
-
 }));
 
 const CompanyAppBar = () => {
   const classes = useStyles();
-
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -95,21 +89,24 @@ const CompanyAppBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Button href="/company-profile"><p>Profile</p></Button></MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Button href="/company-profile">
+          <p>Profile</p>
+        </Button>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Button
-
           color="inherit"
           onClick={() => {
             localStorage.clear();
@@ -122,52 +119,34 @@ const CompanyAppBar = () => {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
-
-      <MenuItem>
-        <IconButton color="inherit" href="/">
-
-          <HomeIcon />
-
-        </IconButton>
-        <p>Home</p>
-      </MenuItem>
-
-
-
       <MenuItem>
         <IconButton color="inherit" href="/about-us">
-
           <PeopleIcon />
-
         </IconButton>
         <p>Find Talent</p>
       </MenuItem>
 
-
       <MenuItem>
-        <IconButton color="inherit" href="/post_job" >
-
+        <IconButton color="inherit" href="/post_job">
           <PostAddIcon />
-
-        </IconButton >
+        </IconButton>
         <p>Post Job</p>
       </MenuItem>
 
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
+        <IconButton  color="inherit">
+          <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -175,7 +154,8 @@ const CompanyAppBar = () => {
       </MenuItem>
 
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton href="/user-profile"
+        <IconButton
+          href="/user-profile"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
@@ -185,10 +165,8 @@ const CompanyAppBar = () => {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-
     </Menu>
   );
-
 
   return (
     <>
@@ -235,33 +213,23 @@ const CompanyAppBar = () => {
       <div className={classes.grow}>
         <AppBar className={classes.comApp} position="fixed">
           <Toolbar>
-
             <Typography className={classes.title} variant="h6" noWrap>
               Temployee
             </Typography>
 
-
             <div className={classes.sectionDesktop}>
-
-
-              <IconButton color="inherit" href="/" >
-
-                <HomeIcon />
-
-              </IconButton>
-
-              <IconButton color="inherit" href="/detail-post">
-
+              <IconButton color="inherit" href="/find-talent">
                 <PeopleIcon />
-
               </IconButton>
 
               <IconButton color="inherit" href="/post_job">
-
                 <PostAddIcon />
               </IconButton>
 
-              <IconButton aria-label="show 17 new notifications" color="inherit">
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
                 <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />
                 </Badge>
@@ -294,8 +262,6 @@ const CompanyAppBar = () => {
         {renderMobileMenu}
         {renderMenu}
       </div>
-
-
     </>
   );
 };
