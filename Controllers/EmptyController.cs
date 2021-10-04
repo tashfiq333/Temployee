@@ -89,7 +89,16 @@ namespace Temployee.Controllers
             
 
          }
+        [Authorize]
+        [HttpGet]
+        [Route("auth/Uid")]
+         public ActionResult FreelancerID()
+         {
+             return Ok(uid);
 
+         }
+
+       
          
     }
 }

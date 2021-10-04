@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
+import CompanyAppBar from "../NavbarCompany";
 import { POST } from "../../api";
 
 import "./inputcomp.css";
@@ -37,24 +38,21 @@ const InputCompany = (props) => {
       setInput((prevState) => ({
         ...prevState,
         [name]: value,
-
       }));
       console.log(name + ": " + value);
-  }
-};
+    }
+  };
 
-const addInfo = (e) => {
-  props.history.push({
-    pathname: "/company-prof",
-    state: input,
-  });
-};
-
-
-
+  const addInfo = (e) => {
+    props.history.push({
+      pathname: "/company-prof",
+      state: input,
+    });
+  };
 
   return (
     <div className={classes.root}>
+      <CompanyAppBar />
       <Grid container spacing={2} display="flex" className="gridwid">
         <Card className={classes.root} elevation="10" style={{ margin: "7%" }}>
           <CardContent>
@@ -74,17 +72,13 @@ const addInfo = (e) => {
                 className={(classes.large, "avatar")}
                 style={{ alignSelf: "center" }}
               >
-               
-
                 <Button
                   className="avatar-button"
                   variant="contained"
                   color="#F0D9FF"
                   style={{ marginTop: "60%", zIndex: 1 }}
-                  
-                  
-                > 
-                   Change Logo
+                >
+                  Change Logo
                 </Button>
               </Avatar>
             </Grid>
@@ -151,7 +145,6 @@ const addInfo = (e) => {
                     marginTop: "50px",
                     marginBottom: "50px",
                     marginRight: "20%",
-                   
                   }}
                 >
                   Next

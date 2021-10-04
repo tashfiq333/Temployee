@@ -77,7 +77,7 @@ const FreelancerCard = (props) => {
             />
           </CardContent>
           <CardContent className={classes.content}>
-            <Typography variant="subtitle2">Tashfiq Nahiyan Khan</Typography>
+            <Typography variant="subtitle2">{props.name}</Typography>
           </CardContent>
           <CardContent className={classes.content}>
             <Typography
@@ -86,52 +86,32 @@ const FreelancerCard = (props) => {
               color="textSecondary"
               component="p"
             >
-              Lorem ipsum dolor sit amet, consectetu
+              {props.bio}
             </Typography>
           </CardContent>
 
-          <CardContent className={classes.content}>
-            <div className="skillname">
-              <Typography variant="subtitle2" gutterBottom>
-                Content Writing
-              </Typography>
+          {props.skill
+            ? props.skill.map((h, i) =>
+                i < 3 ? (
+                  <CardContent className={classes.content}>
+                    <div className="skillname">
+                      <Typography variant="subtitle2" gutterBottom>
+                        {h.skillName}
+                      </Typography>
 
-              <BorderLinearProgress
-                className="skillbar"
-                variant="determinate"
-                value={80}
-              />
-              <br />
-            </div>
-          </CardContent>
-          <CardContent className={classes.content}>
-            <div className="skillname">
-              <Typography variant="subtitle2" gutterBottom>
-                Content Writing
-              </Typography>
-
-              <BorderLinearProgress
-                className="skillbar"
-                variant="determinate"
-                value={80}
-              />
-              <br />
-            </div>
-          </CardContent>
-          <CardContent className={classes.content}>
-            <div className="skillname">
-              <Typography variant="subtitle2" gutterBottom>
-                Content Writing
-              </Typography>
-
-              <BorderLinearProgress
-                className="skillbar"
-                variant="determinate"
-                value={80}
-              />
-              <br />
-            </div>
-          </CardContent>
+                      <BorderLinearProgress
+                        className="skillbar"
+                        variant="determinate"
+                        value={h.rating}
+                      />
+                      <br />
+                    </div>
+                  </CardContent>
+                ) : (
+                  ""
+                )
+              )
+            : ""}
         </CardActionArea>
       </Card>
     </div>

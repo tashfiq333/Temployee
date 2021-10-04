@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import { POST } from "../../api";
 import { POST_AUTH } from "../../api";
-
+import CompanyAppBar from "../NavbarCompany";
 
 import "./profset.css";
 
@@ -33,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
-
 const InputCompProf = (props) => {
   const classes = useStyles();
   const [input, setInput] = useState("");
@@ -55,7 +51,6 @@ const InputCompProf = (props) => {
 
   const addInfo = async (e) => {
     console.log(state);
-    
 
     try {
       const { data } = await POST_AUTH("compinfo/add_2", {
@@ -66,70 +61,69 @@ const InputCompProf = (props) => {
         speciality: input.speciality,
         address: input.address,
         achievement: input.achievement,
-        
       });
 
       setInput("");
 
       if (data == "good") {
-        window.location.href = "/sign-in";
+        window.location.href = "/find-talent";
       }
-
     } catch (e) {
       console.log(e);
     }
   };
 
   return (
-    <Grid container spacing={3} display="flex" className="gridwid">
-      <Card
-        className={classes.root}
-        elevation="10"
-        style={{ margin: "8%", paddingLeft: "20%" }}
-      >
-        <CardContent>
-          <Typography
-            variant="h5"
-            component="h2"
-            align="start"
-            style={{ marginTop: "40px", marginBottom: "15px" }}
-          >
-            Professional Info
-          </Typography>
+    <div>
+      <CompanyAppBar />
+      <Grid container spacing={3} display="flex" className="gridwid">
+        <Card
+          className={classes.root}
+          elevation="10"
+          style={{ margin: "8%", paddingLeft: "20%" }}
+        >
+          <CardContent>
+            <Typography
+              variant="h5"
+              component="h2"
+              align="start"
+              style={{ marginTop: "40px", marginBottom: "15px" }}
+            >
+              Professional Info
+            </Typography>
 
-          <form noValidate autoComplete="on">
-            
-            <TextField
-              id="outlined-basic"
-              label="Speciality"
-              name="speciality"
-              variant="outlined"
-              onChange={handleChange}
-              value={input && input.speciality}
-              style={{ width: "60%" }}
-            />
+            <form noValidate autoComplete="on">
+              <TextField
+                id="outlined-basic"
+                label="Speciality"
+                name="speciality"
+                variant="outlined"
+                onChange={handleChange}
+                value={input && input.speciality}
+                style={{ width: "60%" }}
+              />
 
-            <TextField
-              id="outlined-basic"
-              label="Address"
-              name="address"
-              variant="outlined"
-              onChange={handleChange}
-              value={input && input.address}
-              style={{ width: "60%" }}
-            />
+              <TextField
+                id="outlined-basic"
+                label="Address"
+                name="address"
+                variant="outlined"
+                onChange={handleChange}
+                value={input && input.address}
+                style={{ width: "60%" }}
+              />
 
-            <TextField
-              id="outlined-basic"
-              label="Achievements"
-              name="achievement"
-              onChange={handleChange}
-              value={input && input.achievement}
-              variant="outlined"
-              style={{ width: "60%" }}
-            />
-          </form>
-          <CardActions>
+              <TextField
+                id="outlined-basic"
+                label="Achievements"
+                name="achievement"
+                onChange={handleChange}
+                value={input && input.achievement}
+                variant="outlined"
+                style={{ width: "60%" }}
+              />
+            </form>
+            <CardActions>
               <Button
                 className="button"
                 variant="contained"
@@ -145,9 +139,10 @@ const InputCompProf = (props) => {
                 Done
               </Button>
             </CardActions>
-        </CardContent>
-      </Card>
-    </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+    </div>
   );
 };
 

@@ -3,21 +3,22 @@ import FreelancerCard from "./FreelancerCard";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import UserAppBar from "../UserNavbar";
 import "./freelancer.css";
+import CompanyAppBar from "../NavbarCompany";
 
 import { GET, GET_AUTH } from "../../api";
 
 const FreelancerInfo = () => {
-  const [project, setProject] = React.useState([]);
+  const [freelancer, setFreelancer] = React.useState([]);
 
   var hashTags = [];
 
   useEffect(() => {
     const exe = async () => {
       try {
-        const { data } = await GET(`project`);
+        const { data } = await GET(`freelancer`);
         console.log(data);
-        setProject(data);
-        console.log("tjdf" + project);
+        setFreelancer(data);
+        console.log(freelancer);
       } catch (e) {
         console.log(e);
       }
@@ -27,6 +28,7 @@ const FreelancerInfo = () => {
 
   return (
     <section className="comp">
+      {localStorage.getItem("access_token") != null ? <CompanyAppBar /> : ""}
       <div>
         <div className="title">
           <h2> Find Talents</h2>
@@ -41,26 +43,14 @@ const FreelancerInfo = () => {
       value={50}
     /> */}
 
-          {/* {project.map((pro) => (
-            <CompanyCard
-              id={pro.id}
+          {freelancer.map((pro) => (
+            <FreelancerCard
+              id={pro.uid}
               name={pro.name}
-              months={pro.duration}
-              price={pro.price}
-              level={pro.level}
-              des={pro.description.substring(0, 100)}
-              tags={pro.tags}
-              oncardClick={() => {
-                localStorage.getItem("access_token") != null
-                  ? (window.location.href = `/detail-post/${pro.id}`)
-                  : (window.location.href = `/sign-in`);
-              }}
+              bio={pro.bio.substring(0, 100)}
+              skill={pro.freelancerSkill}
             />
-          ))} */}
-          <FreelancerCard />
-          <FreelancerCard />
-          <FreelancerCard />
-          <FreelancerCard />
+          ))}
         </div>
       </div>
     </section>
