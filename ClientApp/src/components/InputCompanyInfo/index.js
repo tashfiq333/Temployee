@@ -44,11 +44,24 @@ const InputCompany = (props) => {
 };
 
 const addInfo = (e) => {
+  var name = document.getElementById("name");
+    var bio = document.getElementById("bio");
+    //var error_name = document.getElementById("error_name");
+
+    if(name.value === null || name.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "This field cannot be empty.";
+    }else if( bio.value === null || bio.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "";
+      document.getElementById("error_bio").innerHTML = "This field cannot be empty.";
+    }
+    else{
   props.history.push({
     pathname: "/company-prof",
     state: input,
   });
-};
+}};
 
 
 
@@ -100,14 +113,15 @@ const addInfo = (e) => {
 
               <form noValidate autoComplete="on">
                 <TextField
-                  id="outlined-basic"
+                  id="name"
                   label="Company Name"
                   variant="outlined"
                   name="name"
                   style={{ width: "90%" }}
                   onChange={handleChange}
+                  required
                 />
-
+                <p className="error" id="error_name"></p>
                 <TextField
                   id="outlined-basic"
                   label="Phone Number"
@@ -127,7 +141,7 @@ const addInfo = (e) => {
                 />
 
                 <TextField
-                  id="outlined-multiline-static"
+                  id="bio"
                   label="Description"
                   multiline
                   rows={4}
@@ -138,6 +152,7 @@ const addInfo = (e) => {
                   style={{ width: "90%" }}
                   onChange={handleChange}
                 />
+                <p className="error" id="error_bio"></p>
               </form>
 
               <CardActions style={{ justifyContent: "center" }}>

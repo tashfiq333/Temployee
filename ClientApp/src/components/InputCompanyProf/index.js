@@ -55,7 +55,11 @@ const InputCompProf = (props) => {
 
   const addInfo = async (e) => {
     console.log(state);
-    
+    var spec = document.getElementById("spec");
+    if(spec.value === null || spec.value === "")
+    {
+      document.getElementById("error_spec").innerHTML = "This field cannot be empty.";
+    }else{
 
     try {
       const { data } = await POST_AUTH("compinfo/add_2", {
@@ -78,7 +82,7 @@ const InputCompProf = (props) => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }};
 
   return (
     <Grid container spacing={3} display="flex" className="gridwid">
@@ -100,14 +104,17 @@ const InputCompProf = (props) => {
           <form noValidate autoComplete="on">
             
             <TextField
-              id="outlined-basic"
+              id="spec"
               label="Speciality"
               name="speciality"
               variant="outlined"
               onChange={handleChange}
               value={input && input.speciality}
               style={{ width: "60%" }}
+              required
             />
+
+            <p className="error" id="error_spec"></p>
 
             <TextField
               id="outlined-basic"
