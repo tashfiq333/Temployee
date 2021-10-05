@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Temployee.Models;
+using Temployee.Service;
 using System.Linq;
 using Microsoft.Extensions.Logging;
-
-using Microsoft.AspNetCore.Authorization;
-
-
 using MongoDB.Driver;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Http;
+using MongoDB.Bson.Serialization;
+using Microsoft.AspNetCore.Authorization;
 namespace Temployee.Controllers
 {
     [ApiController]
@@ -20,11 +20,14 @@ namespace Temployee.Controllers
 
        
         private readonly IMongoCollection<Company> CompanyCollection;
-       
-        public CompanyController(IMongoClient client ){
+        private readonly UserService us;
+        private readonly string uid;
+        public CompanyController(IMongoClient client, UserService service ){
           var db = client.GetDatabase("Temployee");
           CompanyCollection= db.GetCollection <Company>("Company");
-          
+          us = service;
+          IHttpContextAccessor http = new HttpContextAccessor();
+          uid =(string) http.HttpContext.Items["CompantId"];
 
         }
 
@@ -41,20 +44,39 @@ namespace Temployee.Controllers
 
         }
 
-        // [Authorize]
-        // [HttpGet]
-        // [Route("auth/{id}")]
-        // public ActionResult GetUserPostById(string id)
-        // {
+        [Authorize]   
+        [HttpGet]
+        [Route("user/{id}")]
+        public ActionResult CompanyDetails(string id)
+        {
 
-        //     Console.WriteLine(id);
-        //     Users user = _blogService.GetUserPostById(id);
-        //     if (post == null)
-        //     {
-        //         return new BadRequestObjectResult(new ErrorResult("Internal Server Error", 400, "Something is wrong"));
-        //     }
-        //     return Ok(post);
-        // }
+            
+            try
+            {
+                var filter = Builders<Company>.Filter.Eq("Uid", id);
+                var projection = Builders<Company>.Projection.
+                    Include("Name").
+                    Include("Bio").
+                    Include("Link").
+                    Include("Address").
+                    Include("Email").
+                    Include("Achievement").
+                    Include("Speciality").
+                    Include("Phone");
+                    
+                var result = CompanyCollection.Find(filter).Project(projection).FirstOrDefault();
+                return Ok( BsonSerializer.Deserialize<Company>(result));
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+
+
+        }
 
 
         [HttpPost]
