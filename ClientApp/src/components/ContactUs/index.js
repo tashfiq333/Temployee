@@ -13,16 +13,20 @@ import { Container } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   rootContacUs: {
 
-    margin: '5%',
+    margin: '5% 5% 1% 0%',
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     height: '80vh',
-    width: '40vw',
+    padding: '10%',
   
+  },
+  img:{
+    color: theme.palette.text.secondary,
+    height: '80vh',
+    width: '50vw',
   },
   roottext: {
     '& > *': {
@@ -32,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     },
 
 
-    gridpadding:{
-      padding:'20px',
+  gridpadding:{
+    padding:'20px',
 
-    },
+  },
 
 
   },
@@ -106,7 +110,7 @@ const ContactUs = () => {
         </Grid>
         <Grid item xs={6}>
           {/* <Paper className={classes.paper}> */}
-          <img className={classes.paper}
+          <img className={classes.img}
             src={pic} alt="" />
           {/* </Paper> */}
         </Grid>

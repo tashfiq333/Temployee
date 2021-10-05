@@ -190,7 +190,7 @@ const Applied = () => {
   return (
     <Container style={{ marginTop: 100 }}>
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell />

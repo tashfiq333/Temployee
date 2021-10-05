@@ -90,6 +90,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'inherit',
         padding: 0,
     },
+    cont:{
+        maxHeight: 750,
+
+    },
 
 }));
 
@@ -579,7 +583,7 @@ const UserProfile = () => {
 
               <Grid item xs={12} className="BoxEm">
                 <TableContainer component={Paper}>
-                  <Table aria-label="collapsible table">
+                  <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                       <TableRow>
                         <TableCell />
