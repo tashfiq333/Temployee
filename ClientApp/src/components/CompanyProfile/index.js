@@ -263,13 +263,13 @@ const UserProfile = () => {
   useEffect(() => {
     const exe = async () => {
       try {
-        const { data } = await GET_AUTH(`project/myjob`);
-        console.log(data);
-        setProject(data);
-        console.log("tjdf" + project);
-          const { comp } = await GET_AUTH(`company/user/${id}`);
-          console.log(comp);
-          setCompany(comp);
+        // const { data } = await GET_AUTH(`project/myjob`);
+        // console.log(data);
+        // setProject(data);
+        // console.log("tjdf" + project);
+          const { data } = await GET_AUTH(`company/user/${id}`);
+          console.log(data);
+          setCompany(data);
           console.log(company);
       } catch (e) {
         console.log(e);
