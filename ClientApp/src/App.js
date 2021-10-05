@@ -20,6 +20,7 @@ import UserAppBar from "./components/UserNavbar";
 import AboutUs from "./components/AboutUs";
 import FreelancerInfo from "./components/FreelancerInfo";
 import Applied from "./components/ViewPost";
+import CompanyUserProfile from "./components/CompanyUserProfile";
 
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
@@ -45,7 +46,12 @@ export default class App extends Component {
             <Route path="/profile_setup" exact component={ProfileSetup} />
             <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
-            
+            <Route
+              path="/companyuser-profile/:id"
+              exact
+              component={CompanyUserProfile}
+            />
+
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
@@ -54,6 +60,7 @@ export default class App extends Component {
             <Route path="/company-prof" exact component={InputCompProf} />
             <Route path="/applied/:id" exact component={Applied} />
             <Route path="/find-talent" exact component={FreelancerInfo} />
+            <Route path="/company-profile" exact component={CompanyProfile} />
           </Switch>
           {<Footer />}
         </Router>
@@ -76,7 +83,6 @@ export default class App extends Component {
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/contact-us" exact component={ContactUs} />
-            <Route path="/company-profile" exact component={CompanyProfile} />
           </Switch>
           {<Footer />}
         </Router>

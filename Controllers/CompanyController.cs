@@ -29,7 +29,7 @@ namespace Temployee.Controllers
         }
 
 
-         [HttpGet]
+        [HttpGet]
         public IEnumerable<Company> Get()
         {
 

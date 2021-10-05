@@ -12,9 +12,11 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
 import CompanyAppBar from "../NavbarCompany";
 import { GET, GET_AUTH } from "../../api";
 import { useParams } from "react-router";
+import { POST_AUTH } from "../../api";
 import {
   Container,
   Button,
@@ -56,15 +58,6 @@ const useRowStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(name, email, details, Date) {
-  return {
-    name,
-    email,
-    details,
-    Date,
-  };
-}
-
 function Row(props) {
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
@@ -81,58 +74,27 @@ function Row(props) {
       <CompanyAppBar />
       <TableRow hover className={classes.root}>
         <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={handleOpen}>
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              open={open}
-              //onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 1500,
-              }}
+          <TableCell>
+            <IconButton
+              aria-label="expand row"
+              size="small"
+              onClick={props.onHireClick}
             >
-              <Fade in={open}>
-                <div className={classes.paper}>
-                  <Typography
-                    id="transition-modal-title"
-                    variant="h5"
-                    color="secondary"
-                  >
-                    Do you want to hire the User
-                  </Typography>
-                  <br />
-                  <br />
-                  <Button
-                    variant="outlined"
-                    className={classes.bt}
-                    color="inherit"
-                    onClick={() => {
-                      setOpen(false);
-                      // window.window.location.href = "/personal_info";
-                    }}
-                  >
-                    Hire
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    className={classes.bt}
-                    color="inherit"
-                    onClick={() => {
-                      setOpen(false);
-                      window.window.location.href = "/applied";
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </Fade>
-            </Modal>
-            <CheckIcon></CheckIcon>
-          </IconButton>
+              <CheckIcon />
+            </IconButton>
+          </TableCell>
+          <TableCell>
+            <IconButton
+              aria-label="expand row"
+              size="small"
+              color="secondary"
+              onClick={props.onCancleClick}
+            >
+              <CloseIcon />
+            </IconButton>
+          </TableCell>
         </TableCell>
+
         <TableCell onClick={props.OnRowClick} scope="row">
           <Grid Container>
             <Grid item lg={2}>
@@ -174,6 +136,44 @@ const Applied = () => {
   const { id } = useParams();
   const [project, setProject] = React.useState([]);
 
+  const CheckClicked = (fid) => async () => {
+    console.log("CLICKED");
+    console.log(fid);
+    try {
+      const { job } = await POST_AUTH("project/applicant/hire", {
+        jobid: id,
+        freelancerid: fid,
+      });
+      const { data } = await POST_AUTH("project/applicant/delete", {
+        jobid: id,
+        freelancerid: fid,
+      });
+
+      if (data == "delete") {
+        window.location.reload();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const crossClicked = (fid) => async () => {
+    console.log("CLICKED");
+    console.log(fid);
+    try {
+      const { data } = await POST_AUTH("project/applicant/delete", {
+        jobid: id,
+        freelancerid: fid,
+      });
+
+      if (data == "delete") {
+        window.location.reload();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     const exe = async () => {
       try {
@@ -206,8 +206,10 @@ const Applied = () => {
                 email={pro.email}
                 details={pro.bio}
                 OnRowClick={() => {
-                  window.location.href = `/user-profile/${pro.uid}`;
+                  window.location.href = `/companyuser-profile/${pro.uid}`;
                 }}
+                onHireClick={CheckClicked(pro.uid)}
+                onCancleClick={crossClicked(pro.uid)}
               />
             ))}
           </TableBody>

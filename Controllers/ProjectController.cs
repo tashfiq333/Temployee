@@ -24,6 +24,7 @@ namespace Temployee.Controllers
         private readonly IMongoCollection<Freelancers> FreelancersCollection;
         private readonly IMongoCollection<Company> CompanyCollection;
         private readonly IMongoCollection<AppliedJob> AppliedJobCollection;
+         private readonly IMongoCollection<Hire> HireJobCollection;
 
         private readonly UserService us;
     
@@ -35,6 +36,7 @@ namespace Temployee.Controllers
           FreelancersCollection= db.GetCollection <Freelancers>("Freelancer");
           AppliedJobCollection= db.GetCollection<AppliedJob>("AppliedJob");
           CompanyCollection= db.GetCollection <Company>("Company");
+          HireJobCollection = db.GetCollection<Hire>("Hire");
           us = service;
           IHttpContextAccessor http = new HttpContextAccessor();
           uid =(string) http.HttpContext.Items["UserId"];
@@ -162,7 +164,7 @@ namespace Temployee.Controllers
         [HttpGet]
         [Route("appliedjob")]
        async public Task<List<Project>> JobApplied(){
-          var appliedJobList = await AppliedJobCollection.Find(s => s.FreelancerId==uid).ToListAsync();
+          var appliedJobList = await HireJobCollection.Find(s => s.FreelancerId==uid).ToListAsync();
 
             List<Project> jobInfos = new List<Project>();
           foreach (var item in appliedJobList)
@@ -174,7 +176,7 @@ namespace Temployee.Controllers
             return jobInfos;
         }
 
-       async Task<Project> getJobInfo(AppliedJob job)
+       async Task<Project> getJobInfo(Hire job)
         {
            var project =  await ProjectCollection.Find(s => s.Id==job.JobId).FirstOrDefaultAsync();
            return  project;
@@ -208,5 +210,53 @@ namespace Temployee.Controllers
         }
 
 
+        [Authorize]
+        [HttpPost]
+        [Route("applicant/hire")]
+        public string HireCandidate(Hire job)
+        {
+
+
+            HireJobCollection.InsertOne(job);
+
+            return "hire";
+           
+             
+        }
+
+
+        
+        [Authorize]
+        [HttpPost]
+        [Route("applicant/delete")]
+        public string DeleteCandidate(AppliedJob job)
+        {
+            var appliedJobList = AppliedJobCollection.Find(s => s.JobId==job.JobId).ToList();
+            AppliedJob finaljob=null;
+
+            foreach (var item in appliedJobList)
+            {
+                if(job.FreelancerId==item.FreelancerId)
+                {
+                    finaljob = item;
+                    break;
+                }
+                
+            }
+          
+           Console.WriteLine(finaljob.Id);
+           var deleteFilter = Builders<AppliedJob>.Filter.Eq("Id", finaljob.Id);
+           AppliedJobCollection.DeleteOne(deleteFilter);
+
+          
+
+            return "delete";
+           
+             
+        }
+
+
+    
+    
     }
 }

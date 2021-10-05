@@ -1,0 +1,77 @@
+html{
+    height: 100%;
+}
+.body{
+    margin: 0%;
+    padding: 0%;
+}
+
+.contain{
+}
+
+.userDp{
+    width: 250px !important;
+     height: 250px !important;
+     background-size: cover;
+     
+
+}
+
+.skillbar{
+
+    box-shadow: 2px 6px 6px 2px rgba(0, 0, 0, 0.25);
+    
+}
+
+.skillname{
+    
+    font-weight: bold;
+}
+
+.skilltype{
+    color: #AEAEAE;
+
+}
+.skillhead{
+    color: #6C63FF;
+    font-weight: bold;
+}
+
+
+
+.Boxes {
+  
+    padding-top: 2%;
+    display: flex;
+
+}
+.BoxBio {
+
+    padding-top: 2%;
+    color: #6C63FF;
+
+}
+.BoxEm {
+    height: 50%;
+
+}
+
+.smallboxOne {
+    padding-right: 1%;
+   
+}
+.smallboxTwo {
+    padding-left: 1%;
+  
+}
+
+.ratebutton{
+
+   
+}
+
+.hirebuttongrid{
+  
+    display: flex;
+
+}
