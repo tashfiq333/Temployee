@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Paper, styled, Chip, Avatar, Card, CardMedia, Button } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Container } from "@material-ui/core";
@@ -24,8 +24,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import MoreIcon from '@material-ui/icons/More';
-
-
+import { GET_AUTH } from "../../api";
+import { useParams } from "react-router";
 
 import dp from '../../images/slidera.png'
 
@@ -259,13 +259,13 @@ const rows = [
 
 
 
-const UserProfile = () => {
+const CompanyProfile = () => {
 
     const classes = useStyles();
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
-
-
+    const [company, setCompany] = React.useState([]);
+    const {id} = useParams();
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
@@ -275,6 +275,21 @@ const UserProfile = () => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    useEffect(() => {
+        const exe = async () => {
+          try {
+            const { data } = await GET_AUTH(`company/user/${id}`);
+            console.log(data);
+            setCompany(data);
+            console.log(company);
+          } catch (e) {
+            console.log(e);
+          }
+        };
+        exe();
+      }, []);
+    
 
     return (
         <div>
@@ -291,7 +306,7 @@ const UserProfile = () => {
 
                             <Grid item xs={12} className="BoxBio">
                                 <Itemt elevation={6} >
-                                    <div>
+                                    {/* <div>
                                         <Grid container >
                                             <Grid className="skillhead" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
@@ -303,8 +318,8 @@ const UserProfile = () => {
                                             </Grid>
                                         </Grid>
                                         <br />
-                                    </div >
-                                    <div>
+                                    </div > */}
+                                    {/* <div>
                                         <Grid container >
                                             <Grid className="skillname" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
@@ -318,8 +333,8 @@ const UserProfile = () => {
                                             </Grid>
                                         </Grid>
                                         <br />
-                                    </div >
-                                    <div>
+                                    </div > */}
+                                    {/* <div>
                                         <Grid container >
                                             <Grid className="skillname" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
@@ -333,7 +348,7 @@ const UserProfile = () => {
                                             </Grid>
                                         </Grid>
                                         <br />
-                                    </div >
+                                    </div > */}
 
                                     <div>
                                         <Grid container >
@@ -342,9 +357,9 @@ const UserProfile = () => {
                                                     Other Accounts
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={4}>
+                                            {/* <Grid item xs={4}>
                                                 <Link color="#AEAEAE" href="/company-info">Add New</Link>
-                                            </Grid>
+                                            </Grid> */}
                                         </Grid>
                                         <br />
                                     </div >
@@ -357,7 +372,7 @@ const UserProfile = () => {
                                             </Grid>
                                             <Grid className="skilltype" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    abcdfg@gmail.com
+                                                    {company.email}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -367,12 +382,12 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillname" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    LinkedIn
+                                                    Facebook Link
                                                 </Typography>
                                             </Grid>
                                             <Grid className="skilltype" item xs={4}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    Add
+                                                    {company.link}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -385,7 +400,7 @@ const UserProfile = () => {
                                             </Grid>
                                             <Grid className="skillname" item xs={12}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    137/26 Dhanmondi,Dhaka
+                                                    {company.address}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -398,7 +413,7 @@ const UserProfile = () => {
                                             </Grid>
                                             <Grid className="skillname" item xs={12}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    0172366728993
+                                                    {company.phone}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -416,41 +431,41 @@ const UserProfile = () => {
                                                     Achivements
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={4}>
+                                            {/* <Grid item xs={4}>
                                                 <Link color="#AEAEAE" href="/company-info">Add New</Link>
-                                            </Grid>
+                                            </Grid> */}
                                         </Grid>
                                         <br />
                                     </div >
 
                                     <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
-                                            Completed mongo project successfully.
+                                            {company.achievement}
                                         </Typography>
 
 
                                         <br />
                                     </div>
 
-                                    <div className="skillname">
+                                    {/* <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
                                             Content Writing Competetion held successfully.
                                         </Typography>
 
 
                                         <br />
-                                    </div>
+                                    </div> */}
 
-                                    <div className="skillname">
+                                    {/* <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
                                             IT fair top start up company award winner.
                                         </Typography>
 
 
                                         <br />
-                                    </div>
+                                    </div> */}
 
-                                    <div className="skillhead">
+                                    {/* <div className="skillhead">
                                         <Typography variant="subtitle2" gutterBottom>
                                             Tags
                                         </Typography>
@@ -462,7 +477,7 @@ const UserProfile = () => {
 
                                         </div>
                                         <br />
-                                    </div>
+                                    </div> */}
 
                                 </Itemt>
 
@@ -476,7 +491,7 @@ const UserProfile = () => {
                                     <Item elevation={0}>
                                         <Grid item xs={12} container className="hirebuttongrid">
 
-                                            <Grid item xs={11}><Typography varient="h6" component="h6">Temployee Dot Com</Typography> </Grid>
+                                            <Grid item xs={11}><Typography varient="h6" component="h6">{company.name}</Typography> </Grid>
                                             <Grid ></Grid>
                                         </Grid><br />
                                     </Item>
@@ -563,10 +578,7 @@ const UserProfile = () => {
 
                                         <Grid className="skillname" item xs={12}>
                                             <Typography variant="subtitle2" gutterBottom>
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
+                                                {company.bio}
 
                                             </Typography>
                                         </Grid>
@@ -619,4 +631,4 @@ const UserProfile = () => {
 
 
 }
-export default UserProfile;
+export default CompanyProfile;

@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     borderRadius: 30,
+    
   },
   paper: {
     padding: theme.spacing(2),
@@ -44,10 +45,29 @@ const PersonInfo = (props) => {
   };
 
   const addInfo = (e) => {
-    props.history.push({
-      pathname: "/profile_setup",
-      state: input,
-    });
+
+    var name = document.getElementById("required");
+    var bio = document.getElementById("bio");
+    //var error_name = document.getElementById("error_name");
+
+    if(name.value === null || name.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "This field cannot be empty.";
+    }else if( bio.value === null || bio.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "";
+      document.getElementById("error_bio").innerHTML = "This field cannot be empty.";
+    }
+    else {
+        
+         props.history.push({
+           pathname: "/profile_setup",
+           state: input,
+         });
+    }
+
+    
+    
   };
 
   return (
@@ -94,7 +114,7 @@ const PersonInfo = (props) => {
 
               <form noValidate autoComplete="on">
                 <TextField
-                  id="outlined-basic"
+                  id="required"
                   label="Name"
                   variant="outlined"
                   name="name"
@@ -102,6 +122,8 @@ const PersonInfo = (props) => {
                   style={{ width: "90%" }}
                   onChange={handleChange}
                 />
+
+                <p className="error" id="error_name"></p>
 
                 <TextField
                   id="outlined-basic"
@@ -122,7 +144,7 @@ const PersonInfo = (props) => {
                 />
 
                 <TextField
-                  id="outlined-multiline-static"
+                  id="bio"
                   label="Bio"
                   multiline
                   rows={4}
@@ -133,6 +155,7 @@ const PersonInfo = (props) => {
                   style={{ width: "90%" }}
                   onChange={handleChange}
                 />
+                <p className="error" id="error_bio"></p>
               </form>
 
               <CardActions style={{ justifyContent: "center" }}>
