@@ -64,7 +64,7 @@ const InputCompProf = (props) => {
     try {
       const { data } = await POST_AUTH("compinfo/add_2", {
         name: state.name,
-        phone_no: state.phone,
+        phone: state.phone,
         link: state.link,
         bio: state.bio,
         speciality: input.speciality,
@@ -86,7 +86,7 @@ const InputCompProf = (props) => {
 
   return (
     <div>
-      <CompanyAppBar />
+      
       <Grid container spacing={3} display="flex" className="gridwid">
         <Card
           className={classes.root}
@@ -159,6 +159,6 @@ const InputCompProf = (props) => {
       </Grid>
     </div>
   );
-};
+}};
 
 export default InputCompProf;
