@@ -14,7 +14,7 @@ import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import CompanyAppBar from "../NavbarCompany";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { POST } from "../../api";
+import { POST, POST_AUTH } from "../../api";
 
 const chipStyle = makeStyles((theme) =>
   createStyles({
@@ -86,7 +86,7 @@ const JobPost = () => {
       // formData.append("Tags", arrayOfHashtags);
       console.log(hashtag.level);
 
-      const { data } = await POST("project/add", {
+      const { data } = await POST_AUTH("project/add", {
         name: hashtag.title,
         duration: hashtag.duration,
         price: hashtag.price,

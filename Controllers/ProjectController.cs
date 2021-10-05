@@ -61,11 +61,12 @@ namespace Temployee.Controllers
 
 
         }
-
+        [Authorize]
         [HttpPost]
         [Route("add")]
         public String post(Project project)
         {
+            project.Ownerid = uid;
             ProjectCollection.InsertOne(project);
             return "Job Posted";
             
@@ -110,7 +111,12 @@ namespace Temployee.Controllers
         [Route("applied")]
         public String Applied(AppliedJob appliedJob)
         {
+            var filter = Builders<Project>.Filter.Eq("Id",appliedJob.JobId);
+            var appliedProject = ProjectCollection.Find(s=>s.Id==appliedJob.JobId).FirstOrDefault();
+            appliedProject.number = appliedProject.number+1;
+            var update = Builders<Project>.Update.Set("number", appliedProject.number);
             appliedJob.FreelancerId = uid;
+            ProjectCollection.UpdateOne(filter,update);
             AppliedJobCollection.InsertOne(appliedJob);
             return "applied";
             
@@ -136,7 +142,19 @@ namespace Temployee.Controllers
             Console.WriteLine("ISAPPLIED : flase");
             return Ok("false");
             
+        }
 
+        [Authorize]
+        [HttpGet]
+        [Route("myjob")]
+        public IEnumerable<Project> Myjob()
+        {
+
+            
+            
+               
+            return ProjectCollection.Find(s => s.Ownerid==uid).ToList();
+            
         }
 
 
@@ -160,6 +178,32 @@ namespace Temployee.Controllers
         {
            var project =  await ProjectCollection.Find(s => s.Id==job.JobId).FirstOrDefaultAsync();
            return  project;
+
+        }
+
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("applicant/{id}")]
+       async public Task<List<Freelancers>> AppliedCandidate(string id)
+        {
+            var appliedJobList = await AppliedJobCollection.Find(s => s.JobId==id).ToListAsync();
+             List<Freelancers> FreelancerInfos = new List<Freelancers>();
+           
+            foreach (var item in appliedJobList)
+            {
+                FreelancerInfos.Add(await getFreelancer(item));
+             
+            }
+               
+            return FreelancerInfos;
+            
+        }
+        async Task<Freelancers> getFreelancer(AppliedJob job)
+        {
+           var Freelancer =  await FreelancersCollection.Find(s => s.Uid==job.FreelancerId).FirstOrDefaultAsync();
+           return  Freelancer;
 
         }
 

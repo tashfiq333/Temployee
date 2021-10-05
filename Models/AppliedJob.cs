@@ -11,6 +11,8 @@ namespace Temployee.Models
         public string JobId{get;set;}
         public string FreelancerId{get;set;}
 
+       
+
         
     }
 }
