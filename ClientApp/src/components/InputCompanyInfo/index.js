@@ -143,7 +143,7 @@ const addInfo = (e) => {
                 />
 
                 <TextField
-                  id="outlined-multiline-static"
+                  id="bio"
                   label="Description"
                   multiline
                   rows={4}

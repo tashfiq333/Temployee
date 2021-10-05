@@ -290,6 +290,7 @@ const CompanyProfile = () => {
         exe();
       }, []);
     
+      console.log(company.name);
 
     return (
         <div>
@@ -371,7 +372,7 @@ const CompanyProfile = () => {
                                                 </Typography>
                                             </Grid>
                                             <Grid className="skilltype" item xs={8}>
-                                                <Typography variant="subtitle2" gutterBottom>
+                                                <Typography id="email" variant="subtitle2" gutterBottom>
                                                     {company.email}
                                                 </Typography>
                                             </Grid>

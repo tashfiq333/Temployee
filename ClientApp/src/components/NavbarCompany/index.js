@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,7 +8,7 @@ import { CssBaseline } from "@material-ui/core";
 import { Component } from "react";
 import { Button } from "@material-ui/core";
 import { purple } from "@material-ui/core/colors";
-
+import { GET_AUTH } from "../../api";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CompanyAppBar = () => {
   const classes = useStyles();
-
+  const [userID, setUserID] = React.useState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -89,6 +89,20 @@ const CompanyAppBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  useEffect(() => {
+    const exe = async () => {
+      try {
+        const data = await GET_AUTH(`empty/auth/Uid`);
+        setUserID(data.data);
+        console.log("ID");
+        console.log(userID);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    exe();
+  }, []);
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -101,7 +115,9 @@ const CompanyAppBar = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Button href="/company-profile">
+        <Button onClick={() => {
+          window.location.href = `/company-profile/${userID}`;
+        }}>
           <p>Profile</p>
         </Button>
       </MenuItem>
@@ -155,7 +171,7 @@ const CompanyAppBar = () => {
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          href="/user-profile"
+         
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
