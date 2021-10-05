@@ -14,7 +14,6 @@ import { POST_AUTH } from "../../api";
 
 
 import "./profset.css";
-import CompanyAppBar from "../NavbarCompany";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,7 +86,7 @@ const InputCompProf = (props) => {
 
   return (
     <div>
-      <CompanyAppBar/>
+      
       <Grid container spacing={3} display="flex" className="gridwid">
         <Card
           className={classes.root}

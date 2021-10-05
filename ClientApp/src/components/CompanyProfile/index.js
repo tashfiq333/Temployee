@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { Paper, styled, Chip, Avatar, Card, CardMedia, Button } from "@material-ui/core";
+import {
+  Paper,
+  styled,
+  Chip,
+  Avatar,
+  Card,
+  CardMedia,
+  Button,
+} from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -602,7 +610,7 @@ const UserProfile = () => {
                 </TableContainer>
               </Grid>
 
-                            {/* <Grid item xs={12} spacing={2} Container className="Boxes">
+              {/* <Grid item xs={12} spacing={2} Container className="Boxes">
                                 <Grid item xs={12} className="smallboxOne">
                                     <ItemRate elevation={6} >
                                     </ItemRate>
@@ -622,6 +630,3 @@ const UserProfile = () => {
   );
 };
 export default UserProfile;
-
-
-
