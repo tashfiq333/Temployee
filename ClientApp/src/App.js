@@ -52,7 +52,7 @@ export default class App extends Component {
             <Route path="/contact-us" exact component={ContactUs} />
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
-            <Route path="/applied" exact component={Applied} />
+            <Route path="/applied/:id" exact component={Applied} />
             <Route path="/find-talent" exact component={FreelancerInfo} />
           </Switch>
           {<Footer />}
