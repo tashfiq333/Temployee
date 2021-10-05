@@ -45,7 +45,7 @@ export default class App extends Component {
             <Route path="/profile_setup" exact component={ProfileSetup} />
             <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
-            <Route path="/company-profile" exact component={CompanyProfile} />
+            
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
@@ -76,6 +76,7 @@ export default class App extends Component {
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/contact-us" exact component={ContactUs} />
+            <Route path="/company-profile" exact component={CompanyProfile} />
           </Switch>
           {<Footer />}
         </Router>

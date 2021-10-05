@@ -51,6 +51,17 @@ const SignIn = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    var email = document.getElementById("email");
+    var pass = document.getElementById("pass");
+
+    if(email.value === null || email.value === "")
+    {
+      document.getElementById("error_email").innerHTML = "This field cannot be empty.";
+    }else if( pass.value === null || pass.value === "")
+    {
+      document.getElementById("error_email").innerHTML = "";
+      document.getElementById("error_pass").innerHTML = "This field cannot be empty.";
+    }else{
 
     try {
       const { data } = await POST("user/login", {
@@ -71,7 +82,7 @@ const SignIn = () => {
       //   console.log("server didnt respond");
       // }
     }
-  };
+  }};
 
   return (
     <div id="Signin" className="bgimg">
@@ -95,7 +106,7 @@ const SignIn = () => {
                 autoComplete="off"
               >
                 <TextField
-                  id="outlined-basic"
+                  id="email"
                   label="Email"
                   name="email"
                   required
@@ -103,8 +114,9 @@ const SignIn = () => {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                 />
+                <p className="error" id="error_email"></p>
                 <TextField
-                  id="outlined-basic"
+                  id="pass"
                   label="Password"
                   name="password"
                   type="password"
@@ -113,6 +125,7 @@ const SignIn = () => {
                   style={{ width: "100%" }}
                   onChange={handleChange}
                 />
+                <p className="error" id="error_pass"></p>
               </form>
               <CardActions style={{ justifyContent: "center" }}>
                 <Button

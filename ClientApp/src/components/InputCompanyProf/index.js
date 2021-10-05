@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import { POST } from "../../api";
 import { POST_AUTH } from "../../api";
-import CompanyAppBar from "../NavbarCompany";
+
 
 import "./profset.css";
 
@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
+
 const InputCompProf = (props) => {
   const classes = useStyles();
   const [input, setInput] = useState("");
@@ -51,16 +55,22 @@ const InputCompProf = (props) => {
 
   const addInfo = async (e) => {
     console.log(state);
+    var spec = document.getElementById("spec");
+    if(spec.value === null || spec.value === "")
+    {
+      document.getElementById("error_spec").innerHTML = "This field cannot be empty.";
+    }else{
 
     try {
       const { data } = await POST_AUTH("compinfo/add_2", {
         name: state.name,
-        phone_no: state.phone,
+        phone: state.phone,
         link: state.link,
         bio: state.bio,
         speciality: input.speciality,
         address: input.address,
         achievement: input.achievement,
+        
       });
 
       setInput("");
@@ -68,6 +78,7 @@ const InputCompProf = (props) => {
       if (data == "good") {
         window.location.href = "/find-talent";
       }
+
     } catch (e) {
       console.log(e);
     }
@@ -75,7 +86,7 @@ const InputCompProf = (props) => {
 
   return (
     <div>
-      <CompanyAppBar />
+      
       <Grid container spacing={3} display="flex" className="gridwid">
         <Card
           className={classes.root}
@@ -92,38 +103,42 @@ const InputCompProf = (props) => {
               Professional Info
             </Typography>
 
-            <form noValidate autoComplete="on">
-              <TextField
-                id="outlined-basic"
-                label="Speciality"
-                name="speciality"
-                variant="outlined"
-                onChange={handleChange}
-                value={input && input.speciality}
-                style={{ width: "60%" }}
-              />
+          <form noValidate autoComplete="on">
+            
+            <TextField
+              id="spec"
+              label="Speciality"
+              name="speciality"
+              variant="outlined"
+              onChange={handleChange}
+              value={input && input.speciality}
+              style={{ width: "60%" }}
+              required
+            />
 
-              <TextField
-                id="outlined-basic"
-                label="Address"
-                name="address"
-                variant="outlined"
-                onChange={handleChange}
-                value={input && input.address}
-                style={{ width: "60%" }}
-              />
+            <p className="error" id="error_spec"></p>
 
-              <TextField
-                id="outlined-basic"
-                label="Achievements"
-                name="achievement"
-                onChange={handleChange}
-                value={input && input.achievement}
-                variant="outlined"
-                style={{ width: "60%" }}
-              />
-            </form>
-            <CardActions>
+            <TextField
+              id="outlined-basic"
+              label="Address"
+              name="address"
+              variant="outlined"
+              onChange={handleChange}
+              value={input && input.address}
+              style={{ width: "60%" }}
+            />
+
+            <TextField
+              id="outlined-basic"
+              label="Achievements"
+              name="achievement"
+              onChange={handleChange}
+              value={input && input.achievement}
+              variant="outlined"
+              style={{ width: "60%" }}
+            />
+          </form>
+          <CardActions>
               <Button
                 className="button"
                 variant="contained"
@@ -144,6 +159,6 @@ const InputCompProf = (props) => {
       </Grid>
     </div>
   );
-};
+}};
 
 export default InputCompProf;
