@@ -132,6 +132,14 @@ const ProfileSetup = (props) => {
   const addInfo = async (e) => {
     console.log(state);
 
+    var name = document.getElementById("required");
+    //var error_name = document.getElementById("error_name");
+
+    if(numberOfSkills === null)
+    {
+      document.getElementById("error_skills").innerHTML = "This field cannot be empty.";
+    }else{
+
     try {
       const { data } = await POST_AUTH("info/add_2", {
         name: state.name,
@@ -142,6 +150,7 @@ const ProfileSetup = (props) => {
         qualification: input.qualification,
         achievement: input.achievement,
         freelancerskill: object,
+        
       });
 
       setInput("");
@@ -152,7 +161,7 @@ const ProfileSetup = (props) => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }};
 
   return (
     <section>
@@ -175,7 +184,7 @@ const ProfileSetup = (props) => {
 
             <form noValidate autoComplete="off">
               <TextField
-                id="outlined-basic"
+                id="required"
                 label="Skills"
                 name="skills"
                 value={input && input.skills}
@@ -184,6 +193,8 @@ const ProfileSetup = (props) => {
                 required
                 style={{ width: "60%" }}
               />
+
+              <p className="error" id="error_skills"></p>
 
               <Typography
                 variant="subtitle2"

@@ -1,5 +1,13 @@
-import React from "react";
-import { Paper, styled, Chip, Avatar, Card, CardMedia, Button } from "@material-ui/core";
+import React, { useEffect } from "react";
+import {
+  Paper,
+  styled,
+  Chip,
+  Avatar,
+  Card,
+  CardMedia,
+  Button,
+} from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -24,8 +32,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import MoreIcon from '@material-ui/icons/More';
-
-
+import CompanyAppBar from "../NavbarCompany";
+import { GET, GET_AUTH } from "../../api";
+import { useParams } from "react-router";
 
 import dp from '../../images/slidera.png'
 
@@ -242,35 +251,14 @@ Row.propTypes = {
     }).isRequired,
 };
 
-const rows = [
-    createData('Frozen yoghurt', 159, 3.99),
-    createData('Ice cream sandwich', 7, 4.3),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 66),
-    createData('Frozen yoghurt', 159, 3.99),
-    createData('Ice cream sandwich', 7, 4.3),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 66),
-    createData('Frozen yoghurt', 159, 3.99),
-    createData('Ice cream sandwich', 7, 4.3),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 66),
-
-];
-
-
-
 const UserProfile = () => {
-
-    const classes = useStyles();
-    const [value, setValue] = React.useState(2);
-    const [hover, setHover] = React.useState(-1);
-
-
-    const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover] = React.useState(-1);
+  const {id} = useParams();
+  const [company, setCompany] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [project, setProject] = React.useState([]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -280,22 +268,40 @@ const UserProfile = () => {
         setOpen(false);
     };
 
-    return (
-        <div>
-            <Container className="contain">
-                <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: '10%', }}>
-                    <Grid container spacing={2} >
-                        <Grid item xs={3}>
-                            <Grid item xs={12}>
+  useEffect(() => {
+    const exe = async () => {
+      try {
+        const { data } = await GET_AUTH(`project/myjob`);
+        console.log(data);
+        setProject(data);
+        console.log("tjdf" + project);
+          const { comp } = await GET_AUTH(`company/user/${id}`);
+          console.log(comp);
+          setCompany(comp);
+          console.log(company);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    exe();
+  }, []);
 
-                                <div >
-                                    <Avatar className="userDp" alt="User Image" src={dp} />
-                                </div>
-                            </Grid>
+  return (
+    <div>
+      <CompanyAppBar />
+      <Container className="contain">
+        <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: "10%" }}>
+          <Grid container spacing={2}>
+            <Grid item xs={3}>
+              <Grid item xs={12}>
+                <div>
+                  <Avatar className="userDp" alt="User Image" src={dp} />
+                </div>
+              </Grid>
 
                             <Grid item xs={12} className="BoxBio">
                                 <Itemt elevation={6} >
-                                    <div>
+                                    {/* <div>
                                         <Grid container >
                                             <Grid className="skillhead" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
@@ -307,8 +313,8 @@ const UserProfile = () => {
                                             </Grid>
                                         </Grid>
                                         <br />
-                                    </div >
-                                    <div>
+                                    </div > */}
+                                    {/* <div>
                                         <Grid container >
                                             <Grid className="skillname" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
@@ -322,8 +328,8 @@ const UserProfile = () => {
                                             </Grid>
                                         </Grid>
                                         <br />
-                                    </div >
-                                    <div>
+                                    </div > */}
+                                    {/* <div>
                                         <Grid container >
                                             <Grid className="skillname" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
@@ -337,7 +343,7 @@ const UserProfile = () => {
                                             </Grid>
                                         </Grid>
                                         <br />
-                                    </div >
+                                    </div > */}
 
                                     <div>
                                         <Grid container >
@@ -346,9 +352,9 @@ const UserProfile = () => {
                                                     Other Accounts
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={4}>
+                                            {/* <Grid item xs={4}>
                                                 <Link color="#AEAEAE" href="/company-info">Add New</Link>
-                                            </Grid>
+                                            </Grid> */}
                                         </Grid>
                                         <br />
                                     </div >
@@ -361,7 +367,7 @@ const UserProfile = () => {
                                             </Grid>
                                             <Grid className="skilltype" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    abcdfg@gmail.com
+                                                    {company.email}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -371,12 +377,12 @@ const UserProfile = () => {
                                         <Grid container >
                                             <Grid className="skillname" item xs={8}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    LinkedIn
+                                                    Facebook Link
                                                 </Typography>
                                             </Grid>
                                             <Grid className="skilltype" item xs={4}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    Add
+                                                    {company.link}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -389,7 +395,7 @@ const UserProfile = () => {
                                             </Grid>
                                             <Grid className="skillname" item xs={12}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    137/26 Dhanmondi,Dhaka
+                                                    {company.address}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -402,7 +408,7 @@ const UserProfile = () => {
                                             </Grid>
                                             <Grid className="skillname" item xs={12}>
                                                 <Typography variant="subtitle2" gutterBottom>
-                                                    0172366728993
+                                                    {company.phone}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -420,41 +426,41 @@ const UserProfile = () => {
                                                     Achivements
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={4}>
+                                            {/* <Grid item xs={4}>
                                                 <Link color="#AEAEAE" href="/company-info">Add New</Link>
-                                            </Grid>
+                                            </Grid> */}
                                         </Grid>
                                         <br />
                                     </div >
 
                                     <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
-                                            Completed mongo project successfully.
+                                            {company.achievement}
                                         </Typography>
 
 
                                         <br />
                                     </div>
 
-                                    <div className="skillname">
+                                    {/* <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
                                             Content Writing Competetion held successfully.
                                         </Typography>
 
 
                                         <br />
-                                    </div>
+                                    </div> */}
 
-                                    <div className="skillname">
+                                    {/* <div className="skillname">
                                         <Typography variant="subtitle2" gutterBottom>
                                             IT fair top start up company award winner.
                                         </Typography>
 
 
                                         <br />
-                                    </div>
+                                    </div> */}
 
-                                    <div className="skillhead">
+                                    {/* <div className="skillhead">
                                         <Typography variant="subtitle2" gutterBottom>
                                             Tags
                                         </Typography>
@@ -466,7 +472,7 @@ const UserProfile = () => {
 
                                         </div>
                                         <br />
-                                    </div>
+                                    </div> */}
 
                                 </Itemt>
 
@@ -480,7 +486,7 @@ const UserProfile = () => {
                                     <Item elevation={0}>
                                         <Grid item xs={12} container className="hirebuttongrid">
 
-                                            <Grid item xs={11}><Typography varient="h6" component="h6">Temployee Dot Com</Typography> </Grid>
+                                            <Grid item xs={11}><Typography varient="h6" component="h6">{company.name}</Typography> </Grid>
                                             <Grid ></Grid>
                                         </Grid><br />
                                     </Item>
@@ -567,10 +573,7 @@ const UserProfile = () => {
 
                                         <Grid className="skillname" item xs={12}>
                                             <Typography variant="subtitle2" gutterBottom>
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
-                                                hi, i am a student.Currently doing undergraduation.I am very passionate about my work.
+                                                {company.bio}
 
                                             </Typography>
                                         </Grid>
@@ -578,29 +581,36 @@ const UserProfile = () => {
                                 </ItemBio>
                             </Grid>
 
-                            <Grid item xs={12} className="BoxEm">
+              <Grid item xs={12} className="BoxEm">
+                <TableContainer component={Paper}>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell />
+                        <TableCell>Post Title</TableCell>
+                        <TableCell>Post Details</TableCell>
+                        <TableCell>Number of Candidate</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {project.map((pro) => (
+                        <Row
+                          id={pro.id}
+                          name={pro.name}
+                          des={pro.description.substring(0, 50) + "........"}
+                          number={pro.number}
+                          onClick={() => {
+                            setOpen(false);
+                            window.location.href = `/applied/${pro.id}`;
+                          }}
+                        />
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Grid>
 
-                                <TableContainer component={Paper} className={classes.cont}>
-                                    <Table stickyHeader aria-label="sticky table" >
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell />
-                                                <TableCell >Post Title</TableCell>
-                                                <TableCell >Post Details</TableCell>
-                                                <TableCell >Date</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <Row key={row.name} row={row} />
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-
-                            </Grid>
-
-                            {/* <Grid item xs={12} spacing={2} Container className="Boxes">
+              {/* <Grid item xs={12} spacing={2} Container className="Boxes">
                                 <Grid item xs={12} className="smallboxOne">
                                     <ItemRate elevation={6} >
                                     </ItemRate>
@@ -612,15 +622,11 @@ const UserProfile = () => {
                                         </ItemCmnt>
                                 </Grid>
                             </Grid> */}
-
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Container>
-
-        </div >
-    );
-
-
-}
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+    </div>
+  );
+};
 export default UserProfile;

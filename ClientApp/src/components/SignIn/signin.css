@@ -52,3 +52,7 @@
   letter-spacing: 0em;
   color: #6C63FF !important;
 }
+
+.error{
+  color: red;
+}

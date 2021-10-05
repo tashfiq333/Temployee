@@ -91,3 +91,6 @@ legend {
     width: 100% !important;
 }
 
+.error{
+    color: red;
+}

@@ -38,17 +38,34 @@ const InputCompany = (props) => {
       setInput((prevState) => ({
         ...prevState,
         [name]: value,
+
       }));
       console.log(name + ": " + value);
-    }
-  };
+  }
+};
 
-  const addInfo = (e) => {
-    props.history.push({
-      pathname: "/company-prof",
-      state: input,
-    });
-  };
+const addInfo = (e) => {
+  var name = document.getElementById("name");
+    var bio = document.getElementById("bio");
+    //var error_name = document.getElementById("error_name");
+
+    if(name.value === null || name.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "This field cannot be empty.";
+    }else if( bio.value === null || bio.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "";
+      document.getElementById("error_bio").innerHTML = "This field cannot be empty.";
+    }
+    else{
+  props.history.push({
+    pathname: "/company-prof",
+    state: input,
+  });
+}};
+
+
+
 
   return (
     <div className={classes.root}>
@@ -72,13 +89,17 @@ const InputCompany = (props) => {
                 className={(classes.large, "avatar")}
                 style={{ alignSelf: "center" }}
               >
+               
+
                 <Button
                   className="avatar-button"
                   variant="contained"
                   color="#F0D9FF"
                   style={{ marginTop: "60%", zIndex: 1 }}
-                >
-                  Change Logo
+                  
+                  
+                > 
+                   Change Logo
                 </Button>
               </Avatar>
             </Grid>
@@ -94,14 +115,15 @@ const InputCompany = (props) => {
 
               <form noValidate autoComplete="on">
                 <TextField
-                  id="outlined-basic"
+                  id="name"
                   label="Company Name"
                   variant="outlined"
                   name="name"
                   style={{ width: "90%" }}
                   onChange={handleChange}
+                  required
                 />
-
+                <p className="error" id="error_name"></p>
                 <TextField
                   id="outlined-basic"
                   label="Phone Number"
@@ -132,6 +154,7 @@ const InputCompany = (props) => {
                   style={{ width: "90%" }}
                   onChange={handleChange}
                 />
+                <p className="error" id="error_bio"></p>
               </form>
 
               <CardActions style={{ justifyContent: "center" }}>
@@ -145,6 +168,7 @@ const InputCompany = (props) => {
                     marginTop: "50px",
                     marginBottom: "50px",
                     marginRight: "20%",
+                   
                   }}
                 >
                   Next

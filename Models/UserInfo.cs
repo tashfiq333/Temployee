@@ -13,7 +13,7 @@ namespace Temployee.Models
 
         
 
-        // [Required(ErrorMessage = "Nameis requrired")]
+        // [Required(ErrorMessage = "Name is requrired")]
 
         public string Name{get;set;}
 

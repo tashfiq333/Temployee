@@ -29,8 +29,6 @@ namespace Temployee.Models
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Compare("Password")]
-     
-
          public string ConPass{get;set;}
     }
 }
