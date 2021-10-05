@@ -272,7 +272,7 @@ const UserProfile = () => {
           setCompany(data);
           console.log(company);
       } catch (e) {
-        console.log(e);
+        console.log(e);          
       }
     };
     exe();
