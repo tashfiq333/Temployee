@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { POST_AUTH } from "../../api";
 import UserAppBar from "../UserNavbar";
-import Alert from '@material-ui/lab/Alert';
+
 import "./profset.css";
 import { Input, Link } from "@material-ui/core";
 import zIndex from "@material-ui/core/styles/zIndex";
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     borderRadius: 30,
+    
   },
   paper: {
     padding: theme.spacing(2),
@@ -44,23 +45,29 @@ const PersonInfo = (props) => {
   };
 
   const addInfo = (e) => {
+
     var name = document.getElementById("required");
     var bio = document.getElementById("bio");
     //var error_name = document.getElementById("error_name");
 
-    if (name.value === null || name.value === "") {
-      document.getElementById("invalid").innerHTML =
-        "This field cannot be empty.";
-    } else if (bio.value === null || bio.value === "") {
-      document.getElementById("invalid").innerHTML = "";
-      document.getElementById("error_bio").innerHTML =
-        "This field cannot be empty.";
-    } else {
-      props.history.push({
-        pathname: "/profile_setup",
-        state: input,
-      });
+    if(name.value === null || name.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "This field cannot be empty.";
+    }else if( bio.value === null || bio.value === "")
+    {
+      document.getElementById("error_name").innerHTML = "";
+      document.getElementById("error_bio").innerHTML = "This field cannot be empty.";
     }
+    else {
+        
+         props.history.push({
+           pathname: "/profile_setup",
+           state: input,
+         });
+    }
+
+    
+    
   };
 
   return (
@@ -116,7 +123,7 @@ const PersonInfo = (props) => {
                   onChange={handleChange}
                 />
 
-                <Alert id="invalid" severity="error"></Alert>
+                <p className="error" id="error_name"></p>
 
                 <TextField
                   id="outlined-basic"
