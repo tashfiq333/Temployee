@@ -24,7 +24,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import MoreIcon from '@material-ui/icons/More';
-import { GET_AUTH } from "../../api";
+import CompanyAppBar from "../NavbarCompany";
+import { GET, GET_AUTH } from "../../api";
 import { useParams } from "react-router";
 
 import dp from '../../images/slidera.png'
@@ -80,6 +81,10 @@ const useStyles = makeStyles((theme) => ({
     ul: {
         backgroundColor: 'inherit',
         padding: 0,
+    },
+    cont:{
+        maxHeight: 750,
+
     },
 
 }));
@@ -238,35 +243,14 @@ Row.propTypes = {
     }).isRequired,
 };
 
-const rows = [
-    createData('Frozen yoghurt', 159, 3.99),
-    createData('Ice cream sandwich', 7, 4.3),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 66),
-    createData('Frozen yoghurt', 159, 3.99),
-    createData('Ice cream sandwich', 7, 4.3),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 66),
-    createData('Frozen yoghurt', 159, 3.99),
-    createData('Ice cream sandwich', 7, 4.3),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 66),
-
-];
-
-
-
-const CompanyProfile = () => {
-
-    const classes = useStyles();
-    const [value, setValue] = React.useState(2);
-    const [hover, setHover] = React.useState(-1);
-    const [company, setCompany] = React.useState([]);
-    const {id} = useParams();
-    const [open, setOpen] = React.useState(false);
+const UserProfile = () => {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover] = React.useState(-1);
+  const {id} = useParams();
+  const [company, setCompany] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [project, setProject] = React.useState([]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -276,34 +260,36 @@ const CompanyProfile = () => {
         setOpen(false);
     };
 
-    useEffect(() => {
-        const exe = async () => {
-          try {
-            const { data } = await GET_AUTH(`company/user/${id}`);
-            console.log(data);
-            setCompany(data);
-            console.log(company);
-          } catch (e) {
-            console.log(e);
-          }
-        };
-        exe();
-      }, []);
-    
-      console.log(company.name);
+  useEffect(() => {
+    const exe = async () => {
+      try {
+        const { data } = await GET_AUTH(`project/myjob`);
+        console.log(data);
+        setProject(data);
+        console.log("tjdf" + project);
+          const { comp } = await GET_AUTH(`company/user/${id}`);
+          console.log(comp);
+          setCompany(comp);
+          console.log(company);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    exe();
+  }, []);
 
-    return (
-        <div>
-            <Container className="contain">
-                <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: '10%', }}>
-                    <Grid container spacing={2} >
-                        <Grid item xs={3}>
-                            <Grid item xs={12}>
-
-                                <div >
-                                    <Avatar className="userDp" alt="User Image" src={dp} />
-                                </div>
-                            </Grid>
+  return (
+    <div>
+      <CompanyAppBar />
+      <Container className="contain">
+        <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: "10%" }}>
+          <Grid container spacing={2}>
+            <Grid item xs={3}>
+              <Grid item xs={12}>
+                <div>
+                  <Avatar className="userDp" alt="User Image" src={dp} />
+                </div>
+              </Grid>
 
                             <Grid item xs={12} className="BoxBio">
                                 <Itemt elevation={6} >
@@ -372,7 +358,7 @@ const CompanyProfile = () => {
                                                 </Typography>
                                             </Grid>
                                             <Grid className="skilltype" item xs={8}>
-                                                <Typography id="email" variant="subtitle2" gutterBottom>
+                                                <Typography variant="subtitle2" gutterBottom>
                                                     {company.email}
                                                 </Typography>
                                             </Grid>
@@ -587,27 +573,34 @@ const CompanyProfile = () => {
                                 </ItemBio>
                             </Grid>
 
-                            <Grid item xs={12} className="BoxEm">
-
-                                <TableContainer component={Paper}>
-                                    <Table aria-label="collapsible table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell />
-                                                <TableCell >Post Title</TableCell>
-                                                <TableCell >Post Details</TableCell>
-                                                <TableCell >Date</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <Row key={row.name} row={row} />
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-
-                            </Grid>
+              <Grid item xs={12} className="BoxEm">
+                <TableContainer component={Paper}>
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell />
+                        <TableCell>Post Title</TableCell>
+                        <TableCell>Post Details</TableCell>
+                        <TableCell>Number of Candidate</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {project.map((pro) => (
+                        <Row
+                          id={pro.id}
+                          name={pro.name}
+                          des={pro.description.substring(0, 50) + "........"}
+                          number={pro.number}
+                          onClick={() => {
+                            setOpen(false);
+                            window.location.href = `/applied/${pro.id}`;
+                          }}
+                        />
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Grid>
 
                             {/* <Grid item xs={12} spacing={2} Container className="Boxes">
                                 <Grid item xs={12} className="smallboxOne">
@@ -621,15 +614,14 @@ const CompanyProfile = () => {
                                         </ItemCmnt>
                                 </Grid>
                             </Grid> */}
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+    </div>
+  );
+};
+export default UserProfile;
 
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Container>
-
-        </div >
-    );
 
 
-}
-export default CompanyProfile;

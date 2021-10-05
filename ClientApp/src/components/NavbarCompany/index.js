@@ -161,7 +161,7 @@ const CompanyAppBar = () => {
       </MenuItem>
 
       <MenuItem>
-        <IconButton  color="inherit">
+        <IconButton color="inherit" href="/my-job">
           <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -245,6 +245,7 @@ const CompanyAppBar = () => {
               <IconButton
                 aria-label="show 17 new notifications"
                 color="inherit"
+                href="/my-job"
               >
                 <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />

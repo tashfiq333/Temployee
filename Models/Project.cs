@@ -27,9 +27,12 @@ namespace Temployee.Models
         // [Required(ErrorMessage = "Description is requrired")]
         public string Description{get;set;}
 
-        // [BsonId]
-        // [BsonRepresentation(BsonType.ObjectId)]
-        // public string Owner_Id{get;set;}
+       
+         public string Ownerid{get;set;}
+
+         public int number{get;set;}
+
+      
 
         public string[] Tags{get;set;}
 
