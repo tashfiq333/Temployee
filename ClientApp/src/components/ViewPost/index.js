@@ -185,7 +185,7 @@ const Applied = () => {
   return (
     <Container>
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell />
