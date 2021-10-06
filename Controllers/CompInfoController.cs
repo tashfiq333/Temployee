@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Temployee.Models;
+
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
-using Temployee.Service;
-using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Http;
+using MongoDB.Bson.Serialization;
 using Microsoft.AspNetCore.Authorization;
+
+using Temployee.Service;
+
 
 namespace Temployee.Controllers
 {
@@ -20,6 +24,8 @@ namespace Temployee.Controllers
         private readonly IMongoCollection<Company> CompinfoCollection;
         private readonly UserService us;
         private readonly string uid;
+       
+       
         public CompinfoController (IMongoClient client ,UserService service){
           var db = client.GetDatabase("Temployee");
           CompinfoCollection= db.GetCollection <Company>("Company");
@@ -58,6 +64,8 @@ namespace Temployee.Controllers
             
 
         }
-        
+
+
+
     }
 }

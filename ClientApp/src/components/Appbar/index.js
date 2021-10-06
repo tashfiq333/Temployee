@@ -44,7 +44,7 @@ const Appbar = () => {
             <Link className={classes.bt} color="inherit" href="/find-talent">
               Find Talent
             </Link>
-            <Link className={classes.bt} color="inherit" href="/personal_info">
+            <Link className={classes.bt} color="inherit" href="/about-us">
               About Us
             </Link>
             <Link className={classes.bt} color="inherit" href="/sign-in">

@@ -68,6 +68,7 @@ const addInfo = (e) => {
 
 
   return (
+    
     <div className={classes.root}>
       <CompanyAppBar />
       <Grid container spacing={2} display="flex" className="gridwid">
@@ -143,7 +144,7 @@ const addInfo = (e) => {
                 />
 
                 <TextField
-                  id="outlined-multiline-static"
+                  id="bio"
                   label="Description"
                   multiline
                   rows={4}

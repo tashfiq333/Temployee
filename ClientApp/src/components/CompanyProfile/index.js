@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import {
-  Paper,
-  styled,
-  Chip,
-  Avatar,
-  Card,
-  CardMedia,
-  Button,
+    Paper,
+    styled,
+    Chip,
+    Avatar,
+    Card,
+    CardMedia,
+    Button,
 } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { Container } from "@material-ui/core";
@@ -33,7 +33,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import MoreIcon from '@material-ui/icons/More';
 import CompanyAppBar from "../NavbarCompany";
-import { GET, GET_AUTH } from "../../api";
+import { GET_AUTH } from "../../api";
 import { useParams } from "react-router";
 
 import dp from '../../images/slidera.png'
@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'inherit',
         padding: 0,
     },
-    cont:{
+    cont: {
         maxHeight: 750,
 
     },
@@ -252,13 +252,13 @@ Row.propTypes = {
 };
 
 const UserProfile = () => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(2);
-  const [hover, setHover] = React.useState(-1);
-  const {id} = useParams();
-  const [company, setCompany] = React.useState([]);
-  const [open, setOpen] = React.useState(false);
-  const [project, setProject] = React.useState([]);
+    const classes = useStyles();
+    const [value, setValue] = React.useState(2);
+    const [hover, setHover] = React.useState(-1);
+    const { id } = useParams();
+    const [company, setCompany] = React.useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [project, setProject] = React.useState([]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -268,36 +268,37 @@ const UserProfile = () => {
         setOpen(false);
     };
 
-  useEffect(() => {
-    const exe = async () => {
-      try {
-        const { data } = await GET_AUTH(`project/myjob`);
-        console.log(data);
-        setProject(data);
-        console.log("tjdf" + project);
-          const { comp } = await GET_AUTH(`company/user/${id}`);
-          console.log(comp);
-          setCompany(comp);
-          console.log(company);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    exe();
-  }, []);
+    useEffect(() => {
+        const exe = async () => {
+            try {
+                const { data } = await GET_AUTH(`project/myjob`);
+                console.log(data);
+                setProject(data);
+                console.log("tjdf" + project);
 
-  return (
-    <div>
-      <CompanyAppBar />
-      <Container className="contain">
-        <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: "10%" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={3}>
-              <Grid item xs={12}>
-                <div>
-                  <Avatar className="userDp" alt="User Image" src={dp} />
-                </div>
-              </Grid>
+                const { comp } = await GET_AUTH(`compinfo/user/${id}`);
+                console.log(comp);
+                setCompany(comp);
+                console.log(company);
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        exe();
+    }, []);
+
+    return (
+        <div>
+            <CompanyAppBar />
+            <Container className="contain">
+                <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: "10%" }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={3}>
+                            <Grid item xs={12}>
+                                <div>
+                                    <Avatar className="userDp" alt="User Image" src={dp} />
+                                </div>
+                            </Grid>
 
                             <Grid item xs={12} className="BoxBio">
                                 <Itemt elevation={6} >
@@ -581,36 +582,36 @@ const UserProfile = () => {
                                 </ItemBio>
                             </Grid>
 
-              <Grid item xs={12} className="BoxEm">
-                <TableContainer component={Paper}>
-                  <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell />
-                        <TableCell>Post Title</TableCell>
-                        <TableCell>Post Details</TableCell>
-                        <TableCell>Number of Candidate</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {project.map((pro) => (
-                        <Row
-                          id={pro.id}
-                          name={pro.name}
-                          des={pro.description.substring(0, 50) + "........"}
-                          number={pro.number}
-                          onClick={() => {
-                            setOpen(false);
-                            window.location.href = `/applied/${pro.id}`;
-                          }}
-                        />
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Grid>
+                            <Grid item xs={12} className="BoxEm">
+                                <TableContainer component={Paper}>
+                                    <Table stickyHeader aria-label="sticky table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell />
+                                                <TableCell>Post Title</TableCell>
+                                                <TableCell>Post Details</TableCell>
+                                                <TableCell>Number of Candidate</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {project.map((pro) => (
+                                                <Row
+                                                    id={pro.id}
+                                                    name={pro.name}
+                                                    des={pro.description.substring(0, 50) + "........"}
+                                                    number={pro.number}
+                                                    onClick={() => {
+                                                        setOpen(false);
+                                                        window.location.href = `/applied/${pro.id}`;
+                                                    }}
+                                                />
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Grid>
 
-              {/* <Grid item xs={12} spacing={2} Container className="Boxes">
+                            {/* <Grid item xs={12} spacing={2} Container className="Boxes">
                                 <Grid item xs={12} className="smallboxOne">
                                     <ItemRate elevation={6} >
                                     </ItemRate>
@@ -622,11 +623,11 @@ const UserProfile = () => {
                                         </ItemCmnt>
                                 </Grid>
                             </Grid> */}
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </div>
-  );
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+        </div>
+    );
 };
 export default UserProfile;
