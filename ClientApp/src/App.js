@@ -21,7 +21,7 @@ import AboutUs from "./components/AboutUs";
 import FreelancerInfo from "./components/FreelancerInfo";
 import Applied from "./components/ViewPost";
 import CompanyUserProfile from "./components/CompanyUserProfile";
-
+import NotFound from "./components/NotFound";
 import "./custom.css";
 import CompanyCard from "./components/CompanyInfo/";
 import ProfileSetup from "./components/ProfileSetup";
@@ -44,7 +44,7 @@ export default class App extends Component {
             <Route path="/company-info" exact component={CompanyCard} />
             <Route path="/user-profile/:id" exact component={UserProfile} />
             <Route path="/profile_setup" exact component={ProfileSetup} />
-            <Route path="/company-profile/:id" exact component={CompanyProfile} />
+            <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/post_job" exact component={JobPost} />
             <Route
               path="/companyuser-profile/:id"
@@ -52,15 +52,16 @@ export default class App extends Component {
               component={CompanyUserProfile}
             />
 
-            <Route path="/personal_info" exact component={PersonInfo} />
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
-            <Route path="/contact-us" exact component={ContactUs} />
+
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
             <Route path="/applied/:id" exact component={Applied} />
             <Route path="/find-talent" exact component={FreelancerInfo} />
+            <Route path="/company-profile" exact component={CompanyProfile} />
+            <Route path="/*" exact component={NotFound} />
           </Switch>
           {<Footer />}
         </Router>
@@ -83,8 +84,7 @@ export default class App extends Component {
             <Route path="/user-profile" exact component={UserProfile} />
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/contact-us" exact component={ContactUs} />
-
-
+            <Route path="/*" exact component={NotFound} />
           </Switch>
           {<Footer />}
         </Router>
