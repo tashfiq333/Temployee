@@ -225,7 +225,7 @@ const CompanyUserProfile = (props) => {
 
   return (
     <div>
-      <CompanyAppBar />
+      <UserAppBar />
       <Container className="contain">
         <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: "10%" }}>
           <Grid container spacing={2}>

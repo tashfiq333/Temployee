@@ -55,7 +55,6 @@ export default class App extends Component {
             <Route path="/applied-job" exact component={ApplyJob} />
             <Route path="/detail-post/:id" exact component={DetailPost} />
             <Route path="/about-us" exact component={AboutUs} />
-
             <Route path="/input-company" exact component={InputCompany} />
             <Route path="/company-prof" exact component={InputCompProf} />
             <Route path="/applied/:id" exact component={Applied} />

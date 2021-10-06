@@ -117,7 +117,7 @@ const UserAppBar = () => {
       <MenuItem onClick={handleMenuClose}>
         <Button
           onClick={() => {
-            window.location.href = `/user-profile/${userID}`;
+            window.location.href = `/companyuser-profile/${userID}`;
           }}
         >
           <p>Profile</p>

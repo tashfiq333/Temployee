@@ -27,6 +27,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import UserAppBar from "../UserNavbar";
+import CompanyAppBar from "../NavbarCompany";
 import { GET_AUTH } from "../../api";
 import { useParams } from "react-router";
 
@@ -224,7 +225,7 @@ const UserProfile = (props) => {
 
   return (
     <div>
-      <UserAppBar />
+      <CompanyAppBar />
       <Container className="contain">
         <Box sx={{ flexGrow: 1, paddingTop: 10, marginTop: "10%" }}>
           <Grid container spacing={2}>
@@ -381,12 +382,6 @@ const UserProfile = (props) => {
                         <Typography varient="h6" component="h6">
                           {freelancer.name}
                         </Typography>{" "}
-                      </Grid>
-                      <Grid item xs={1}>
-                        {" "}
-                        <Button type="button" variant="outlined">
-                          Hire
-                        </Button>
                       </Grid>
                     </Grid>
                     <br />
