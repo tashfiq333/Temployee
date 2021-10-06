@@ -68,6 +68,7 @@ const addInfo = (e) => {
 
 
   return (
+    
     <div className={classes.root}>
       <CompanyAppBar />
       <Grid container spacing={2} display="flex" className="gridwid">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     height: '80vh',
     padding: '10%',
-  
+
   },
-  img:{
+  img: {
     color: theme.palette.text.secondary,
     height: '80vh',
     width: '50vw',
@@ -31,15 +31,15 @@ const useStyles = makeStyles((theme) => ({
   roottext: {
     '& > *': {
       margin: theme.spacing(1),
-     
+
 
     },
 
 
-  gridpadding:{
-    padding:'20px',
+    gridpadding: {
+      padding: '20px',
 
-  },
+    },
 
 
   },
@@ -59,6 +59,44 @@ const handleSubmit = async (event) => {
 const ContactUs = () => {
   const classes = useStyles();
 
+  const [data,setData] = useState({
+    name:"",
+    email:"",
+    message:"",
+  });
+
+  const{name, email, message } = data;
+
+  const handleChange = e =>{
+
+    setData({ ...data, [e.target.name]: e.target.value});
+  }
+
+  const handleSubmit = async(e) => {
+
+    e.preventDefault();
+
+    try{
+      const response = await fetch("https://v1.nocodeapi.com/nushraat/google_sheets/jmWxXlCAVhkNKXDj?tabId=Sheet1",{
+
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([[name,email,message,new Date().toLocaleDateString]])
+
+      });  
+
+      await response.JSON;
+      setData({ ...data, name:"", email:"", message:""});
+
+    }catch(err){
+
+      console.log(err)
+    }
+
+  };
+
   return (
 
     <div className={classes.rootContacUs}>
@@ -68,40 +106,58 @@ const ContactUs = () => {
           <Paper className={classes.paper}>
             Send Us your Thoughts
 
-            <form className={classes.roottext} noValidate autoComplete="off">
+            <form className={classes.roottext} noValidate autoComplete="off" onSubmit={handleSubmit}>
               <Grid container spacing={3} justifyContent="center" className={classes.gridpadding}>
                 <Grid item xs={12}>
-                  <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: "80%" }}
+                  <TextField 
+                  id="outlined-basic"
+                  name="name"
+                  value={name}
+                   label="Name" 
+                   placeholder="Name" 
+                   variant="outlined" 
+                   style={{ width: "80%" }}
+                   onChange={handleChange}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField id="outlined-basic" label="Email" variant="outlined" style={{ width: "80%" }}
+                  
+                <TextField 
+                  id="outlined-basic"
+                  name="email"
+                  value={email}
+                   label="Email" 
+                   placeholder="Email" 
+                   variant="outlined" 
+                   style={{ width: "80%" }}
+                   onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField id="outlined-basic" label="Outlined" variant="outlined" style={{ width: "80%" }}
-                  />
-                </Grid>
+              
                 <Grid item xs={12}>
                   <TextField
                     id="outlined-textarea"
-                    label="Multiline Placeholder"
-                    placeholder="Placeholder"
+                    name="message"
+                    value={message}
+                    label="Message"
+                    placeholder="Message"
                     multiline
+                    rows={4}
                     variant="outlined"
                     style={{ width: "80%" }}
+                    onChange={handleChange}
 
                   />
 
                 </Grid>
                 <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSubmit}
-                >
-                  Send
-                </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
+                  >
+                    Send
+                  </Button>
                 </Grid>
 
               </Grid>

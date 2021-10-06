@@ -9,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
-import { POST } from "../../api";
 import { POST_AUTH } from "../../api";
 
 
@@ -39,8 +38,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 const InputCompProf = (props) => {
+
   const classes = useStyles();
+
   const [input, setInput] = useState("");
+
   const { state } = props.location;
   console.log(state);
 
@@ -83,7 +85,7 @@ const InputCompProf = (props) => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }};
 
   return (
     <div>
@@ -160,6 +162,6 @@ const InputCompProf = (props) => {
       </Grid>
     </div>
   );
-}};
+};
 
 export default InputCompProf;
