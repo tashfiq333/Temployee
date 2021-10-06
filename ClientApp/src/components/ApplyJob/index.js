@@ -38,18 +38,20 @@ const ApplyJob = () => {
       value={50}
     /> */}
 
-          {project.map((pro) => (
-            <CompanyCard
-              id={pro.id}
-              name={pro.name}
-              months={pro.duration}
-              price={pro.price}
-              level={pro.level}
-              des={pro.description.substring(0, 100)}
-              tags={pro.tags}
-              status="Pending.."
-            />
-          ))}
+          {project != null
+            ? project.map((pro) => (
+                <CompanyCard
+                  id={pro.id}
+                  name={pro.name}
+                  months={pro.duration}
+                  price={pro.price}
+                  level={pro.level}
+                  des={pro.description.substring(0, 100)}
+                  tags={pro.tags}
+                  status="Hired"
+                />
+              ))
+            : ""}
         </div>
       </div>
     </section>

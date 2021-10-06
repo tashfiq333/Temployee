@@ -49,6 +49,11 @@ const FreelancerInfo = () => {
               name={pro.name}
               bio={pro.bio.substring(0, 100)}
               skill={pro.freelancerSkill}
+              oncardClick={() => {
+                localStorage.getItem("access_token") != null
+                  ? (window.location.href = `/companyuser-profile/${pro.uid}`)
+                  : (window.location.href = `/sign-in`);
+              }}
             />
           ))}
         </div>
