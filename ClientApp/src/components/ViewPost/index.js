@@ -206,7 +206,7 @@ const Applied = () => {
                 email={pro.email}
                 details={pro.bio}
                 OnRowClick={() => {
-                  window.location.href = `/companyuser-profile/${pro.uid}`;
+                  window.location.href = `/user-profile/${pro.uid}`;
                 }}
                 onHireClick={CheckClicked(pro.uid)}
                 onCancleClick={crossClicked(pro.uid)}
